@@ -68,7 +68,7 @@ const Register = () => {
 
     const registerSubmit = (e) => {
         e.preventDefault();
-        dispatch(register(name,email,password));
+        dispatch(register({name,email,password}));
         history(redirect);
     }    
 

@@ -1,62 +1,81 @@
 import {createSlice} from "@reduxjs/toolkit"
+import {login, register, loadUser, logout} from  '../callAPI/userCall'
 
-
-export const loginSlice = createSlice({
+export const UserSlice = createSlice({
     name:'loginUser',
     initialState:{
-        currentUser: "",
-        isLoading: false,
-        isAuthenticated : false,
-        error:""
+        currentUser:{},
+        isLoading: null,
+        isAuthenticated : null,
+        error: null,
     },
     reducers:{
-        loginRequest: (state) => {
-            state.isLoading = true
-            state.isAuthenticated = false
-        },
-        loginSuccess: (state, action) =>{
-            state.currentUser = action.payload
-            state.isLoading = false
-            state.isAuthenticated = true
-   
-        },
-        loginFailure:(state, action) => {
-            state.currentUser = null
-            state.isLoading = false
-            state.isAuthenticated = false
-            state.error = action.payload
-        },
-        clearError:(state) =>{
-            state.error = ""
-        }
     },
+    extraReducers:{
+        
+        //LOGIN
+        [login.pending] : (state)=>{
+            state.isLoading = true
+            state.error = false
+        },
+        [login.fulfilled] : (state,action)=>{
+            state.isLoading = false
+            state.currentUser = action.payload
+            state.isAuthenticated = true
+            state.error = false
+        },
+        [login.rejected] : (state)=>{
+            state.isLoading = false
+            state.error = true
+        },
 
+        //REGISTER
+        [register.pending] :(state)=>{
+            state.isLoading = true
+            state.error = false
+        },
+        [register.fulfilled] :(state,action)=>{
+            state.isLoading = false
+            state.currentUser = action.payload
+            state.isAuthenticated = true
+            state.error = false
+        },
+        [register.rejected] :(state)=>{
+            state.isLoading = false
+            state.error = true
+        },
+
+        //LOADUSER
+        [loadUser.pending]:(state)=>{
+            state.isLoading = true
+            state.error = false
+        },
+        [loadUser.fulfilled]:(state, action)=>{
+            state.isLoading = false
+            state.currentUser = action.payload
+            state.isAuthenticated = true
+            state.error = false
+        },
+        [loadUser.rejected]:(state)=>{
+            state.isLoading = false
+            state.error = true
+        },
+
+        //LOGOUT
+        [logout.pending]:(state)=>{
+            state.isLoading = true
+            state.error = false
+        },
+        [logout.fulfilled]:(state)=>{
+            state.isLoading = false
+            state.currentUser = null
+            state.isAuthenticated = false
+        },
+        [logout.rejected]:(state)=>{
+            state.isLoading = false
+            state.error = true
+        },
+
+    },
 })
 
-export const registerSlice = createSlice({
-    name:'registerUser',
-    initialState:{
-        currentUser : {},
-        isLoading: false,
-        isAuthenticated: false,
-        error: "",
-    },
-    reducers:{
-        registerRequest:(state)=>{
-            state.isLoading = true
-            state.isAuthenticated = false
-        },
-        registerSuccess:(state, action)=>{
-            state.currentUser = action.payload
-            state.isLoading = false
-            state.isAuthenticated = true
-        },
-        registerFailure:(state, action)=>{
-            state.currentUser = null
-            state.isLoading = false
-            state.isAuthenticated = false
-            state.error = action.payload
-        },
-    }
-
-})

@@ -5,8 +5,8 @@ import { login } from '../redux/callAPI/userCall';
 import { Link , useNavigate, useLocation} from 'react-router-dom';
 import {mobile} from "../responsive";
 import NewNavbar from '../components/NewNavbar';
-import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
+// import Alert from '@mui/material/Alert';
+// import AlertTitle from '@mui/material/AlertTitle';
 
 
 
@@ -66,62 +66,90 @@ const StyledLink = styled(Link)`
   }
 `
 
+const LoginSuccess = styled.div`
+  text-align: center;
+  padding:20px;
+  height:200px;
+`
+
+const TitleSuccess = styled.h1`
+  font-size: 30px;
+  font-weight: 500;
+`;
+
+
+
 const Login = () => {
   
   const dispatch = useDispatch();
   const history = useNavigate();
   const location = useLocation();
-  const {isLoading, error, isAuthenticated} = useSelector(state=>state.login)
+  const {isLoading, error, isAuthenticated} = useSelector(state=>state.user)
 
   const [email,setEmail] = useState("")
   const [password, setPassword]  = useState("");
 
   const handleClick = (e) =>{
     e.preventDefault();
-    dispatch(login(email,password));
+    dispatch(login({email,password}));
   }
 
 
   const redirect = location.search ? location.search.split("=")[1] : "/";
 
-  useEffect(()=>{
-    // if(err){
+  // useEffect(()=>{
+    
+  //   if (isAuthenticated){
+  //     history(redirect);
+  //   }
+  // },[dispatch,history,isAuthenticated,redirect])
 
-    // }
-    if (isAuthenticated){
-      
-
-      // history(redirect);
-    }
-  },[dispatch,history,isAuthenticated,redirect])
+  const backHome = () => {
+    history(redirect);
+  }
 
   return (
     <Fragment>
       <NewNavbar/>
-      <Container>
-        
-        <Wrapper>
-          <Title>ĐĂNG NHẬP</Title>
-          <Form>
-            <Input 
-              placeholder='Nhập email:'
-              onChange={(e)=>setEmail(e.target.value)}
-            />
+      {isAuthenticated ? 
+      (
+        <Container>
+            <LoginSuccess>
+              <TitleSuccess>ĐÃ ĐĂNG NHẬP THÀNH CÔNG</TitleSuccess>
+              <Button onClick={backHome}>Trang chủ</Button>
+            </LoginSuccess>
+        </Container> 
+      )
+      :
+      (  
+        <Container>
+          <Wrapper>
+            <Title>ĐĂNG NHẬP</Title>
+            <Form>
+              <Input 
+                placeholder='Nhập email:'
+                onChange={(e)=>setEmail(e.target.value)}
+              />
 
-            <Input 
-              placeholder='Nhập mật khẩu:'
-              onChange={(e)=>setPassword(e.target.value)}
-            />
+              <Input 
+                placeholder='Nhập mật khẩu:'
+                onChange={(e)=>setPassword(e.target.value)}
+              />
+              {error ? 
+                (<p style={{color:"red"}}>Lỗi! Vui lòng thử lại</p>)
+                :
+                (<p style={{color:"white"}}>No erroe;</p>)}
+              
+              <Button onClick={handleClick}>Đăng nhập</Button>
 
-            <Button onClick={handleClick}>Đăng nhập</Button>
+            </Form>
 
-          </Form>
-
-          <StyledLink to={`/`}>Quên mật khẩu ?</StyledLink>
-          &nbsp;
-          <Link to={`/register`}>Đăng ký tài khoản</Link>
-        </Wrapper>
-      </Container>
+            <StyledLink to={`/`}>Quên mật khẩu ?</StyledLink>
+            &nbsp;
+            <Link to={`/register`}>Đăng ký tài khoản</Link>
+          </Wrapper>
+        </Container>
+      )} 
     </Fragment>
   )
 }

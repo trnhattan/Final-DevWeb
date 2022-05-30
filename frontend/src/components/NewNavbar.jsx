@@ -5,11 +5,13 @@ import Badge from '@mui/material/Badge';
 import {mobile} from "../responsive"
 import { Link, useNavigate } from "react-router-dom";
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AccountOptions from './AccountOptions'
+
+import { useSelector } from 'react-redux';
 
 const MenuItem = styled.div`
     
-    font-size: 20px;
+    font-size: 15px;
     color:white;
     cursor: pointer;
     margin-left: 20px;
@@ -25,6 +27,8 @@ const StyledLink = styled(Link)`
 
 const NewNavbar = () => {
 
+    const {isAuthenticated,currentUser} = useSelector((state)=>state.user)
+    
     // const quantity = useSelector(state=>state.cart.quantity)
     const [keyword, setKeyword] = useState("");
     const history = useNavigate()
@@ -74,9 +78,9 @@ const NewNavbar = () => {
                     </NavDropdown>
 
                     <NavDropdown title="Thông tin" id="navbarScrollingDropdown">
-                        <NavDropdown.Item href="/aboutus">Về chúng tôi</NavDropdown.Item>
-                        <NavDropdown.Item href="/">Chính sách bảo hành</NavDropdown.Item>
-                        <NavDropdown.Item href="/">Chính sách vận chuyển</NavDropdown.Item>
+                        <NavDropdown.Item href="/about-us">Về chúng tôi</NavDropdown.Item>
+                        <NavDropdown.Item href="/warranty">Chính sách bảo hành</NavDropdown.Item>
+                        <NavDropdown.Item href="/shipping">Chính sách vận chuyển</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="#action5">Dịch vụ khác</NavDropdown.Item>
                     </NavDropdown>
@@ -93,23 +97,32 @@ const NewNavbar = () => {
                     <Button variant="outline-secondary" style={{width:'200px'}} onClick={handleSearch} >Tìm kiếm</Button>
                 </Form>
 
-
-                <StyledLink to={`/login`}>
-                    <MenuItem>
-                        <Badge>
-                            <AccountCircleIcon/>
-                        </Badge>
-                    </MenuItem>
-                </StyledLink>
-
-                <StyledLink to="/cart">
+                {/* <StyledLink to="/cart">
                     <MenuItem>
                         <Badge badgeContent={4} color="primary">
                         <ShoppingCartOutlinedIcon />
                         </Badge>
                     </MenuItem>
                 </StyledLink>
-               
+                 */}
+
+                {isAuthenticated ? 
+                (
+                    
+                    <MenuItem>
+                        <AccountOptions currentUser={currentUser} />
+                    </MenuItem>
+                    // (<UserOptions user={user} />) 
+                ) 
+                :
+                (
+                    <StyledLink to={`/login`}>
+                        <MenuItem>
+                            ĐĂNG NHẬP
+                        </MenuItem>
+                    </StyledLink>
+                )}
+                
                 </Navbar.Collapse>
             </Container>
         </Navbar>
