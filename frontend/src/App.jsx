@@ -15,8 +15,7 @@ import Warranty from './pages/Warranty'
 import Shipping from './pages/Shipping'
 import Account from './pages/Account'
 import Cart from './pages/Cart'
-
-
+import UpdateProfile from './pages/UpdateProfile'
 
 const App = () => {
 
@@ -24,6 +23,8 @@ const App = () => {
     window.scrollTo(0, 0);
     return null;
   }
+
+
   return (
     
 
@@ -38,6 +39,7 @@ const App = () => {
       <Routes><Route path='/login' element={[<ScrollTotTop/>,<Login/>]} /> </Routes>
       <Routes> <Route path='/register' element={[<ScrollTotTop/>,<Register/>]} /></Routes>
       <Routes> <Route path='/account' element={<Account/>} /></Routes>
+      <Routes> <Route path='/me/update' element={<UpdateProfile/>} /></Routes>
 
       <Routes><Route path='/products/:category' element={[<ScrollTotTop/>,<ProductList/>]} /></Routes>
       <Routes> <Route path='/product/:id' element={[<ScrollTotTop/>,<ProductDetail/>]} /></Routes>

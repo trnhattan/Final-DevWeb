@@ -1,10 +1,8 @@
 import React,{useState} from 'react'
 import {Navbar, Nav, Container, Form, NavDropdown, FormControl, Button} from "react-bootstrap"
 import styled from '@emotion/styled';
-import Badge from '@mui/material/Badge';
 import {mobile} from "../responsive"
 import { Link, useNavigate } from "react-router-dom";
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import AccountOptions from './AccountOptions'
 
 import { useSelector } from 'react-redux';
@@ -97,22 +95,12 @@ const NewNavbar = () => {
                     <Button variant="outline-secondary" style={{width:'200px'}} onClick={handleSearch} >Tìm kiếm</Button>
                 </Form>
 
-                {/* <StyledLink to="/cart">
-                    <MenuItem>
-                        <Badge badgeContent={4} color="primary">
-                        <ShoppingCartOutlinedIcon />
-                        </Badge>
-                    </MenuItem>
-                </StyledLink>
-                 */}
-
                 {isAuthenticated ? 
                 (
                     
                     <MenuItem>
                         <AccountOptions currentUser={currentUser} />
                     </MenuItem>
-                    // (<UserOptions user={user} />) 
                 ) 
                 :
                 (

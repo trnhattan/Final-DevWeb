@@ -9,7 +9,7 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 
-import { Backdrop, SpeedDial, SpeedDialIcon, SpeedDialAction } from '@mui/material';
+import { Backdrop, SpeedDial, SpeedDialAction } from '@mui/material';
 import { logout } from '../redux/callAPI/userCall';
 
 
@@ -22,6 +22,11 @@ const StyledSpeedDial = styled(SpeedDial)`
   z-index:11;
 `
 
+const ImageProfile = styled.img`
+  width: 55px;
+  height: 55px;
+  border-radius: 100%;
+`
 
 
 const AccountOptions = ({currentUser}) => {
@@ -63,17 +68,20 @@ const AccountOptions = ({currentUser}) => {
 
   }
 
-  
-
   return (
       <Fragment>
         <Backdrop open={open} style={{zIndex: "10"}}/>
         <StyledSpeedDial
-          ariaLabel='SpeedDial controlled open exampl'
+          ariaLabel='SpeedDial controlled open example'
           onClose={()=>setOpen(false)}
           onOpen={()=>setOpen(true)}
           open={open}
-          icon={<SpeedDialIcon />}
+          icon= {
+            <ImageProfile
+              src= {require("../images/defaultProfileImg.jpg")}
+              alt="Profile"
+            />
+          }
           direction="down"
         >
           {options.map((action) => (

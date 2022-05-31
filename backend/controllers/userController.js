@@ -15,7 +15,7 @@ exports.registerUser = catchAsyncErrors( async (req,res,next) =>{
         password,
         avatar:{
             public_id:"this is a sample id",
-            url:"profilePicUrl",
+            url:"https://media.istockphoto.com/vectors/user-icon-flat-isolated-on-white-background-user-symbol-vector-vector-id1300845620?k=20&m=1300845620&s=612x612&w=0&h=f4XTZDAv7NPuZbG0habSpU0sNgECM0X7nbKzTUta3n8=",
         }
     });
 
@@ -42,6 +42,7 @@ exports.loginUser = catchAsyncErrors( async (req,res,next)=>{
     }
 
     sendToken(user,200,res);
+
 });
 
 
@@ -120,16 +121,6 @@ exports.resetPassword = catchAsyncErrors( async (req,res,next)=>{
 
 });
 
-//Get User Detail
-exports.getUserDetails = catchAsyncErrors(async (req,res,next)=>{
-
-    const user = await User.findById(req.user.id);
-
-    res.status(200).json({
-        success: true,
-        user
-    })
-})
 
 //Get User Detail
 exports.getUserDetails = catchAsyncErrors(async (req,res,next)=>{
@@ -167,20 +158,19 @@ exports.updateUserPassword = catchAsyncErrors(async (req,res,next)=>{
 //Update User Profile
 exports.updateUserProfile = catchAsyncErrors(async (req,res,next)=>{
 
-    const newUserDate = {
+    const newUserData = {
         name:req.body.name,
         email:req.body.email,
     };
 
-    const user = await User.findByIdAndUpdate(req.user.id,newUserDate, {
-        new:true,
-        runValidators:true,
-        useFindAndModify:false,
+    const user = await User.findByIdAndUpdate(req.user.id,newUserData, {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false,
     });
 
     res.status(200).json({
         success:true,
-        user
     })
 })
 

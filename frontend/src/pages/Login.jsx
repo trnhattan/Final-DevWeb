@@ -126,19 +126,23 @@ const Login = () => {
           <Wrapper>
             <Title>ĐĂNG NHẬP</Title>
             <Form>
-              <Input 
+              <Input
+                name = "email"
+                type="email"
                 placeholder='Nhập email:'
                 onChange={(e)=>setEmail(e.target.value)}
               />
 
               <Input 
+                name='password'
+                type="password"
                 placeholder='Nhập mật khẩu:'
                 onChange={(e)=>setPassword(e.target.value)}
               />
               {error ? 
                 (<p style={{color:"red"}}>Lỗi! Vui lòng thử lại</p>)
                 :
-                (<p style={{color:"white"}}>No erroe;</p>)}
+                (<p style={{color:"white"}}>No error</p>)}
               
               <Button onClick={handleClick}>Đăng nhập</Button>
 

@@ -7,12 +7,16 @@ export const login = createAsyncThunk (
     "user/login",
     async (user)=> {
         // try{
-            // const config = { headers: { "Content-Type": "application/json" } }; 
+            // const headers = new Headers()
+            // headers.append("Content-Type" , "application/json" )
+
+            const config = { headers: { "Content-Type": "application/json" }, }; 
             const {data} = await publicRequest.post(
                 `/login`,
                 user,
-                // config,
+                config,
             )
+            localStorage.setItem("token",data.token)
             return data.user
         // }catch(err){
         //     return err.response.data.message
@@ -38,10 +42,17 @@ export const register = createAsyncThunk(
 export const loadUser = createAsyncThunk(
     "user/loadUser",
     async () => {
-        const {data} = await publicRequest.get(
-            `/me`,
-        )
-        return data.user
+        try{
+            const token = localStorage.getItem("token");
+            const config = { headers: { Authorization : `Bearer ${token}`  } }; 
+            const {data} = await publicRequest.get(
+                `/me`,
+                config
+            )
+            return data.user
+        }catch(err){
+            return  err.response.data.message
+        }
     }
 );
 
@@ -49,8 +60,28 @@ export const loadUser = createAsyncThunk(
 export const logout = createAsyncThunk(
     'user/logout',
     async()=>{
+        
         await publicRequest.get(
             `/logout`
         )
+    }
+);
+
+//Update Profile 
+export const updateProfile = createAsyncThunk(
+    "user/updateProfile",
+    async(userData)=>{
+       
+            const token = localStorage.getItem("token");
+            const config = { headers: { Authorization : `Bearer ${token}`  } }; 
+
+            const {data} = await publicRequest.put(
+                '/me/update',
+                userData,
+                config,
+                
+            )
+            return data.success
+
     }
 )

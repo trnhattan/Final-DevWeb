@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit"
-import {login, register, loadUser, logout} from  '../callAPI/userCall'
+import {login, register, loadUser, logout, updateProfile} from  '../callAPI/userCall'
 
 export const UserSlice = createSlice({
     name:'loginUser',
@@ -24,9 +24,9 @@ export const UserSlice = createSlice({
             state.isAuthenticated = true
             state.error = false
         },
-        [login.rejected] : (state)=>{
+        [login.rejected] : (state, action)=>{
             state.isLoading = false
-            state.error = true
+            state.error = action.payload
         },
 
         //REGISTER
@@ -79,3 +79,39 @@ export const UserSlice = createSlice({
     },
 })
 
+
+export const ProfileSlice = createSlice({
+    name:'profile',
+    initialState:{
+        isUpdated: null,
+        isDeleted: null,
+        isLoading: null,
+        error: null,
+    },
+    reducers:{
+        "updateProfileReset": (state) => {
+            state.isUpdated = false
+        },
+    },
+    extraReducers:{
+
+        //UPDATE PROFILE
+        [updateProfile.pending] : (state)=>{
+            state.isLoading = true
+            state.error = false
+        },
+        [updateProfile.fulfilled] : (state,action)=>{
+            state.isLoading = false
+            state.isUpdated = action.payload
+            state.error = false
+        },
+        [updateProfile.rejected] : (state)=>{
+            state.isUpdated = false
+            state.isLoading = false
+            state.error = true
+        },
+
+
+
+    },
+})
