@@ -1,43 +1,43 @@
 
 import {publicRequest} from '../requestMethods'
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import {productSlice, productsSlide} from '../Slice/productSlice'
+//get all products  
+export const getAllProducts = createAsyncThunk(
+    "product/getAllProducts",
+    async () => {
+        // try{
+            const keyword = ""
+            const currentPage = 1
+            const price = [0, 10000000]
+            const category = null
 
-//get all products
-export const getProduct = (keyword = "", currentPage = 1, price = [0, 10000000], category) => async (dispatch) => {
-    try{
-        dispatch(productsSlide.actions.allProductsRequest);
+            let link = `/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}`;
 
-        let link = `/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}`;
+            // if (category) {
+            //     link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}`;
+            // }
 
-        // if (category) {
-        //     link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}`;
+            const { data } = await publicRequest.get(link);
+            return data
+        // }catch(err){
+        //     return err.response.data.message
         // }
-
-        const { data } = await publicRequest.get(link);
-        
-        dispatch(productsSlide.actions.allProductsSuccess(data));
-    }catch(err){
-        dispatch(productsSlide.actions.allProductsFailure(err.response.data.message));
     }
-}
+)
 
 
-// get  product detail
-export const getProductDetail = (id) => async(dispatch) =>{
-    try{
-        dispatch(productSlice.actions.productDetailsRequest());
-
-        const { data } = await publicRequest.get(
-            `/product/${id}`
-        );
-        
-        dispatch(productSlice.actions.productDetailsSuccess(data.product));
-    }catch(err){
-        dispatch(productSlice.actions.productDetailsFailure(err.response.data.message));
-    }   
-}
-
-// export const clearErr = () => async (dispatch)=>{
-//     dispatch(clearError())
-// }
+//get  product detail 
+export const getProductDetail = createAsyncThunk(
+    "product/getProductDetail",
+    async (id) => {
+        // try{
+            const { data } = await publicRequest.get(
+                `/product/${id}`
+            );
+            return data.product
+        // }catch(err){
+        //     return err.response.data.message
+        // }
+    }
+)

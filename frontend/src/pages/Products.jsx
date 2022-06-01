@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import Loader from '../components/Loader'
 import ProductCard from '../components/ProductCard'
-import {getProduct} from '../redux/callAPI/productCall'
+import {getAllProducts} from '../redux/callAPI/productCall'
 import styled from '@emotion/styled'
 
 
@@ -32,7 +32,7 @@ const Products = () => {
     const {products, isLoading, error, productsCount} = useSelector((state)=>state.products)
 
     useEffect(()=>{
-        dispatch(getProduct())
+        dispatch(getAllProducts())
     },[dispatch])
 
   return (

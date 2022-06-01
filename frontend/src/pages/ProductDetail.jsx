@@ -8,6 +8,7 @@ import styled from '@emotion/styled';
 import { Add, Remove } from "@mui/icons-material";
 import NewNavbar from '../components/NewNavbar'
 import Footer from '../components/Footer'
+import {addItemToCart} from '../redux/callAPI/cartCall'
 
 const Wrapper = styled.div`
     padding: 50px;
@@ -124,24 +125,31 @@ const ProductDetail = () => {
   const id = location.pathname.split("/")[2];
   const dispatch = useDispatch(); 
 
+  const { product, isLoading, error } = useSelector((state) => state.product);
+
   const [color, setColor] = useState("");
   const [strap, setStrap] = useState("");
   const [quantity, setQuantity] = useState(1);
 
  
+  // chỉnh giới hạn <= stock
   const handleQuantity = (type) => {
     if (type === "dec") {
-        quantity > 1 && setQuantity(quantity - 1);
+      if(1 >= quantity) return;
+      setQuantity(quantity - 1);
+
     } else {
-        setQuantity(quantity + 1);
+      if (product.stock <= quantity) return;
+      setQuantity(quantity + 1);
     }
     };
 
-    const handleClick = ()=>{
-
+    const handleClickAdd2Cart = (e)=>{
+      e.preventDefault();
+      dispatch(addItemToCart([id,quantity]))
     }
 
-  const { product, isLoading, error } = useSelector((state) => state.product);
+  
 
   useEffect(()=>{
     // if(error){
@@ -189,7 +197,7 @@ const ProductDetail = () => {
                 <Amount>{quantity}</Amount>
                 <Add onClick={() => handleQuantity("inc")} />
               </AmountContainer>
-              <Button onClick={handleClick} >Thêm vào giỏ hàng</Button>
+              <Button onClick={handleClickAdd2Cart} >Thêm vào giỏ hàng</Button>
             </AddContainer>
 
           </InfoContainer>
