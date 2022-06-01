@@ -6,7 +6,7 @@ import MetaData from  '../components/MetaData'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import {removeItemFromCart, addItemToCart} from '../redux/callAPI/cartCall'
-import CardItem from './CardItem'
+import CardItem from '../components/CardItem'
 import { Typography } from '@mui/material';
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 
@@ -39,6 +39,9 @@ const EmptyCart =  styled.div`
       background-color: rgba(15, 15, 15, 0.5);
     }
   }
+  > div{
+    display:flex;
+  }
 `
 
 const CartPage = styled.div`
@@ -64,6 +67,7 @@ const CartHeader = styled.div`
 `
 
 const CartContainer = styled.div`
+  border-bottom: 2px solid black;
   width: 90%;
   margin: auto;
   display: grid;
@@ -142,10 +146,9 @@ const Cart = () => {
 
   return (
     <Fragment>
-      <NewNavbar/>
       <MetaData title = "Giỏ hàng"/>
-      {false ? (<Loader/>):(
-        <Fragment>
+      <NewNavbar/>
+      
             {cartItems.length === 0 ? (
               <EmptyCart>
                 <RemoveShoppingCartIcon/>
@@ -166,22 +169,24 @@ const Cart = () => {
                   {cartItems && cartItems.map((item)=>(
                     <CartContainer key = {item.product}> 
                         <CardItem item = {item}  removeCartItem = {removeCartItem} />
-                        <CartInput>
-                          <Button onClick={()=>descQuantity(item.product, item.quantity)}> - </Button>
+                        <div>
+                          <CartInput>
+                            
+                              <Button onClick={()=>descQuantity(item.product, item.quantity)}> - </Button>
 
-                          <Quantity readOnly type="number">{item.quantity}</Quantity>
-                          
-                          <Button onClick={()=>incQuantity(item.product,item.quantity,item.stock)} > + </Button>
+                              <Quantity readOnly type="number">{item.quantity}</Quantity>
+                              
+                              <Button onClick={()=>incQuantity(item.product,item.quantity,item.stock)} > + </Button>
 
-                        </CartInput>
-   
+                          </CartInput>
+                          <p>Trong kho: {item.stock} </p>
+                        </div>
                         <CartSubTotal>{`${item.price * item.quantity} VND`}</CartSubTotal>
                       
                     </CartContainer> 
                   ))}
                  </CartPage>
-              </Fragment>
-            )}  
+              
         </Fragment> 
       )}
         

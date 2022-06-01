@@ -10,11 +10,15 @@ import NewNavbar from '../components/NewNavbar'
 import Footer from '../components/Footer'
 import {addItemToCart} from '../redux/callAPI/cartCall'
 
+
+
 const Wrapper = styled.div`
     padding: 50px;
     display: flex;
     ${mobile({ padding: "10px", flexDirection:"column" })}
 `;
+
+
 
 const ImgContainer = styled.div`
     flex: 1;
@@ -125,13 +129,12 @@ const ProductDetail = () => {
   const id = location.pathname.split("/")[2];
   const dispatch = useDispatch(); 
 
-  const { product, isLoading, error } = useSelector((state) => state.product);
+  const { product, error } = useSelector((state) => state.product);
 
   const [color, setColor] = useState("");
   const [strap, setStrap] = useState("");
   const [quantity, setQuantity] = useState(1);
 
- 
   // chỉnh giới hạn <= stock
   const handleQuantity = (type) => {
     if (type === "dec") {
@@ -147,25 +150,26 @@ const ProductDetail = () => {
     const handleClickAdd2Cart = (e)=>{
       e.preventDefault();
       dispatch(addItemToCart([id,quantity]))
+      alert("Thêm thành công")
     }
-
-  
 
   useEffect(()=>{
     // if(error){
-    //   console.log("Eosadasd",error)
+    //   setShowAlert(true);
     // }
+
     dispatch(getProductDetail(id))
   },[dispatch,error,id])
-
 
   return (
     <Fragment>
       <NewNavbar/>
       {(!product)  ? <Loader/>:(<Fragment>
-        <Wrapper>
+
+        <Wrapper> 
+          
           <ImgContainer>
-    
+        
             <Image src={product.image[0].url}/>
           </ImgContainer>
 
@@ -202,6 +206,7 @@ const ProductDetail = () => {
 
           </InfoContainer>
         </Wrapper>
+
       </Fragment>)}
       <Footer/>
     </Fragment>

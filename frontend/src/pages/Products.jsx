@@ -4,7 +4,9 @@ import Loader from '../components/Loader'
 import ProductCard from '../components/ProductCard'
 import {getAllProducts} from '../redux/callAPI/productCall'
 import styled from '@emotion/styled'
-
+import NewNavbar from '../components/NewNavbar'
+import Footer from '../components/Footer'
+import MetaData from '../components/MetaData'
 
 const Title = styled.h2`
     margin: 2vmax auto;
@@ -37,8 +39,10 @@ const Products = () => {
 
   return (
     <Fragment>
+        <MetaData title = 'Sản phẩm'/>
+        <NewNavbar/>
         {isLoading ? <Loader/>: <Fragment>
-            <Title>product heading</Title> 
+            <Title>Tất cả sản phẩm</Title> 
             <ListImage>
                 {products && products.map((product)=>(
                     <ProductCard key={product._id} product={product} />
@@ -46,6 +50,7 @@ const Products = () => {
             </ListImage>
             
         </Fragment>}
+        <Footer/>
     </Fragment>
   )
 }

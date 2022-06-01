@@ -52,6 +52,7 @@ const NewNavbar = () => {
                     style={{ maxHeight: '100px' }}
                     navbarScroll
                 >
+                    <Nav.Link href='/products'>Sản phẩm</Nav.Link>
 
                     <NavDropdown title="Đồng hồ nam" id="navbarScrollingDropdown">
                         <NavDropdown.Item href="#action3">Brand 1</NavDropdown.Item>
