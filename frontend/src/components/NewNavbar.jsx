@@ -8,7 +8,6 @@ import AccountOptions from './AccountOptions'
 import { useSelector } from 'react-redux';
 
 const MenuItem = styled.div`
-    
     font-size: 15px;
     color:white;
     cursor: pointer;
@@ -105,7 +104,7 @@ const NewNavbar = () => {
                 :
                 (
                     <StyledLink to={`/login`}>
-                        <MenuItem>
+                        <MenuItem >
                             ĐĂNG NHẬP
                         </MenuItem>
                     </StyledLink>

@@ -15,7 +15,6 @@ const StyledLink = styled(Link)`
     &:hover {
         box-shadow: 0 0 5px rgba(15, 15, 15, 0.26);
         transform: translateY(-1vmax);
-
     }
 `
 

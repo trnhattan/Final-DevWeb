@@ -70,6 +70,7 @@ const AccountOptions = ({currentUser}) => {
 
   return (
       <Fragment>
+        <div style={{width:"10px"}}>
         <Backdrop open={open} style={{zIndex: "10"}}/>
         <StyledSpeedDial
           ariaLabel='SpeedDial controlled open example'
@@ -94,6 +95,7 @@ const AccountOptions = ({currentUser}) => {
             />
           ))}
         </StyledSpeedDial>
+        </div>
       </Fragment>
   );
 }

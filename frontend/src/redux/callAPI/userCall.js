@@ -42,7 +42,7 @@ export const register = createAsyncThunk(
 export const loadUser = createAsyncThunk(
     "user/loadUser",
     async () => {
-        try{
+        // try{
             const token = localStorage.getItem("token");
             const config = { headers: { Authorization : `Bearer ${token}`  } }; 
             const {data} = await publicRequest.get(
@@ -50,9 +50,9 @@ export const loadUser = createAsyncThunk(
                 config
             )
             return data.user
-        }catch(err){
-            return  err.response.data.message
-        }
+        // }catch(err){
+        //     return  err.response.data.message
+        // }
     }
 );
 
@@ -82,6 +82,60 @@ export const updateProfile = createAsyncThunk(
                 
             )
             return data.success
-
     }
 )
+
+//Update password
+export const updatePassword = createAsyncThunk(
+    "user/updatePassword",
+    async (passwords) => {
+        // try{
+            const token = localStorage.getItem("token");
+            const config = { headers: { Authorization : `Bearer ${token}`  } }; 
+    
+            const {data} = await publicRequest.put(
+                '/password/update',
+                passwords,
+                config,
+            )
+            return data.success 
+        // }catch(err){
+        //     return  err.response.data.message
+        // }
+    }
+);
+
+//forgot password
+export const forgotPassword = createAsyncThunk(
+    "user/forgotPassword",
+    async (email)=>{
+        // try{
+            const {data} = await publicRequest.post(
+                '/password/forgot',
+                email,
+            )
+            return data.message 
+        // }catch(err){
+        //     return  err.response.data.message
+        // }
+    }
+)
+
+//reset password
+export const resetPassword = createAsyncThunk(
+    "user/resetPassword",
+    async (TokenAndPassword)=>{
+        // try{
+            const {data} = await publicRequest.put(
+                `/password/reset/${TokenAndPassword[0]}`,
+                TokenAndPassword[1]
+            )
+            return data.success
+
+        // }catch(err){
+        //     return  err.response.data.message
+        // }
+    }
+)
+
+
