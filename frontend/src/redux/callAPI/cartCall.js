@@ -25,6 +25,8 @@ export const addItemToCart = createAsyncThunk(
     }
 )
 
+// export const update
+
 //remove item to cart
 export const removeItemFromCart = createAsyncThunk (
     'cart/removeItem',

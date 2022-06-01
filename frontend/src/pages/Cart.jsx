@@ -75,25 +75,35 @@ const CartInput = styled.div`
   display: flex;
   align-items: center;
   height: 8vmax;
-  > button {
-    border: none;
-    background-color: rgba(0, 0, 0, 0.616);
-    padding: 0.5vmax;
-    cursor: pointer;
-    color: white;
-    transition: all 0.5s;
+`
+
+
+const Button = styled.button`
+  border: none;
+  width: 3vmax;
+
+  background-color: rgba(0, 0, 0, 0.616);
+  padding: 0.5vmax;
+  cursor: pointer;
+  color: white;
+  
+  transition: all 0.5s;
     &:hover {
       background-color: rgba(0, 0, 0, 0.767);
     }
-  > input {
-    border: none;
-    padding: 0.5vmax;
-    width: 1vmax;
-    text-align: center;
-    outline: none;
-    font: 400 0.8vmax "Roboto";
-    color: rgba(0, 0, 0, 0.74);
-  }
+`
+
+
+const Quantity = styled.span`
+    
+  border: none;
+  padding: 0.5vmax;
+  width: 3vmax;
+  text-align: center;
+  outline: none;
+  
+  font: 600 1.2vmax "Roboto";
+  color: rgba(0, 0, 0, 0.74);
 `
 
 const CartSubTotal = styled.p`
@@ -121,11 +131,10 @@ const Cart = () => {
   }
 
   const incQuantity = (id, quantity, stock) => {
-    const newQuantity = quantity + 1;
+    const newQuantity = quantity + 1; 
     if (stock <= quantity) return;
     dispatch(addItemToCart([id,newQuantity]));
   }
-
 
   const removeCartItem = (id) =>{
     dispatch(removeItemFromCart(id))
@@ -158,18 +167,16 @@ const Cart = () => {
                     <CartContainer key = {item.product}> 
                         <CardItem item = {item}  removeCartItem = {removeCartItem} />
                         <CartInput>
-                          <button onClick={()=>descQuantity(item.product, item.quantity)}> - </button>
-                          <input readOnly type="number" value = {item.quantity}/>
+                          <Button onClick={()=>descQuantity(item.product, item.quantity)}> - </Button>
+
+                          <Quantity readOnly type="number">{item.quantity}</Quantity>
                           
-                          <button onClick={()=>incQuantity(item.product,item.quantity,item.stock)} > + </button>
+                          <Button onClick={()=>incQuantity(item.product,item.quantity,item.stock)} > + </Button>
 
                         </CartInput>
-                       
+   
                         <CartSubTotal>{`${item.price * item.quantity} VND`}</CartSubTotal>
-                        <br></br>
-                        <p>Sản phẩm {item.product}</p>
-                        <p>Số lượng {item.quantity}</p>
-                        <p> KHO {item.stock}</p>
+                      
                     </CartContainer> 
                   ))}
                  </CartPage>
