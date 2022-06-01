@@ -1,14 +1,18 @@
-import React, { Fragment } from 'react'
-import styled from '@emotion/styled'
-import NewNavbar from '../components/NewNavbar'
-import Loader from '../components/Loader'
-import MetaData from  '../components/MetaData'
+import React, { Fragment, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import {removeItemFromCart, addItemToCart} from '../redux/callAPI/cartCall'
+
+import styled from '@emotion/styled'
+
 import CardItem from '../components/CardItem'
-import { Typography } from '@mui/material';
+import NewNavbar from '../components/NewNavbar'
+import MetaData from  '../components/MetaData'
+
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
+import {Typography, Grid, TableContainer ,Table, TableBody, TableRow, TableCell } from '@mui/material';
+
+
 
 const EmptyCart =  styled.div`
   margin: auto;
@@ -127,6 +131,7 @@ const Cart = () => {
   // const history = useNavigate();
 
   const {cartItems, isLoading, error, shippingInfo} = useSelector((state)=>state.cart)
+  const [discount, setDiscount] = useState(100000);
 
   const descQuantity = (id, quantity) => {
     const newQuantity = quantity - 1;
@@ -144,11 +149,18 @@ const Cart = () => {
     dispatch(removeItemFromCart(id))
   }
 
+  const TotalPrice = cartItems.reduce(
+    (acc, item) => acc + item.quantity * item.price, 0 
+  )
+
+
+  console.log(TotalPrice)
+
   return (
     <Fragment>
       <MetaData title = "Giỏ hàng"/>
       <NewNavbar/>
-      
+
             {cartItems.length === 0 ? (
               <EmptyCart>
                 <RemoveShoppingCartIcon/>
@@ -185,6 +197,35 @@ const Cart = () => {
                       
                     </CartContainer> 
                   ))}
+
+                  <Grid container spacing={3}>
+                    <Grid item xs> </Grid>
+                    <Grid item xs={3}> </Grid>
+                    <Grid item xs>
+                      <TableContainer>
+                        <Table>
+                          <TableBody >
+                            <TableCell align="left">
+                              <TableRow>Tổng: </TableRow>
+                              <TableRow>Giảm giá: </TableRow>
+                              <TableRow>Thành tiền: </TableRow>
+                            </TableCell>
+
+                            <TableCell align="right">
+                              <TableRow>{`${TotalPrice} VND`}</TableRow>
+                              <TableRow>{discount} VND</TableRow>
+                              <TableRow>{`${TotalPrice - discount} VND`}</TableRow>
+                            </TableCell>
+
+                          </TableBody>
+                        </Table>
+                      </TableContainer>
+                      <button style={{marginTop:"10px"}}>Thanh Toán</button>
+                    </Grid>
+                  </Grid>
+                  
+                  
+
                  </CartPage>
               
         </Fragment> 
