@@ -13,6 +13,9 @@ import React from 'react'
 
 const Container = styled.div`
     display: flex;
+    background-color:	rgb(32,32,32);
+    padding: 20px;
+    color: white;
     ${mobile({ flexDirection: "column" })}
 `
 const Left = styled.div`
@@ -98,7 +101,7 @@ const SocialLogo = styled.a`
 const StyledLink = styled(Link)`
   &:focus, &:hover, &:visited, &:link, &:active {
     text-decoration: none;
-    color:black;
+    color:white;
   }
 `
 

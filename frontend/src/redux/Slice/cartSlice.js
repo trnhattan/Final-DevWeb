@@ -8,6 +8,7 @@ export const cartSlice = createSlice({
         shippingInfo:{},
         isLoading: null,
         error: null,
+        check:null,
     },
     reducers:{
         clearErr:(state)=>{
@@ -31,10 +32,11 @@ export const cartSlice = createSlice({
             state.isLoading =  false
             const item =  action.payload
             const isItemExist = state.cartItems.find(
-                (i)=> i.product == item.product
+                (i)=> i.product === item.product
             );
             if (isItemExist){
-                state.cartItems.map((i)=> i.product === isItemExist.product ? item : i) 
+                // xử lý congf65 thêm nếu đã tồn tại chứ k phải thay thế 
+                state.cartItems = state.cartItems.map((i)=> i.product === isItemExist.product ? item : i) 
             }
             else{
                 state.cartItems = [...state.cartItems,item]

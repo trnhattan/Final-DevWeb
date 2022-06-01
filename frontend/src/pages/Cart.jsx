@@ -6,7 +6,7 @@ import MetaData from  '../components/MetaData'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import {removeItemFromCart, addItemToCart} from '../redux/callAPI/cartCall'
-import CardItem from './CardItem'
+import CardItem from '../components/CardItem'
 import { Typography } from '@mui/material';
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 
@@ -39,6 +39,9 @@ const EmptyCart =  styled.div`
       background-color: rgba(15, 15, 15, 0.5);
     }
   }
+  > div{
+    display:flex;
+  }
 `
 
 const CartPage = styled.div`
@@ -64,6 +67,7 @@ const CartHeader = styled.div`
 `
 
 const CartContainer = styled.div`
+  border-bottom: 2px solid black;
   width: 90%;
   margin: auto;
   display: grid;
@@ -75,25 +79,35 @@ const CartInput = styled.div`
   display: flex;
   align-items: center;
   height: 8vmax;
-  > button {
-    border: none;
-    background-color: rgba(0, 0, 0, 0.616);
-    padding: 0.5vmax;
-    cursor: pointer;
-    color: white;
-    transition: all 0.5s;
+`
+
+
+const Button = styled.button`
+  border: none;
+  width: 3vmax;
+
+  background-color: rgba(0, 0, 0, 0.616);
+  padding: 0.5vmax;
+  cursor: pointer;
+  color: white;
+  
+  transition: all 0.5s;
     &:hover {
       background-color: rgba(0, 0, 0, 0.767);
     }
-  > input {
-    border: none;
-    padding: 0.5vmax;
-    width: 1vmax;
-    text-align: center;
-    outline: none;
-    font: 400 0.8vmax "Roboto";
-    color: rgba(0, 0, 0, 0.74);
-  }
+`
+
+
+const Quantity = styled.span`
+    
+  border: none;
+  padding: 0.5vmax;
+  width: 3vmax;
+  text-align: center;
+  outline: none;
+  
+  font: 600 1.2vmax "Roboto";
+  color: rgba(0, 0, 0, 0.74);
 `
 
 const CartSubTotal = styled.p`
@@ -121,11 +135,10 @@ const Cart = () => {
   }
 
   const incQuantity = (id, quantity, stock) => {
-    const newQuantity = quantity + 1;
+    const newQuantity = quantity + 1; 
     if (stock <= quantity) return;
     dispatch(addItemToCart([id,newQuantity]));
   }
-
 
   const removeCartItem = (id) =>{
     dispatch(removeItemFromCart(id))
@@ -133,10 +146,9 @@ const Cart = () => {
 
   return (
     <Fragment>
-      <NewNavbar/>
       <MetaData title = "Giỏ hàng"/>
-      {false ? (<Loader/>):(
-        <Fragment>
+      <NewNavbar/>
+      
             {cartItems.length === 0 ? (
               <EmptyCart>
                 <RemoveShoppingCartIcon/>
@@ -157,24 +169,24 @@ const Cart = () => {
                   {cartItems && cartItems.map((item)=>(
                     <CartContainer key = {item.product}> 
                         <CardItem item = {item}  removeCartItem = {removeCartItem} />
-                        <CartInput>
-                          <button onClick={()=>descQuantity(item.product, item.quantity)}> - </button>
-                          <input readOnly type="number" value = {item.quantity}/>
-                          
-                          <button onClick={()=>incQuantity(item.product,item.quantity,item.stock)} > + </button>
+                        <div>
+                          <CartInput>
+                            
+                              <Button onClick={()=>descQuantity(item.product, item.quantity)}> - </Button>
 
-                        </CartInput>
-                       
+                              <Quantity readOnly type="number">{item.quantity}</Quantity>
+                              
+                              <Button onClick={()=>incQuantity(item.product,item.quantity,item.stock)} > + </Button>
+
+                          </CartInput>
+                          <p>Trong kho: {item.stock} </p>
+                        </div>
                         <CartSubTotal>{`${item.price * item.quantity} VND`}</CartSubTotal>
-                        <br></br>
-                        <p>Sản phẩm {item.product}</p>
-                        <p>Số lượng {item.quantity}</p>
-                        <p> KHO {item.stock}</p>
+                      
                     </CartContainer> 
                   ))}
                  </CartPage>
-              </Fragment>
-            )}  
+              
         </Fragment> 
       )}
         
