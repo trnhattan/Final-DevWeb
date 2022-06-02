@@ -148,7 +148,7 @@ const Login = () => {
 
             </Form>
 
-            <StyledLink to={`/`}>Quên mật khẩu ?</StyledLink>
+            <StyledLink to={`/password/forgot`}>Quên mật khẩu ?</StyledLink>
             &nbsp;
             <Link to={`/register`}>Đăng ký tài khoản</Link>
           </Wrapper>

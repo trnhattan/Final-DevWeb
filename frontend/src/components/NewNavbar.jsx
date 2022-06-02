@@ -8,7 +8,6 @@ import AccountOptions from './AccountOptions'
 import { useSelector } from 'react-redux';
 
 const MenuItem = styled.div`
-    
     font-size: 15px;
     color:white;
     cursor: pointer;
@@ -53,6 +52,7 @@ const NewNavbar = () => {
                     style={{ maxHeight: '100px' }}
                     navbarScroll
                 >
+                    <Nav.Link href='/products'>Sản phẩm</Nav.Link>
 
                     <NavDropdown title="Đồng hồ nam" id="navbarScrollingDropdown">
                         <NavDropdown.Item href="#action3">Brand 1</NavDropdown.Item>
@@ -105,7 +105,7 @@ const NewNavbar = () => {
                 :
                 (
                     <StyledLink to={`/login`}>
-                        <MenuItem>
+                        <MenuItem >
                             ĐĂNG NHẬP
                         </MenuItem>
                     </StyledLink>

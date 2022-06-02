@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from 'react'
 import styled from "@emotion/styled"
 import {useDispatch, useSelector} from "react-redux"
-import {getProduct} from '../redux/callAPI/productCall'
+import {getAllProducts} from '../redux/callAPI/productCall'
 import ProductCard from './ProductCard'
 
 const Container = styled.div`
@@ -13,14 +13,14 @@ const Container = styled.div`
   max-width: 100%;
 `;
 const SubTitle = styled.h2`
-text-align: center;
-font-family: Roboto;
-font-size: 1.4vmax;
-border-bottom: 1px solid rgba(21, 21, 21, 0.5);
-width: 20vmax;
-padding: 1vmax;
-margin: 5vmax auto;
-color: rgb(0, 0, 0, 0.7);
+  text-align: center;
+  font-family: Roboto;
+  font-size: 1.4vmax;
+  border-bottom: 1px solid rgba(21, 21, 21, 0.5);
+  width: 20vmax;
+  padding: 1vmax;
+  margin: 5vmax auto;
+  color: rgb(0, 0, 0, 0.7);
 `
 
 const Products = () => {
@@ -30,9 +30,9 @@ const Products = () => {
 
   useEffect(()=>{
     // if(error){
-    //   dispatch(clearErr())
+    //   dispatch(slice => clearErr())
     // }
-    dispatch(getProduct())
+    dispatch(getAllProducts())
   },[dispatch,error])
 
 

@@ -16,6 +16,9 @@ import Shipping from './pages/Shipping'
 import Account from './pages/Account'
 import Cart from './pages/Cart'
 import UpdateProfile from './pages/UpdateProfile'
+import UpdatePassword from './pages/UpdatePassword';
+import { ForgotPassword } from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 
 const App = () => {
 
@@ -40,6 +43,9 @@ const App = () => {
       <Routes> <Route path='/register' element={[<ScrollTotTop/>,<Register/>]} /></Routes>
       <Routes> <Route path='/account' element={<Account/>} /></Routes>
       <Routes> <Route path='/me/update' element={<UpdateProfile/>} /></Routes>
+      <Routes> <Route path='/password/update' element={<UpdatePassword/>} /></Routes>
+      <Routes> <Route path='/password/forgot' element={<ForgotPassword/>} /></Routes>
+      <Routes> <Route path='/password/reset/:token' element={<ResetPassword/>} /></Routes>
 
       <Routes><Route path='/products/:category' element={[<ScrollTotTop/>,<ProductList/>]} /></Routes>
       <Routes> <Route path='/product/:id' element={[<ScrollTotTop/>,<ProductDetail/>]} /></Routes>

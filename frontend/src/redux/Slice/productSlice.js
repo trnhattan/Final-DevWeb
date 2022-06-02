@@ -1,28 +1,34 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import {getProductDetail} from '../callAPI/productCall'
+ 
 export const productSlice = createSlice({
     name:"product",
     initialState:{
         product:null,
-        isLoading: false,
-        error: "",
+        isLoading: null,
+        error: null,
     },
     reducers:{
-        productDetailsRequest:(state)=>{
-            state.isLoading = true
-        },
-        productDetailsSuccess:(state, action)=>{
-            state.isLoading = false
-            state.product = action.payload
-        },
-        productDetailsFailure:(state,action)=>{ 
-            state.isLoading = false
-            state.error = action.payload
-        },
         clearError:(state) =>{
-            state.error = ""
+            state.error = null
         }
     },
+    extraReducers:{
+        [getProductDetail.pending]:(state)=>{
+            state.isLoading = true
+            state.error = false
+        },
+        [getProductDetail.fulfilled]:(state, action)=>{
+            state.product = action.payload
+            state.isLoading = false
+            state.error = false
+        },
+        [getProductDetail.rejected]:(state)=>{
+            state.product = null
+            state.error = true
+            state.isLoading = false
+        },
+    }
 })
 
 export const productsSlide = createSlice({
@@ -55,4 +61,7 @@ export const productsSlide = createSlice({
             state.error = ""
         }
     },
+    extraReducers:{
+
+    }
 })

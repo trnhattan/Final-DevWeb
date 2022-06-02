@@ -1,5 +1,8 @@
 import {createSlice} from "@reduxjs/toolkit"
-import {login, register, loadUser, logout, updateProfile} from  '../callAPI/userCall'
+import {login, register, loadUser, logout, 
+        updateProfile ,updatePassword,
+        forgotPassword, resetPassword
+    } from  '../callAPI/userCall'
 
 export const UserSlice = createSlice({
     name:'loginUser',
@@ -10,6 +13,9 @@ export const UserSlice = createSlice({
         error: null,
     },
     reducers:{
+        clearErr: (state) => {
+            state.error = null
+        }
     },
     extraReducers:{
         
@@ -24,9 +30,9 @@ export const UserSlice = createSlice({
             state.isAuthenticated = true
             state.error = false
         },
-        [login.rejected] : (state, action)=>{
+        [login.rejected] : (state)=>{
             state.isLoading = false
-            state.error = action.payload
+            state.error = true
         },
 
         //REGISTER
@@ -89,29 +95,91 @@ export const ProfileSlice = createSlice({
         error: null,
     },
     reducers:{
-        "updateProfileReset": (state) => {
+        updateProfileReset: (state) => {
             state.isUpdated = false
         },
+        clearErr: (state) => {
+            state.error = null
+        }
     },
     extraReducers:{
 
         //UPDATE PROFILE
         [updateProfile.pending] : (state)=>{
             state.isLoading = true
-            state.error = false
+
         },
         [updateProfile.fulfilled] : (state,action)=>{
             state.isLoading = false
             state.isUpdated = action.payload
-            state.error = false
+
         },
         [updateProfile.rejected] : (state)=>{
-            state.isUpdated = false
             state.isLoading = false
             state.error = true
         },
 
-
+        //UPDATE PASSWORD
+        [updatePassword.pending] : (state)=>{
+            state.isLoading = true
+        },
+        [updatePassword.fulfilled] : (state,action)=>{
+            state.isLoading = false
+            state.isUpdated = action.payload
+        },
+        [updatePassword.rejected] : (state)=>{
+            state.isLoading = false
+            state.error = true
+        },
 
     },
+});
+
+export const ForgotPasswordSlice = createSlice({
+    name:"forgotPassword",
+    initialState:{
+        isLoading: null,
+        error: null,
+        message: null,
+        success:null
+    },
+    reducers:{
+        clearErr:(state)=>{
+            state.error = null
+        },
+        clearMessage:(state) => {
+            state.message = null
+        }
+    },
+    extraReducers:{
+        //  forgot password
+        [forgotPassword.pending]:(state) => {
+            state.isLoading = true
+            state.error = false
+        },
+        [forgotPassword.fulfilled]:(state, action) => {
+            state.message = action.payload
+            state.isLoading = false
+        },
+        [forgotPassword.rejected]:(state) => {
+            state.error = true
+            state.isLoading = false
+        },
+
+        //resetPassword
+        [resetPassword.pending]:(state) => {
+            state.isLoading = true
+            state.error = false
+        },
+        [resetPassword.fulfilled]:(state, action) => {
+            state.success = action.payload
+            state.isLoading = false
+        },
+        [resetPassword.rejected]:(state) => {
+            state.error = true
+            state.isLoading = false
+        },
+    }
 })
+
+
