@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {getProductDetail} from '../callAPI/productCall'
+import {getProductDetail, getAllProducts} from '../callAPI/productCall'
  
 export const productSlice = createSlice({
     name:"product",
@@ -35,33 +35,32 @@ export const productsSlide = createSlice({
     name:"products",
     initialState:{
         products:[],
-        isLoading: false,
-        error: "",
+        isLoading: null,
+        error: null,
         productsCount: 0,
         resultPerPage: 0,
         filteredProductsCount: 0,
         
     },
     reducers:{
-        allProductsRequest:(state)=>{
+        clearError:(state) =>{
+            state.error = null
+        }
+    },
+    extraReducers:{
+        [getAllProducts.pending]:(state)=>{
             state.isLoading = true
         },
-        allProductsSuccess:(state, action)=>{
+        [getAllProducts.fulfilled]:(state, action)=>{
             state.isLoading = false
             state.products = action.payload.products
             state.productsCount =  action.payload.productsCount
             state.resultPerPage = action.payload.resultPerPage
             state.filteredProductsCount =  action.payload.filteredProductsCount
         },
-        allProductsFailure:(state,action)=>{ 
+        [getAllProducts.pending]:(state)=>{
             state.isLoading = false
-            state.error = action.payload
+            state.error = true
         },
-        clearError:(state) =>{
-            state.error = ""
-        }
-    },
-    extraReducers:{
-
     }
 })
