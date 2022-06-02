@@ -40,7 +40,7 @@ const FilterText = styled.span`
 const ProductList = () => {
   const [color, setColor] = React.useState('')
   const [strap, setStrap] = React.useState('')
-  const [sortType, setPrice] = React.useState('')
+  const [sortType, setSortType] = React.useState('')
   const isLoading = useSelector((state)=>state.products.isLoading)
   return (
     <Container>
@@ -102,7 +102,7 @@ const ProductList = () => {
               id='sort-select-disabled-label'
               value={sortType}
               label="sortType"
-              onChange={(e) => setStrap(e.target.value)}
+              onChange={(e) => setSortType(e.target.value)}
             >
               <MenuItem value="">
                 <em>None</em>
