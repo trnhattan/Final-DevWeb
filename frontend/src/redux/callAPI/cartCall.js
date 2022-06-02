@@ -25,8 +25,6 @@ export const addItemToCart = createAsyncThunk(
     }
 )
 
-// export const update
-
 //remove item to cart
 export const removeItemFromCart = createAsyncThunk (
     'cart/removeItem',
@@ -38,3 +36,15 @@ export const removeItemFromCart = createAsyncThunk (
         }
     }
 )
+//save shipping info
+export const saveShippingInfo = createAsyncThunk(
+    'cart',
+    async (data) => {
+        try{
+            return data;
+        }catch(err){
+            return err.response.data.message
+        }
+    }
+)
+

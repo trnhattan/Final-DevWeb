@@ -149,7 +149,7 @@ const Footer = () => {
           <ListItem><StyledLink to = {`/products/dong-ho-nam`} >Đồng hồ nam</StyledLink></ListItem>
           <ListItem><StyledLink to = {`/`}>Yêu thích</StyledLink></ListItem>
           <ListItem><StyledLink to = {`/products/dong-ho-nu`}>Đồng hồ nữ</StyledLink></ListItem>
-          <ListItem><StyledLink to = {`/about`}>Về chúng tôi</StyledLink></ListItem>
+          <ListItem><StyledLink to = {`/about-us`}>Về chúng tôi</StyledLink></ListItem>
           <ListItem><StyledLink to = {`/products/phu-kien`}>Phụ kiện</StyledLink></ListItem>
         </List>
       </Center>
