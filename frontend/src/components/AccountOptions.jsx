@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react'
 import styled from '@emotion/styled';
 
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
@@ -33,11 +33,13 @@ const AccountOptions = ({currentUser}) => {
 
   const history = useNavigate();
   const dispatch = useDispatch();
+  const {cartItems} = useSelector((state)=>state.cart)
   const [open, setOpen] = useState(false);
   
   const options = [
     { icon: <AccountCircleIcon  />, name: 'Profile', func: account},
-    { icon: <ShoppingCartOutlinedIcon />, name: 'Cart', func: cart },
+    { icon: <ShoppingCartOutlinedIcon style={{color: cartItems.length > 0 ? "tomato" : "unset" }}/>, 
+      name: `Cart (${cartItems.length})`, func: cart },
 
     { icon: <ExitToAppIcon />, name: 'Logout', func: logoutUser },
   ];
