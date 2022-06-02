@@ -12,13 +12,14 @@ import ProductDetail from './pages/ProductDetail';
 import AboutUs from './pages/AboutUs'
 import Products from './pages/Products'
 import Warranty from './pages/Warranty'
-import Shipping from './pages/Shipping'
+import ShippingPolicy from './pages/ShippingPolicy'
 import Account from './pages/Account'
 import Cart from './pages/Cart'
 import UpdateProfile from './pages/UpdateProfile'
 import UpdatePassword from './pages/UpdatePassword';
 import { ForgotPassword } from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
+import Shipping from './pages/Shipping';
 
 const App = () => {
 
@@ -37,7 +38,7 @@ const App = () => {
       
       <Routes> <Route path='/about-us' element={[<ScrollTotTop/>,<AboutUs/>]} /> </Routes>
       <Routes> <Route path='/warranty' element={[<ScrollTotTop/>,<Warranty/>]} /> </Routes>
-      <Routes> <Route path='/shipping' element={[<ScrollTotTop/>,<Shipping/>]} /> </Routes>
+      <Routes> <Route path='/shipping-policy' element={[<ScrollTotTop/>,<ShippingPolicy/>]} /> </Routes>
 
       <Routes><Route path='/login' element={[<ScrollTotTop/>,<Login/>]} /> </Routes>
       <Routes> <Route path='/register' element={[<ScrollTotTop/>,<Register/>]} /></Routes>
@@ -51,11 +52,11 @@ const App = () => {
       <Routes> <Route path='/product/:id' element={[<ScrollTotTop/>,<ProductDetail/>]} /></Routes>
       <Routes> <Route path='/products' element={[<ScrollTotTop/>,<Products/>]} /></Routes>
 
-      <Routes> <Route path='/cart' element={<Cart/>} /></Routes>
+      <Routes> <Route path='/cart' element={[ScrollTotTop,<Cart/>]} /></Routes>
+      <Routes> <Route path='/shipping' element={[ScrollTotTop,<Shipping/>]} /></Routes>
 
 
     </BrowserRouter>
-
   )
 }
 

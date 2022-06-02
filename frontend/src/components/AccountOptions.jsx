@@ -13,8 +13,6 @@ import { Backdrop, SpeedDial, SpeedDialAction } from '@mui/material';
 import { logout } from '../redux/callAPI/userCall';
 
 
-
-
 const StyledSpeedDial = styled(SpeedDial)`
   position: fixed;
   top:8px;
@@ -23,8 +21,8 @@ const StyledSpeedDial = styled(SpeedDial)`
 `
 
 const ImageProfile = styled.img`
-  width: 55px;
-  height: 55px;
+  width: 56px;
+  height: 56px;
   border-radius: 100%;
 `
 
@@ -53,7 +51,6 @@ const AccountOptions = ({currentUser}) => {
     });
   }
   
-  
   function cart(){
     history("/cart");
   }
@@ -81,7 +78,7 @@ const AccountOptions = ({currentUser}) => {
           open={open}
           icon= {
             <ImageProfile
-              src= {require("../images/defaultProfileImg.jpg")}
+              src= {currentUser.avatar.url}
               alt="Profile"
             />
           }

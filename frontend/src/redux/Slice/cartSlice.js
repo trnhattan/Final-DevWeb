@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit"
-import {addItemToCart,removeItemFromCart} from '../callAPI/cartCall'
+import {addItemToCart,removeItemFromCart, saveShippingInfo} from '../callAPI/cartCall'
 
 export const cartSlice = createSlice({
     name:'cart',
@@ -8,7 +8,6 @@ export const cartSlice = createSlice({
         shippingInfo:{},
         isLoading: null,
         error: null,
-        check:null,
     },
     reducers:{
         clearErr:(state)=>{
@@ -61,6 +60,21 @@ export const cartSlice = createSlice({
             state.error = false
         },
         [removeItemFromCart.rejected]:(state)=>{
+            state.isLoading = false
+            state.error = true
+        },
+
+        //Save shipping info
+        [saveShippingInfo.pending]:(state)=>{
+            state.isLoading = true
+        },
+        [saveShippingInfo.fulfilled]:(state, action)=>{
+            state.isLoading = false
+            state.shippingInfo = action.payload
+            localStorage.setItem("shippingInfo", JSON.stringify(state.shippingInfo));
+            state.error = false
+        },
+        [saveShippingInfo.rejected]:(state)=>{
             state.isLoading = false
             state.error = true
         },

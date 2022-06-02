@@ -71,11 +71,7 @@ const Register = () => {
         dispatch(register({name,email,password}));
         history(redirect);
     }    
-
-
-
-
-
+    
     return (
         <Fragment>
             <NewNavbar/>
