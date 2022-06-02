@@ -10,13 +10,15 @@ export const getAllProducts = createAsyncThunk(
             const keyword = ""
             const currentPage = 1
             const price = [0, 10000000]
-            const category = null
+            const category = ""
 
-            let link = `/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}`;
+            // let link = `/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}`;
 
-            // if (category) {
+            // if (category !== "") {
             //     link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}`;
             // }
+            let link = "/products"
+            
 
             const { data } = await publicRequest.get(link);
             return data
