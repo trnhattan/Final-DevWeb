@@ -12,6 +12,7 @@ export const getAllProducts = createAsyncThunk(
             
             let link = `/products`
 
+
             if (category === "ALL"){
                 link = `/products`
             }
