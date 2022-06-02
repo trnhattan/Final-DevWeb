@@ -7,6 +7,7 @@ import Products from '../components/Products'
 import Slider from '../components/Slider'
 import Loader from '../components/Loader'
 import MetaData from '../components/MetaData'
+import { Announcement } from '../components/Announcement'
 
 const Home = () => {
   const isLoading = useSelector((state)=>state.products.isLoading)
@@ -14,6 +15,7 @@ const Home = () => {
     <Fragment>
         <MetaData title="Home"/>
           <NewNavbar/>
+          <Announcement/>
           <Slider/>
           <Categories/>
           {isLoading ? <Loader/>: <Products/> }  
