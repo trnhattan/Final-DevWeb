@@ -50,6 +50,7 @@ export const productsSlide = createSlice({
     extraReducers:{
         [getAllProducts.pending]:(state)=>{
             state.isLoading = true
+            state.error = false
         },
         [getAllProducts.fulfilled]:(state, action)=>{
             state.isLoading = false
@@ -57,6 +58,7 @@ export const productsSlide = createSlice({
             state.productsCount =  action.payload.productsCount
             state.resultPerPage = action.payload.resultPerPage
             state.filteredProductsCount =  action.payload.filteredProductsCount
+            state.error = false
         },
         [getAllProducts.pending]:(state)=>{
             state.isLoading = false

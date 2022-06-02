@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react'
-import { useSelector } from 'react-redux'
+import React, { Fragment, useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import Categories from '../components/Categories'
 import Footer from '../components/Footer'
 import NewNavbar from '../components/NewNavbar'
@@ -11,7 +11,10 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem'
 import InputLabel from '@mui/material/InputLabel';
 import { Announcement } from '../components/Announcement'
-
+import {getAllProducts} from '../redux/callAPI/productCall'
+import { productsSlide } from '../redux/Slice/productSlice'
+import ProductCard from '../components/ProductCard'
+import { useLocation } from 'react-router-dom'
 
 const Container = styled.div`
 
@@ -36,12 +39,40 @@ const FilterText = styled.span`
   margin-right: 20px;
 `
 
+const ListImage = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 5vmax;
+    justify-content: center;
+    min-height: 30vh;
+
+`
+
 
 const ProductList = () => {
-  const [color, setColor] = React.useState('')
-  const [strap, setStrap] = React.useState('')
-  const [sortType, setSortType] = React.useState('')
-  const isLoading = useSelector((state)=>state.products.isLoading)
+
+  const { products, isLoading} = useSelector((state)=>state.products)
+  const dispatch = useDispatch()
+  const location = useLocation();
+
+  const category = location.pathname.split("/")[2];
+
+  const [color, setColor] = useState("");
+  const [strap, setStrap] = useState("");
+  const [sortType, setSortType] = useState("");
+
+  const [currentPage, setCurrentPage] = useState(1);
+  
+
+  useEffect(()=>{
+    // if(error){
+    //   alert("Lỗi !")
+    //   dispatch(productsSlide.actions.clearError());
+    // }
+    dispatch(getAllProducts({category, color, strap}))
+  },[dispatch])
+
+
   return (
     <Container>
       <NewNavbar/>
@@ -114,7 +145,13 @@ const ProductList = () => {
           </FormControl> 
         </Filter>
       </FilterContainer>
-      <Products/>
+
+
+        <ListImage>
+          {products && products.map((product)=>(
+                        <ProductCard key={product._id} product={product} />
+                    ))}
+        </ListImage>
       <Footer/>
     </Container>
   )

@@ -30,7 +30,7 @@ export const categories = [
         title: "Đồng hồ nam",
         desc: "Fitbit Versa 2 là chiếc đồng hồ thông minh thế hệ tiếp theo được Fitbitt cho ra mắt sau thành công của Versa 1.  Versa 2 có một số cải tiến so với phiên bản đầu tiên, đặc biệt là màn hình AMOLED hoàn toàn mới, được tích hợp trợ lý ảo Amazon Alexa và ứng dụng nghe nhạc Spotify. Bộ vi xử lý cũng đã được nâng cấp nhanh hơn và cải thiện thời lượng sử dụng pin.",
         bg:"ad9050",
-        cat:"dong-ho-nam"
+        cat:"nam"
     },
     {
         id: 2,
@@ -38,7 +38,7 @@ export const categories = [
         title: "Đồng hồ nữ",
         desc: "Chất liệu dây da là loại phổ biến nhất khi thiết kế và sản xuất đồng hồ. Loại dây này vừa bền lại vừa sang, thiết kế năng động, phù hợp với nhiều lựa chọn.",
         bg:"7aad50",
-        cat:"dong-ho-nu"
+        cat:"nu"
     },
     {
         id: 3,
@@ -46,6 +46,6 @@ export const categories = [
         title: "Phụ kiện",
         desc: "Sản phẩm đồng hồ mang thương hiệu MVW với nhiều mẫu mã năng động, trẻ trung nhưng không kém phần tinh tế và sang trọng, phù hợp với tất cả mọi người hoạt động ở nhiều lĩnh vực từ dân văn phòng đến doanh nhân.",
         bg:"50ad94",
-        cat:"phu-kien"
+        cat:"phukien"
     },
 ]

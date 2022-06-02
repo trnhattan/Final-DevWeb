@@ -30,19 +30,22 @@ const ListImage = styled.div`
 
 const Products = () => {
 
-    const dispatch = useDispatch();
-    const {products, isLoading, error, productsCount} = useSelector((state)=>state.products)
+    // const dispatch = useDispatch();
+    // const {products, isLoading, error, productsCount,resultPerPage, filteredProductsCount} = useSelector((state)=>state.products)
 
-    useEffect(()=>{
-        dispatch(getAllProducts())
-    },[dispatch])
+    // const [currentPage, setCurrentPage] = useState(1);
+    // const [category, setCategory] = useState("");
+
+
+    // useEffect(()=>{
+    //     dispatch(getAllProducts({category,currentPage}))
+    // },[dispatch])
 
   return (
     <Fragment>
-        <MetaData title = 'Sản phẩm'/>
+        {/* <MetaData title = 'Sản phẩm'/>
         <NewNavbar/>
         {isLoading ? <Loader/>: <Fragment>
-            <Title>Tất cả sản phẩm</Title> 
             <ListImage>
                 {products && products.map((product)=>(
                     <ProductCard key={product._id} product={product} />
@@ -50,7 +53,7 @@ const Products = () => {
             </ListImage>
             
         </Fragment>}
-        <Footer/>
+        <Footer/> */}
     </Fragment>
   )
 }
