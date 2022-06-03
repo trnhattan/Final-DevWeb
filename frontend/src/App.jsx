@@ -18,7 +18,9 @@ import UpdateProfile from './pages/UpdateProfile'
 import UpdatePassword from './pages/UpdatePassword';
 import { ForgotPassword } from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
-import Shipping from './pages/Shipping';
+import ShippingInfo from './pages/ShippingInfo';
+import ConfirmOrder from './pages/ConfirmOrder';
+
 
 const App = () => {
 
@@ -52,7 +54,8 @@ const App = () => {
       <Routes> <Route path='/products' element={[<ScrollTotTop/>,<ProductList/>]} /></Routes>
 
       <Routes> <Route path='/cart' element={[ScrollTotTop,<Cart/>]} /></Routes>
-      <Routes> <Route path='/shipping' element={[ScrollTotTop,<Shipping/>]} /></Routes>
+      <Routes> <Route path='/shipping-info' element={[ScrollTotTop,<ShippingInfo/>]} /></Routes>
+      <Routes> <Route path='/confirm-order' element={[ScrollTotTop,<ConfirmOrder/>]} /></Routes>
 
 
     </BrowserRouter>

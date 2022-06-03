@@ -38,7 +38,7 @@ export const removeItemFromCart = createAsyncThunk (
 )
 //save shipping info
 export const saveShippingInfo = createAsyncThunk(
-    'cart',
+    'cart/saveShippingInfo',
     async (data) => {
         try{
             return data;

@@ -5,7 +5,12 @@ export const cartSlice = createSlice({
     name:'cart',
     initialState:{
         cartItems:[],
-        shippingInfo:{},
+        shippingInfo:{
+            name:"",
+            address: "",
+            email:"",
+            phoneNumber:"",
+        },
         isLoading: null,
         error: null,
     },

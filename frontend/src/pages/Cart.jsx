@@ -128,7 +128,7 @@ const CartSubTotal = styled.p`
 const Cart = () => {
 
   const dispatch = useDispatch();
-  // const history = useNavigate();
+  const history = useNavigate();
 
   const {cartItems, isLoading, error, shippingInfo} = useSelector((state)=>state.cart)
   const [discount, setDiscount] = useState(100000);
@@ -152,6 +152,10 @@ const Cart = () => {
   const TotalPrice = cartItems.reduce(
     (acc, item) => acc + item.quantity * item.price, 0 
   )
+
+  const handleClick = ()=> {
+    history("/shipping-info")
+  }
 
 
   console.log(TotalPrice)
@@ -220,7 +224,12 @@ const Cart = () => {
                           </TableBody>
                         </Table>
                       </TableContainer>
-                      <button style={{marginTop:"10px"}}>Thanh Toán</button>
+                      <button 
+                        style={{marginTop:"10px"}}
+                        onClick={handleClick}
+                        >
+                        Thanh Toán
+                      </button>
                     </Grid>
                   </Grid>
                   

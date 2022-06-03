@@ -78,7 +78,7 @@ const NewNavbar = () => {
                     <NavDropdown title="Thông tin" id="navbarScrollingDropdown">
                         <NavDropdown.Item href="/about-us">Về chúng tôi</NavDropdown.Item>
                         <NavDropdown.Item href="/warranty">Chính sách bảo hành</NavDropdown.Item>
-                        <NavDropdown.Item href="/shipping">Chính sách vận chuyển</NavDropdown.Item>
+                        <NavDropdown.Item href="/shipping-policy">Chính sách vận chuyển</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="#action5">Dịch vụ khác</NavDropdown.Item>
                     </NavDropdown>
