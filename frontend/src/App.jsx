@@ -10,7 +10,6 @@ import Register from './pages/Register';
 import ProductList from './pages/ProductList'
 import ProductDetail from './pages/ProductDetail';
 import AboutUs from './pages/AboutUs'
-import Products from './pages/Products'
 import Warranty from './pages/Warranty'
 import ShippingPolicy from './pages/ShippingPolicy'
 import Account from './pages/Account'
@@ -50,7 +49,7 @@ const App = () => {
 
       <Routes><Route path='/products/:category' element={[<ScrollTotTop/>,<ProductList/>]} /></Routes>
       <Routes> <Route path='/product/:id' element={[<ScrollTotTop/>,<ProductDetail/>]} /></Routes>
-      <Routes> <Route path='/products' element={[<ScrollTotTop/>,<Products/>]} /></Routes>
+      <Routes> <Route path='/products' element={[<ScrollTotTop/>,<ProductList/>]} /></Routes>
 
       <Routes> <Route path='/cart' element={[ScrollTotTop,<Cart/>]} /></Routes>
       <Routes> <Route path='/shipping' element={[ScrollTotTop,<Shipping/>]} /></Routes>

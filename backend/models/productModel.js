@@ -37,12 +37,12 @@ const productSchema = mongoose.Schema({
     },
 
     color:{
-        type:Array,
+        type:String,
         required:[true,"Please Enter product Color"]
     },
 
     strap:{
-        type:Array,
+        type:String,
         required:[true,"Please Enter product Strap"]
     },
 

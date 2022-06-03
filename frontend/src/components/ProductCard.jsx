@@ -23,14 +23,16 @@ const Image = styled.img`
 `;
 
 
-const Info = styled.p`
+const Info = styled.div`
     font-family: "Roboto";
     font-size: 2vmax;
     margin: 1vmax 0.5vmax;
     margin-bottom: 0;
-    > p{
-        text-transform: capitalize;
-    }
+    
+`
+
+const InfoItem = styled.p`
+    text-transform: capitalize;
 `
 
 const Price = styled.span`
@@ -43,16 +45,18 @@ const Price = styled.span`
 const ProductCard = ({ product }) => {
   return (
     <Fragment>
-        <StyledLink to={`/product/${product._id}`}>
-     
-            <Image src = {product.image[0].url} alt={product.name}/>
-            <Info>
-                <p>{product.name}</p>
-                <p>{product.brand}</p>
-            </Info>
-            <Price>Giá: {product.price}</Price>
-        
-        </StyledLink>
+        <div key={product._id}>
+            <StyledLink to={`/product/${product._id}`}>
+                <Image src = {product.image[0].url} alt={product.name}/>
+                <Info>
+                    <InfoItem>{product.name}</InfoItem>
+                    <InfoItem>{product.brand}</InfoItem>
+                    <InfoItem>{product.color}</InfoItem>
+                    <InfoItem>{product.strap}</InfoItem>
+                </Info>
+                <Price>Giá: {product.price}</Price>
+            </StyledLink>
+        </div>
     </Fragment>
   );
 };

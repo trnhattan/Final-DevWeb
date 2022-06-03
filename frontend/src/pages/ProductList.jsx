@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import Categories from '../components/Categories'
 import Footer from '../components/Footer'
 import NewNavbar from '../components/NewNavbar'
-import Products from '../components/Products'
 import Loader from '../components/Loader'
 import styled from "styled-components"
 import FormControl from '@mui/material/FormControl';
@@ -55,22 +54,27 @@ const ProductList = () => {
   const dispatch = useDispatch()
   const location = useLocation();
 
-  const category = location.pathname.split("/")[2];
+  let category = "" ;
+  let title = "Tất cả sản phẩm";
+  if (location.pathname.split("/").length > 2) {
+    category = location.pathname.split("/")[2];
+  }
 
   const [color, setColor] = useState("");
   const [strap, setStrap] = useState("");
   const [sortType, setSortType] = useState("");
-
   const [currentPage, setCurrentPage] = useState(1);
-  
+  const [role, setRole] = useState("category");
+
 
   useEffect(()=>{
     // if(error){
     //   alert("Lỗi !")
     //   dispatch(productsSlide.actions.clearError());
     // }
-    dispatch(getAllProducts({category, color, strap}))
-  },[dispatch])
+    dispatch(getAllProducts({role, category, color, strap}))
+  },[dispatch ,role, category,color, strap])
+
 
 
   return (
@@ -93,7 +97,8 @@ const ProductList = () => {
               id='color-select-disabled-label'
               value={color}
               label="color"
-              onChange={(e) => setColor(e.target.value)}
+              onChange={(e)=>setColor(e.target.value)}
+              // onChange={handleChangeColor}
             >
               <MenuItem value="">
                 <em>None</em>

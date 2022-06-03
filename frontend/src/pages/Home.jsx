@@ -1,9 +1,8 @@
-import React, { Fragment , useEffect} from 'react'
+import React, { Fragment , useEffect, useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Categories from '../components/Categories'
 import Footer from '../components/Footer'
 import NewNavbar from '../components/NewNavbar'
-import Products from '../components/Products'
 import Slider from '../components/Slider'
 import Loader from '../components/Loader'
 import MetaData from '../components/MetaData'
@@ -35,16 +34,18 @@ const ListImage = styled.div`
 const Home = () => {
   const { products, isLoading} = useSelector((state)=>state.products)
   const dispatch = useDispatch()
+  const [role, setRole] = useState("latest")
 
-  const category = 'ALL'
+
   useEffect(()=>{
+    dispatch(getAllProducts({role}))
+  },[dispatch, role])
+   
 
-    dispatch(getAllProducts({category}))
-  },[dispatch])
 
   return (
     <Fragment>
-        <MetaData title="Home"/>
+        <MetaData title="Shibamasi Shop"/>
           <NewNavbar/>
           <Announcement/>
           <Slider/>

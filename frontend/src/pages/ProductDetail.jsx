@@ -9,7 +9,7 @@ import { Add, Remove } from "@mui/icons-material";
 import NewNavbar from '../components/NewNavbar'
 import Footer from '../components/Footer'
 import {addItemToCart} from '../redux/callAPI/cartCall'
-
+import MetaData from '../components/MetaData'
 
 
 const Wrapper = styled.div`
@@ -55,6 +55,7 @@ const FilterContainer = styled.div`
     width: 50%;
     margin: 30px 0px;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     ${mobile({ width: "100%" })}
 `;
@@ -163,13 +164,13 @@ const ProductDetail = () => {
 
   return (
     <Fragment>
+      <MetaData title = "Chi tiết sản phẩm" />
       <NewNavbar/>
       {(!product)  ? <Loader/>:(<Fragment>
 
         <Wrapper> 
           
           <ImgContainer>
-        
             <Image src={product.image[0].url}/>
           </ImgContainer>
 
@@ -180,18 +181,19 @@ const ProductDetail = () => {
 
             <FilterContainer>
               <Filter>
-                <FilterTitle>Màu</FilterTitle>
-                {product.color?.map((c) => (
+                <FilterTitle>Màu: {product.color} </FilterTitle>
+                {/* {product.color?.map((c) => (
                             <FilterColor color={c} key={c} onClick={() => setColor(c)} />
-                        ))}  
+                        ))}   */}
               </Filter>
+              
               <Filter>
-                  <FilterTitle>Dây đeo</FilterTitle>
-                  <FilterSize onChange={(e) => setStrap(e.target.value)}>
+                  <FilterTitle>Dây đeo: {product.strap}</FilterTitle>
+                  {/* <FilterSize onChange={(e) => setStrap(e.target.value)}>
                       {product.strap?.map((s) => (
                       <FilterSizeOption key={s}>{s}</FilterSizeOption>
                       ))}
-                  </FilterSize>
+                  </FilterSize> */}
               </Filter>
             </FilterContainer>
 
