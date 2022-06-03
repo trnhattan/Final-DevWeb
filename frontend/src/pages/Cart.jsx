@@ -125,6 +125,22 @@ const CartSubTotal = styled.p`
   color: rgba(0, 0, 0, 0.753);
 `
 
+const Checkout = styled.div`
+
+text-align: center;
+padding: 20px;
+
+`
+const ButtonCheckout = styled.button`
+    width: 20vmax;
+    height: 3vmax;
+    background-color:tomato;
+    &:hover {
+      background-color: rgb(192, 71, 50);
+    }
+`
+
+
 const Cart = () => {
 
   const dispatch = useDispatch();
@@ -202,39 +218,10 @@ const Cart = () => {
                     </CartContainer> 
                   ))}
 
-                  <Grid container spacing={3}>
-                    <Grid item xs> </Grid>
-                    <Grid item xs={3}> </Grid>
-                    <Grid item xs>
-                      <TableContainer>
-                        <Table>
-                          <TableBody >
-                            <TableCell align="left">
-                              <TableRow>Tổng: </TableRow>
-                              <TableRow>Giảm giá: </TableRow>
-                              <TableRow>Thành tiền: </TableRow>
-                            </TableCell>
-
-                            <TableCell align="right">
-                              <TableRow>{`${TotalPrice} VND`}</TableRow>
-                              <TableRow>{discount} VND</TableRow>
-                              <TableRow>{`${TotalPrice - discount} VND`}</TableRow>
-                            </TableCell>
-
-                          </TableBody>
-                        </Table>
-                      </TableContainer>
-                      <button 
-                        style={{marginTop:"10px"}}
-                        onClick={handleClick}
-                        >
-                        Thanh Toán
-                      </button>
-                    </Grid>
-                  </Grid>
+                  <Checkout>
+                    <ButtonCheckout onClick={handleClick}>Thanh toán</ButtonCheckout>
+                  </Checkout>
                   
-                  
-
                  </CartPage>
               
         </Fragment> 

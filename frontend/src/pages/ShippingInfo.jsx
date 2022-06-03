@@ -6,7 +6,7 @@ import { Announcement } from '../components/Announcement'
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import styled from 'styled-components'
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 import { useDispatch, useSelector } from 'react-redux'
 import {saveShippingInfo} from '../redux/callAPI/cartCall'
 import CheckoutSteps from '../components/CheckoutSteps'
@@ -29,6 +29,24 @@ const CustomOrderButton = styled.div`
   margin: 20px;
   display: flex;
   justify-content: center;
+`
+
+
+const Button = styled.button`
+  background-color: tomato;
+  color: white;
+  width: 30ch;
+  padding: 1vmax;
+  border: none;
+  margin: auto;
+  cursor: pointer;
+  transition: 0.5s;
+  font: 400 1.2vmax "Roboto";
+
+  &:hover {
+    background-color: rgb(192, 71, 50);
+  }
+
 `
 
 const ShippingInfo = () => {
@@ -64,7 +82,7 @@ const ShippingInfo = () => {
         <Box
           component='form'
           sx={{
-            '& .MuiTextField-root': { m: 1, width: '30ch'}
+            '& .MuiTextField-root': { m: 1, width: '50ch'}
           }}
           noValidate
           autoComplete='off'
@@ -109,7 +127,7 @@ const ShippingInfo = () => {
       </ShippingInfoContainer>
       <CustomOrderButton>
         <Button 
-          variant='contained'
+          // variant='contained'
           onClick={handleClick}
         >Bước tiếp theo</Button>
       </CustomOrderButton>
