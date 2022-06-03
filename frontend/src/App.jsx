@@ -21,6 +21,8 @@ import { ForgotPassword } from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import Shipping from './pages/Shipping';
 
+import AdminHome from './admin/pages/AdminHome';
+
 const App = () => {
 
   const ScrollTotTop = () => {
@@ -55,6 +57,7 @@ const App = () => {
       <Routes> <Route path='/cart' element={[ScrollTotTop,<Cart/>]} /></Routes>
       <Routes> <Route path='/shipping' element={[ScrollTotTop,<Shipping/>]} /></Routes>
 
+      <Routes> <Route path='/admin/pages/AdminHome' element={[<ScrollTotTop/>,<AdminHome/>]} /> </Routes>
 
     </BrowserRouter>
   )
