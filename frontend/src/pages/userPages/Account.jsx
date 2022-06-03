@@ -3,12 +3,11 @@ import { useSelector } from 'react-redux'
 import styled from '@emotion/styled'
 
 
-import Loader from '../components/Loader'
-import MetaData from '../components/MetaData'
-import NewNavbar from '../components/NewNavbar'
+import Loader from '../../components/Loader'
+import MetaData from '../../components/MetaData'
+import NewNavbar from '../../components/NewNavbar'
 import { Link, useNavigate } from 'react-router-dom'
-import Footer from '../components/Footer'
-import { padding } from '@mui/system'
+import Footer from '../../components/Footer'
 
 
 const Container = styled.div`

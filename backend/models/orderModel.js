@@ -3,23 +3,15 @@ const mongoose = require("mongoose")
 
 const orderSchema = new mongoose.Schema({
     shippingInfo:{
+        fullName:{
+            type:String,
+            required:true
+        },
         address:{
             type:String,
             required:true
         },
-        city:{
-            type:String,
-            required:true
-        },
-        state:{
-            type:String,
-            required:true
-        },
-        country:{
-            type:String,
-            required:true
-        },
-        phoneNum: {
+        phoneNumber: {
             type:String,
             required: true
         }
@@ -54,16 +46,6 @@ const orderSchema = new mongoose.Schema({
         ref:"User",
         required: true
     },
-    paymentInfo:{
-        id:{
-            type:String,
-            require:true,
-        },
-        status:{
-            type:String,
-            require:true,
-        },
-    },
 
     paidAt:{
         type:Date,
@@ -74,12 +56,12 @@ const orderSchema = new mongoose.Schema({
         required:true,
         default:0,
     },
-    taxPrice:{
+    shippingPrice:{
         type:Number,
         required:true,
         default:0,
     },
-    shippingPrice:{
+    discountRate:{
         type:Number,
         required:true,
         default:0,

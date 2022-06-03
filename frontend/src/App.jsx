@@ -2,24 +2,31 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter,Routes ,Route} from "react-router-dom"
 import Home from './pages/Home'
-import Login from './pages/Login'
-import Register from './pages/Register';
+
+import AboutUs from './pages/infoPages/AboutUs'
+import Warranty from './pages/infoPages/Warranty'
+import ShippingPolicy from './pages/infoPages/ShippingPolicy'
+
+import Login from './pages/userPages/Login'
+import Register from './pages/userPages/Register';
+import Account from './pages/userPages/Account'
+import UpdateProfile from './pages/userPages/UpdateProfile'
+import UpdatePassword from './pages/userPages/UpdatePassword';
+import ForgotPassword from './pages/userPages/ForgotPassword';
+import ResetPassword from './pages/userPages/ResetPassword';
+
 import ProductList from './pages/ProductList'
 import ProductDetail from './pages/ProductDetail';
-import AboutUs from './pages/AboutUs'
-import Warranty from './pages/Warranty'
-import ShippingPolicy from './pages/ShippingPolicy'
-import Account from './pages/Account'
+
 import Cart from './pages/Cart'
-import UpdateProfile from './pages/UpdateProfile'
-import UpdatePassword from './pages/UpdatePassword';
-import { ForgotPassword } from './pages/ForgotPassword';
-import ResetPassword from './pages/ResetPassword';
-import ShippingInfo from './pages/ShippingInfo';
-import ConfirmOrder from './pages/ConfirmOrder';
+import ShippingInfo from './pages/orderPages/ShippingInfo';
+import Payment from './pages/orderPages/Payment';
+import SuccessOrder from './pages/orderPages/SuccessOrder';
+import ConfirmOrder from './pages/orderPages/ConfirmOrder';
 
 
 import AdminHome from './admin/pages/AdminHome';
+
 
 const App = () => {
 
@@ -49,7 +56,11 @@ const App = () => {
 
       <Routes> <Route path='/cart' element={[ScrollTotTop,<Cart/>]} /></Routes>
       <Routes> <Route path='/shipping-info' element={[ScrollTotTop,<ShippingInfo/>]} /></Routes>
-      <Routes> <Route path='/confirm-order' element={[ScrollTotTop,<ConfirmOrder/>]} /></Routes>
+      <Routes> <Route path='/order/comfirm' element={[ScrollTotTop,<ConfirmOrder/>]} /></Routes>
+      <Routes> <Route path='/order/payment' element={[ScrollTotTop,<Payment/>]} /></Routes>
+      <Routes> <Route path='/order/success' element={[ScrollTotTop,<SuccessOrder/>]} /></Routes>
+
+      {/* <Routes> <Route path='/orders/me' element={[ScrollTotTop]} /></Routes> */}
 
       {/* ADMIN ROUTE */}
       <Routes> <Route path='/admin/pages/AdminHome' element={[<ScrollTotTop/>,<AdminHome/>]} /> </Routes>

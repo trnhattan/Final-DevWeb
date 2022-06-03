@@ -2,14 +2,13 @@ import styled from '@emotion/styled'
 import React, { Fragment, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import {updateProfile} from '../redux/callAPI/userCall'
-import {ProfileSlice} from '../redux/Slice/userSlice'
+import {updateProfile, loadUser} from '../../redux/callAPI/userCall'
+import {ProfileSlice} from '../../redux/Slice/userSlice'
 
-import Loader from '../components/Loader'
-import MetaData from '../components/MetaData'
-import NewNavbar from '../components/NewNavbar'
+import Loader from '../../components/Loader'
+import MetaData from '../../components/MetaData'
+import NewNavbar from '../../components/NewNavbar'
 
-import { loadUser } from '../redux/callAPI/userCall'
 import { useNavigate } from 'react-router-dom'
 
 const Container = styled.div`

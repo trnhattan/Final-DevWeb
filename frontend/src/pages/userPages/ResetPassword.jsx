@@ -1,12 +1,12 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import Loader from '../components/Loader'
-import NewNavbar from '../components/NewNavbar'
-import MetaData from '../components/MetaData'
+import Loader from '../../components/Loader'
+import NewNavbar from '../../components/NewNavbar'
+import MetaData from '../../components/MetaData'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from '@emotion/styled'
-import {resetPassword} from '../redux/callAPI/userCall'
-import {ForgotPasswordSlice} from '../redux/Slice/userSlice'
+import {resetPassword} from '../../redux/callAPI/userCall'
+import {ForgotPasswordSlice} from '../../redux/Slice/userSlice'
 
 const Container = styled.div`
   height: 100vh;

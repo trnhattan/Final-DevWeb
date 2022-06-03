@@ -1,10 +1,10 @@
 
 import styled from "@emotion/styled";
-import { mobile } from "../responsive";
-import React, { Fragment, useState } from "react";
-import NewNavbar from "../components/NewNavbar";
+import { mobile } from "../../responsive";
+import React, { useState } from "react";
+import NewNavbar from "../../components/NewNavbar";
 import {useDispatch} from 'react-redux'
-import { register } from "../redux/callAPI/userCall";
+import { register } from "../../redux/callAPI/userCall";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Container = styled.div`

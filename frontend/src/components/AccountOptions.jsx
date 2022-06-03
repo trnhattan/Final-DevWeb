@@ -8,6 +8,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import ListAltIcon from '@mui/icons-material/ListAlt';
 
 import { Backdrop, SpeedDial, SpeedDialAction } from '@mui/material';
 import { logout } from '../redux/callAPI/userCall';
@@ -35,11 +36,11 @@ const AccountOptions = ({currentUser}) => {
   const [open, setOpen] = useState(false);
   
   const options = [
-    { icon: <AccountCircleIcon  />, name: 'Profile', func: account},
+    { icon: <AccountCircleIcon  />, name: 'Thông tin cá nhân', func: account},
     { icon: <ShoppingCartOutlinedIcon style={{color: cartItems.length > 0 ? "tomato" : "unset" }}/>, 
-      name: `Cart (${cartItems.length})`, func: cart },
-
-    { icon: <ExitToAppIcon />, name: 'Logout', func: logoutUser },
+      name: `Giỏ hàng (${cartItems.length})`, func: cart },
+    {icon: <ListAltIcon/>, name: 'Đơn hàng', func: orders  },
+    { icon: <ExitToAppIcon />, name: 'Đăng xuất', func: logoutUser },
   ];
 
 
@@ -53,6 +54,10 @@ const AccountOptions = ({currentUser}) => {
   
   function cart(){
     history("/cart");
+  }
+
+  function orders(){
+    history("/orders");
   }
 
   function account(){

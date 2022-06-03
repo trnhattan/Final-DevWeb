@@ -5,7 +5,7 @@ import {login, register, loadUser, logout,
     } from  '../callAPI/userCall'
 
 export const UserSlice = createSlice({
-    name:'loginUser',
+    name:'user',
     initialState:{
         currentUser:{},
         isLoading: null,

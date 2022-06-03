@@ -1,17 +1,17 @@
 import React, { Fragment } from 'react'
-import CheckoutSteps from '../components/CheckoutSteps'
-import MetaData from '../components/MetaData'
-import NewNavbar from '../components/NewNavbar'
+import CheckoutSteps from '../../components/CheckoutSteps'
+import MetaData from '../../components/MetaData'
+import NewNavbar from '../../components/NewNavbar'
 import styled from '@emotion/styled'
 import { useSelector } from 'react-redux'
 import { Typography } from '@mui/material'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const OrderContainer = styled.div`
   height: 100vh;
   background-color: white;
   display: grid;
-  grid-template-columns: 5fr 4fr;
+  grid-template-columns: 5fr 5fr;
 
 `
 const ShippingInfoArea = styled.div`
@@ -23,7 +23,6 @@ const ShippingInfoArea = styled.div`
 `
 
 const ConfirmshippingAreaBox = styled.div`
-
   margin: 2vmax;
 `
 
@@ -42,10 +41,10 @@ const OrderInfo = styled.div`
 `
 
 const ConfirmCartItems = styled.div`
-  padding: 5vmax;
+  padding: 3vmax;
   padding-top: 2vmax;
   > p {
-    font: 400 2vmax "Roboto";
+    font: 400 1.5vmax "Roboto";
   }
 `
 
@@ -58,6 +57,7 @@ const CartImage = styled.img`
 `
 
 const CartItemsOrder = styled.div`
+  padding: 20px;
   display: flex;  
   font: 400 1.5vmax "Roboto";
   align-items: center;
@@ -72,9 +72,10 @@ const CartItemsOrder = styled.div`
   }
   > a > p {
     text-transform: capitalize;
+    font-weight: 400;
   }
   > span {
-    font: 100 1.2vmax "Roboto";
+    font: 200 1.2vmax "Roboto";
     color: #5e5e5e;
   }
 `
@@ -135,22 +136,22 @@ const Button = styled.button`
 const ConfirmOrder = () => {
 
   const {shippingInfo, cartItems} = useSelector((state)=>state.cart)
+  const history =  useNavigate();
 
   const subtotal = cartItems.reduce((acc, item) => acc + item.quantity * item.price, 0);
+  const discount = 0;
   const shippingCharges = subtotal > 1000 ? 0 : 200;
-  const totalPrice = subtotal  + shippingCharges;
+  const totalPrice = subtotal  + shippingCharges - discount;
 
   const proceedToPayment = () => {
-    // const data = {
-    //   subtotal,
-    //   shippingCharges,
-    //   tax,
-    //   totalPrice,
-    // };
+    const data = {
+      subtotal,
+      shippingCharges,
+      totalPrice,
+    };
+    sessionStorage.setItem("orderInfo", JSON.stringify(data));
 
-    // sessionStorage.setItem("orderInfo", JSON.stringify(data));
-
-    // history.push("/process/payment");
+    history("/order/payment");
   };
 
 
@@ -165,15 +166,15 @@ const ConfirmOrder = () => {
             <Typography>Thông tin giao hàng</Typography>
             <ConfirmshippingAreaBox>
               <OrderInfo>
-                <p>Name:</p>
+                <p>Họ và tên:</p>
                 <span>{shippingInfo.fullName}</span>
               </OrderInfo>
               <OrderInfo>
-                <p>Phone:</p>
+                <p>Số điện thoại:</p>
                 <span>{shippingInfo.phoneNumber}</span>
               </OrderInfo>
               <OrderInfo>
-                <p>Address:</p>
+                <p>Đại chỉ giao hàng:</p>
                 <span>{shippingInfo.address}</span>
               </OrderInfo>
               </ConfirmshippingAreaBox>
@@ -213,7 +214,7 @@ const ConfirmOrder = () => {
                     </div>
                       <div>
                         <p>Giảm giá:</p>
-                        <span>giảm</span>
+                        <span>{discount}</span>
                       </div>
               </OrderSummaryInfo>
 

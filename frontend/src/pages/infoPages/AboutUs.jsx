@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import Footer from '../components/Footer'
-import NewNavbar from '../components/NewNavbar'
+import Footer from '../../components/Footer'
+import NewNavbar from '../../components/NewNavbar'
 
 const Container = styled.div`
   background-color: #F5FFFA;

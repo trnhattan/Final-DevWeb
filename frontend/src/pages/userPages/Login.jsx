@@ -1,12 +1,10 @@
 import React, { Fragment, useEffect, useState} from 'react'
 import styled from '@emotion/styled'
 import {useDispatch, useSelector} from 'react-redux'
-import { login } from '../redux/callAPI/userCall';
+import { login } from '../../redux/callAPI/userCall';
 import { Link , useNavigate, useLocation} from 'react-router-dom';
-import {mobile} from "../responsive";
-import NewNavbar from '../components/NewNavbar';
-// import Alert from '@mui/material/Alert';
-// import AlertTitle from '@mui/material/AlertTitle';
+import {mobile} from "../../responsive";
+import NewNavbar from '../../components/NewNavbar';
 
 const Container = styled.div`
   height: 100vh;

@@ -1,14 +1,13 @@
 import React, { Fragment, useState } from 'react'
-import Footer from '../components/Footer'
-import MetaData from '../components/MetaData'
-import NewNavbar from '../components/NewNavbar'
+import Footer from '../../components/Footer'
+import MetaData from '../../components/MetaData'
+import NewNavbar from '../../components/NewNavbar'
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import styled from 'styled-components'
-// import Button from '@mui/material/Button';
 import { useDispatch, useSelector } from 'react-redux'
-import {saveShippingInfo} from '../redux/callAPI/cartCall'
-import CheckoutSteps from '../components/CheckoutSteps'
+import {saveShippingInfo} from '../../redux/callAPI/cartCall'
+import CheckoutSteps from '../../components/CheckoutSteps'
 import { useNavigate } from 'react-router-dom'
 
 const Title = styled.h1`
@@ -68,7 +67,7 @@ const ShippingInfo = () => {
       return;
     } 
     dispatch(saveShippingInfo({fullName,address,email,phoneNumber}))
-    history("/confirm-order")
+    history("/order/comfirm")
   }
 
 

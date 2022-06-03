@@ -221,7 +221,7 @@ const Cart = () => {
                   ))}
 
                   <Checkout>
-                    <ButtonCheckout onClick={handleClick}>Thanh toán</ButtonCheckout>
+                    <ButtonCheckout onClick={handleClick}>Đặt hàng</ButtonCheckout>
                   </Checkout>
                   
                  </CartPage>
