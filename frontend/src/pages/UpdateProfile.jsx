@@ -13,30 +13,53 @@ import { loadUser } from '../redux/callAPI/userCall'
 import { useNavigate } from 'react-router-dom'
 
 const Container = styled.div`
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  background: linear-gradient(120deg, #2980b9, #8e44ad)
+`;
 
-`
+const Wrapper = styled.div`
+  width: 25%;
+  padding: 20px;
+  background-color: white;
+`;
 
+const Title = styled.h1`
+  font-size: 24px;
+  font-weight: 500;
+`;
 
-const FromProfile = styled.form`
-    display: flex;
-    flex-direction: column;
-`
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+`;
 
 const Input = styled.input`
-    width: 300px;
+  flex: 1;
+  min-width: 40%;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1.5px solid black;
+  border-radius: 25px;
+  font-size: 14px;
+`;
 
-`
+const Button = styled.button`
+  background-color: teal;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 10px;
+  border: 2px solid teal;
+  border-radius: 15px;
+  &:disabled {
+    color: green;
+    cursor: not-allowed;
+  }
+`;
 
-
-const Button =  styled.button`
-
-
-`
 
 
 const UpdateProfile = () => {
@@ -86,20 +109,28 @@ const UpdateProfile = () => {
         (
             <Fragment>
                 <MetaData title={"Update profile"}/>
-                <NewNavbar/>
+                <div style={{position:"fixed", width:"100%"}}>
+                  <NewNavbar/>  
+                </div>
                 <Container>
-                    <h1>My Profile</h1>
-                    <FromProfile>
-                  
-                            <h4>Tên</h4>
-                            <Input onChange={(e)=>setName(e.target.value)} />
-
-                            <h4>Email</h4>
-                            <Input onChange={(e)=>setEmail(e.target.value)} />
-                       
-
-                            <Button onClick={handleClick}>Cập nhật</Button>
-                    </FromProfile>
+                    <Wrapper>
+                        <Title>CẬP NHẬT THÔNG TIN</Title>
+                        <Form>
+                    
+                                <Input 
+                                    name = "Ho ten"
+                                    type = "text"
+                                    placeholder= "Họ tên"                                
+                                    onChange={(e)=>setName(e.target.value)} />
+                                <Input
+                                    name = "email"
+                                    type="email"
+                                    placeholder='Email'
+                                    onChange={(e)=>setEmail(e.target.value)}
+                                />
+                                <Button onClick={handleClick}>Cập nhật</Button>
+                        </Form>
+                    </Wrapper>
                 </Container>
             </Fragment>
         )}

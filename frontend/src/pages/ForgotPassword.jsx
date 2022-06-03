@@ -10,24 +10,55 @@ import {ForgotPasswordSlice} from '../redux/Slice/userSlice'
 import { useNavigate } from 'react-router-dom'
 
 const Container = styled.div`
-
-
+  height: 85vh;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  background: linear-gradient(120deg, #2980b9, #8e44ad)
+`;
+const Wrapper = styled.div`
+    width: 25%;
+    padding: 20px;
+    background-color: white;
 `
-
+const Title = styled.h1`
+    font-size: 24px;
+    font-weight: 500;
+`
 const Form = styled.form`
-
-
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction:column;
 `
-
 const Input = styled.input`
-
-
-`
+  flex: 1;
+  min-width: 40%;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1.5px solid black;
+  border-radius: 25px;
+  font-size: 14px;
+`;
 
 const Button = styled.button`
-
-
-`
+  background-color: teal;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 10px;
+  border: 2px solid teal;
+  border-radius: 15px;
+  &:disabled {
+    color: green;
+    cursor: not-allowed;
+  }
+`;
+const Link = styled.a`
+  margin: 5px 0px;
+  font-size: 15px;
+  text-decoration: underline;
+  cursor: pointer;
+`;
 
 
 export const ForgotPassword = () => {
@@ -58,21 +89,23 @@ export const ForgotPassword = () => {
 
   return (
       <Fragment>
-          <NewNavbar/>
+        <div style={{position:"fixed", width:"100%"}}>
+        <NewNavbar/>  
+        </div>
           <MetaData title="Quên mật khẩu" />
           {isLoading ? (<Loader/>):(
             <Fragment>
                 <Container>
-                    <h2>Quên mật khẩu</h2>
+                    <Wrapper>
+                    <Title>Quên mật khẩu</Title>
                     <Form>
-                        <h3>Nhập Email: </h3>
                         <Input 
                             placeholder='Email'
                             onChange={(e)=>setEmail(e.target.value)}
                         />
-
                         <Button onClick={handleClick}> Gửi </Button>
                     </Form>
+                    </Wrapper>
                 </Container>  
             </Fragment>
           )}

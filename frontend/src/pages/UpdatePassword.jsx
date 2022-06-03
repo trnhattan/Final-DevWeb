@@ -7,24 +7,53 @@ import { useDispatch, useSelector } from 'react-redux'
 import {updatePassword} from '../redux/callAPI/userCall'
 import { useNavigate } from 'react-router-dom'
 import {ProfileSlice} from '../redux/Slice/userSlice'
+import FormRange from 'react-bootstrap/esm/FormRange'
 
 const Container = styled.div`
-    display
-`
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  background: linear-gradient(120deg, #2980b9, #8e44ad)
+`;
 
+const Wrapper = styled.div`
+  width: 25%;
+  padding: 20px;
+  background-color: white;
+`;
 
 const Input = styled.input`
-
-`
+  flex: 1;
+  min-width: 40%;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1.5px solid black;
+  border-radius: 25px;
+  font-size: 14px;
+`;
 const Form = styled.form`
 
-
 `
+const Title = styled.h1`
+  font-size: 35px;
+  font-weight: 300;
+`;
 
 const Button = styled.button`
+  background-color: teal;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 10px;
+  border: 2px solid teal;
+  border-radius: 15px;
+  &:disabled {
+    color: green;
+    cursor: not-allowed;
+  }
+`;
 
-
-`
 
 
 
@@ -67,24 +96,26 @@ const UpdatePassword = () => {
         (
             <Fragment>
                 <MetaData title={"Đổi mật khẩu"}/>
-                <NewNavbar/>
+                <div style={{position:"fixed", width:"100%"}}>
+                 <NewNavbar/>  
+                </div>
                 <Container>
-                    <h1>Đổi mật khẩu</h1>
-                    <Form>  
-
-                        <h4>Mật khẩu hiện tại</h4>
+                    <Wrapper>    
+                    <Title>ĐỔI MẬT KHẨU</Title>
+                    <Form>
+                        <h6>Mật khẩu hiện tại</h6>
                         <Input onChange={(e)=>setoldPassword(e.target.value)} />
                 
-                        <h4>Mật khẩu mới</h4>
+                        <h6>Mật khẩu mới</h6>
                         <Input onChange={(e)=>setNewPassword(e.target.value)} />
 
-                        <h4>Xác nhận mật khẩu mới</h4>
+                        <h6>Xác nhận mật khẩu mới</h6>
                         <Input onChange={(e)=>setConfirmNewPassqord(e.target.value)} />
 
                         <br></br>
                         <Button onClick={handleClick}>Cập nhật</Button>
-
                     </Form>
+                    </Wrapper>
                 </Container>
             </Fragment>
         )}

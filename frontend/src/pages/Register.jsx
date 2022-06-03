@@ -8,20 +8,22 @@ import { register } from "../redux/callAPI/userCall";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Container = styled.div`
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-`
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  background: linear-gradient(120deg, #2980b9, #8e44ad)
+`;
 const Wrapper = styled.div`
-    width: 40%;
+    width: 25%;
     padding: 20px;
     background-color: white;
     ${mobile({ width: "75%" })}
 `
 const Title = styled.h1`
     font-size: 24px;
-    font-weight: 300;
+    font-weight: 500;
 `
 const Form = styled.form`
     display: flex;
@@ -29,21 +31,27 @@ const Form = styled.form`
     flex-direction:column;
 `
 const Input = styled.input`
-    flex: 1;
-    min-width: 40%;
-    margin: 20px 10px 0px 0px;
-    padding: 10px;
-`
+  flex: 1;
+  min-width: 40%;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1.5px solid black;
+  border-radius: 25px;
+  font-size: 14px;
+`;
 
 const Button = styled.button`
-    margin-top: 20px;
-    width: 40%;
-    border: none;
-    padding: 15px 20px;
-    background-color: teal;
-    color: white;
-    cursor: pointer;
-`
+  background-color: teal;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 10px;
+  border: 2px solid teal;
+  border-radius: 15px;
+  &:disabled {
+    color: green;
+    cursor: not-allowed;
+  }
+`;
 const Link = styled.a`
   margin: 5px 0px;
   font-size: 15px;
@@ -71,13 +79,16 @@ const Register = () => {
         dispatch(register({name,email,password}));
         history(redirect);
     }    
-    
+
     return (
-        <Fragment>
-            <NewNavbar/>
+        <>  
+            <div style={{position:"fixed", width:"100%"}}>
+            <NewNavbar/>  
+            </div>
             <Container>
+              
                 <Wrapper>
-                    <Title>Đăng ký tài khoản tài khoản</Title>
+                    <Title>ĐĂNG KÍ</Title>
                     <Form onSubmit={registerSubmit}>
                         <Input
                             placeholder="Tên"
@@ -111,13 +122,11 @@ const Register = () => {
                         <Button type="submit">
                             Tạo tài khoản
                         </Button>
-                        
                     </Form>
-                    <br></br>
-                    <p>Đã có tài khoản ? <Link href="/login">Đăng nhập</Link> </p>
+                    <Link href="/login">Đăng nhập</Link>
                 </Wrapper>
             </Container>
-        </Fragment>
+        </>
     )
 }
 

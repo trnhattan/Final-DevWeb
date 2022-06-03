@@ -9,24 +9,52 @@ import {resetPassword} from '../redux/callAPI/userCall'
 import {ForgotPasswordSlice} from '../redux/Slice/userSlice'
 
 const Container = styled.div`
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  background: linear-gradient(120deg, #2980b9, #8e44ad)
+`;
 
-
-`
-
-const Form = styled.form`
-
-
-`
+const Wrapper = styled.div`
+  width: 25%;
+  padding: 20px;
+  background-color: white;
+`;
 
 const Input = styled.input`
+  flex: 1;
+  min-width: 40%;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1.5px solid black;
+  border-radius: 25px;
+  font-size: 14px;
+`;
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+`;
 
-
-`
+const Title = styled.h1`
+  font-size: 35px;
+  font-weight: 500;
+`;
 
 const Button = styled.button`
+  background-color: teal;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 10px;
+  border: 2px solid teal;
+  border-radius: 15px;
+  &:disabled {
+    color: green;
+    cursor: not-allowed;
+  }
+`;
 
-
-`
 
 
 const ResetPassword = () => {
@@ -60,28 +88,29 @@ const ResetPassword = () => {
 
     return (
         <Fragment>
-            <NewNavbar/>
             <MetaData title="Đặt lại mật khẩu"/>
+            <div style={{position:"fixed", width:"100%"}}>
+                <NewNavbar/>  
+            </div>
             {isLoading ? (<Loader/>):(
                 <Fragment>
                     <Container>
-                        <Form>
-                            <h2>Nhập mật khẩu</h2>
-                            <Input
-                            name='password'
-                            placeholder='Mật khẩu'
-                            onChange={(e)=>setPassword(e.target.value)}
-                             />
-
-                            <h2>Xác nhận mật khẩu</h2>
-                            <Input
-                            name = 'confirmPassword'
-                            placeholder='Xác nhận mật khẩu'
-                            onChange={(e)=>setConfirmPassword(e.target.value)}
-                             />
-
-                             <Button onClick={handleClick}>Xác nhận</Button>
-                        </Form>
+                        <Wrapper>
+                            <Form>
+                                <Title>Đặt lại mật khẩu</Title>
+                                <Input
+                                name='password'
+                                placeholder='Mật khẩu'
+                                onChange={(e)=>setPassword(e.target.value)}
+                                />
+                                <Input
+                                name = 'confirmPassword'
+                                placeholder='Xác nhận mật khẩu'
+                                onChange={(e)=>setConfirmPassword(e.target.value)}
+                                />
+                                <Button onClick={handleClick}>Xác nhận</Button>
+                            </Form>
+                        </Wrapper>
                     </Container>
                 </Fragment>
             )}
