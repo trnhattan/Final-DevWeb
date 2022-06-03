@@ -8,13 +8,13 @@ import NewNavbar from '../components/NewNavbar';
 // import Alert from '@mui/material/Alert';
 // import AlertTitle from '@mui/material/AlertTitle';
 
-
-
 const Container = styled.div`
-  width: 100vw;
+  height: 100vh;
   display: flex;
   align-items: center;
+  text-align: center;
   justify-content: center;
+  background: linear-gradient(120deg, #2980b9, #8e44ad)
 `;
 
 const Wrapper = styled.div`
@@ -26,7 +26,7 @@ const Wrapper = styled.div`
 
 const Title = styled.h1`
   font-size: 24px;
-  font-weight: 300;
+  font-weight: 500;
 `;
 
 const Form = styled.form`
@@ -39,16 +39,18 @@ const Input = styled.input`
   min-width: 40%;
   margin: 10px 0;
   padding: 10px;
+  border: 1.5px solid black;
+  border-radius: 25px;
+  font-size: 14px;
 `;
 
 const Button = styled.button`
-  width: 40%;
-  border: none;
-  padding: 15px 20px;
   background-color: teal;
   color: white;
   cursor: pointer;
   margin-bottom: 10px;
+  border: 2px solid teal;
+  border-radius: 15px;
   &:disabled {
     color: green;
     cursor: not-allowed;
@@ -56,7 +58,6 @@ const Button = styled.button`
 `;
 
 const StyledLink = styled(Link)`
-  margin: 5px 0px;
   font-size: 14px;
   text-decoration: underline;
   cursor: pointer;
@@ -76,7 +77,6 @@ const TitleSuccess = styled.h1`
   font-size: 30px;
   font-weight: 500;
 `;
-
 
 
 const Login = () => {
@@ -110,12 +110,14 @@ const Login = () => {
 
   return (
     <Fragment>
-      <NewNavbar/>
+      <div style={{position:"fixed", width:"100%"}}>
+        <NewNavbar/>  
+      </div>
       {isAuthenticated ? 
       (
         <Container>
             <LoginSuccess>
-              <TitleSuccess>ĐÃ ĐĂNG NHẬP THÀNH CÔNG</TitleSuccess>
+              <TitleSuccess>ĐĂNG NHẬP THÀNH CÔNG</TitleSuccess>
               <Button onClick={backHome}>Trang chủ</Button>
             </LoginSuccess>
         </Container> 
@@ -129,26 +131,27 @@ const Login = () => {
               <Input
                 name = "email"
                 type="email"
-                placeholder='Nhập email:'
+                placeholder='Email'
                 onChange={(e)=>setEmail(e.target.value)}
               />
 
               <Input 
                 name='password'
                 type="password"
-                placeholder='Nhập mật khẩu:'
+                placeholder='Mật khẩu'
                 onChange={(e)=>setPassword(e.target.value)}
               />
+    
+              <Button onClick={handleClick}>Đăng nhập</Button>
+              
               {error ? 
                 (<p style={{color:"red"}}>Lỗi! Vui lòng thử lại</p>)
                 :
                 (<p style={{color:"white"}}>No error</p>)}
-              
-              <Button onClick={handleClick}>Đăng nhập</Button>
 
             </Form>
 
-            <StyledLink to={`/password/forgot`}>Quên mật khẩu ?</StyledLink>
+            <StyledLink to={`/password/forgot`}>Quên mật khẩu?</StyledLink>
             &nbsp;
             <Link to={`/register`}>Đăng ký tài khoản</Link>
           </Wrapper>
