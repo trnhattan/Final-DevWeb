@@ -64,7 +64,7 @@ const AccountOptions = ({currentUser}) => {
   }
 
   function dashboard(){
-
+    history('/admin/pages/AdminHome')
   }
 
   return (

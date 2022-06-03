@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import {removeItemFromCart, addItemToCart} from '../redux/callAPI/cartCall'
@@ -10,8 +10,8 @@ import NewNavbar from '../components/NewNavbar'
 import MetaData from  '../components/MetaData'
 
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
-import {Typography, Grid, TableContainer ,Table, TableBody, TableRow, TableCell } from '@mui/material';
-
+import {Typography} from '@mui/material';
+import Loader from '../components/Loader'
 
 
 const EmptyCart =  styled.div`
@@ -146,8 +146,7 @@ const Cart = () => {
   const dispatch = useDispatch();
   const history = useNavigate();
 
-  const {cartItems, isLoading, error, shippingInfo} = useSelector((state)=>state.cart)
-  const [discount, setDiscount] = useState(100000);
+  const {cartItems, isLoading } = useSelector((state)=>state.cart)
 
   const descQuantity = (id, quantity) => {
     const newQuantity = quantity - 1;
@@ -178,7 +177,10 @@ const Cart = () => {
 
   return (
     <Fragment>
-      <MetaData title = "Giỏ hàng"/>
+      {isLoading ? (<Loader/>):
+
+      (<Fragment>
+         <MetaData title = "Giỏ hàng"/>
       <NewNavbar/>
 
             {cartItems.length === 0 ? (
@@ -226,7 +228,7 @@ const Cart = () => {
               
         </Fragment> 
       )}
-        
+      </Fragment>)}
     </Fragment>
   )
 }

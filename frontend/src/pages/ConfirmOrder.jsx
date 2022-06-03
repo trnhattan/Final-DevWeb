@@ -116,7 +116,6 @@ padding: 2vmax 0;
 
 `
 
-
 const Button = styled.button`
   background-color: tomato;
   color: white;
@@ -127,7 +126,6 @@ const Button = styled.button`
   cursor: pointer;
   transition: 0.5s;
   font: 400 1.2vmax "Roboto";
-
   &:hover {
     background-color: rgb(192, 71, 50);
   }
@@ -137,16 +135,9 @@ const Button = styled.button`
 const ConfirmOrder = () => {
 
   const {shippingInfo, cartItems} = useSelector((state)=>state.cart)
-  const {currenUser} = useSelector((state)=>state.user)
 
-
-  const subtotal = cartItems.reduce(
-    (acc, item) => acc + item.quantity * item.price,
-    0
-  );
-
+  const subtotal = cartItems.reduce((acc, item) => acc + item.quantity * item.price, 0);
   const shippingCharges = subtotal > 1000 ? 0 : 200;
-
   const totalPrice = subtotal  + shippingCharges;
 
   const proceedToPayment = () => {

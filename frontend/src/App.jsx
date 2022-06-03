@@ -1,9 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter,Routes ,Route} from "react-router-dom"
-import { useDispatch } from 'react-redux';
-import {store} from './redux/store'
-
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register';
@@ -30,13 +27,8 @@ const App = () => {
     window.scrollTo(0, 0);
     return null;
   }
-
-
   return (
-    
-
     <BrowserRouter>
-
       <Routes><Route path='/' element={<Home/>} /></Routes>
       
       <Routes> <Route path='/about-us' element={[<ScrollTotTop/>,<AboutUs/>]} /> </Routes>
@@ -59,7 +51,10 @@ const App = () => {
       <Routes> <Route path='/shipping-info' element={[ScrollTotTop,<ShippingInfo/>]} /></Routes>
       <Routes> <Route path='/confirm-order' element={[ScrollTotTop,<ConfirmOrder/>]} /></Routes>
 
+      {/* ADMIN ROUTE */}
       <Routes> <Route path='/admin/pages/AdminHome' element={[<ScrollTotTop/>,<AdminHome/>]} /> </Routes>
+
+      
 
     </BrowserRouter>
   )
