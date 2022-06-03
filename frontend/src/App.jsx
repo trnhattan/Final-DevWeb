@@ -22,6 +22,8 @@ import ShippingInfo from './pages/ShippingInfo';
 import ConfirmOrder from './pages/ConfirmOrder';
 
 
+import AdminHome from './admin/pages/AdminHome';
+
 const App = () => {
 
   const ScrollTotTop = () => {
@@ -57,6 +59,7 @@ const App = () => {
       <Routes> <Route path='/shipping-info' element={[ScrollTotTop,<ShippingInfo/>]} /></Routes>
       <Routes> <Route path='/confirm-order' element={[ScrollTotTop,<ConfirmOrder/>]} /></Routes>
 
+      <Routes> <Route path='/admin/pages/AdminHome' element={[<ScrollTotTop/>,<AdminHome/>]} /> </Routes>
 
     </BrowserRouter>
   )
