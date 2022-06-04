@@ -1,8 +1,8 @@
 import {createSlice} from "@reduxjs/toolkit"
-import {createOrder} from '../callAPI/orderCall'
+import {CreateOrder, MyOrders, GetOrderDetail} from '../callAPI/orderCall'
 
-export const OrderSlice = createSlice({
-    name: "order",
+export const newOrderSlice = createSlice({
+    name: "newOrder",
     initialState:{
         order: {},
         isLoading: null,
@@ -14,18 +14,77 @@ export const OrderSlice = createSlice({
         }
     },
     extraReducers:{
-        [createOrder.pending]:(state)=>{
+        [CreateOrder.pending]:(state)=>{
             state.isLoading = true
             state.error = false
         },
-        [createOrder.fulfilled]:(state, action)=>{
+        [CreateOrder.fulfilled]:(state, action)=>{
             state.isLoading = false
             state.error = false
             state.order = action.payload
         },
-        [createOrder.rejected]:(state)=>{
+        [CreateOrder.rejected]:(state)=>{
             state.isLoading = false
             state.error = true
+        },
+    }
+})
+
+export const myOrderSlice = createSlice({
+    name: "myOrder",
+    initialState:{
+        orders: [],
+        isLoading: null,
+        error: null,
+    },
+    reducers:{
+        clearErr:(state)=>{
+            state.error = null
+        }
+    },
+    extraReducers:{
+        [MyOrders.pending]:(state)=>{
+            state.error = false
+            state.isLoading = true
+        },
+        [MyOrders.fulfilled]:(state, action)=>{
+            state.orders = action.payload
+            state.error = false
+            state.isLoading = false
+        },  
+        [MyOrders.rejected]:(state)=>{
+            state.error = true
+            state.isLoading = false
+        },
+    }
+})
+
+
+export const getOrderDetailSlice =  createSlice({
+    name:'getOrderDetail',
+    initialState:{
+        order:{},
+        isLoading: null,
+        error: null,
+    },
+    reducers:{
+        clearErr:(state)=>{
+            state.error = null
+        }
+    },
+    extraReducers:{
+        [GetOrderDetail.pending]:(state)=>{
+            state.error = false
+            state.isLoading = true
+        },
+        [GetOrderDetail.fulfilled]:(state, action)=>{
+            state.order = action.payload
+            state.error = false
+            state.isLoading = false
+        },  
+        [GetOrderDetail.rejected]:(state)=>{
+            state.error = true
+            state.isLoading = false
         },
     }
 })

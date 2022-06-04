@@ -1,17 +1,14 @@
 import React, { Fragment } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import {removeItemFromCart, addItemToCart} from '../redux/callAPI/cartCall'
-
 import styled from '@emotion/styled'
-
-import CardItem from '../components/CardItem'
-import NewNavbar from '../components/NewNavbar'
-import MetaData from  '../components/MetaData'
-
+import {removeItemFromCart, addItemToCart} from '../../redux/callAPI/cartCall'
+import CardItem from '../../components/CardItem'
+import NewNavbar from '../../components/NewNavbar'
+import MetaData from  '../../components/MetaData'
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import {Typography} from '@mui/material';
-import Loader from '../components/Loader'
+import Loader from '../../components/Loader'
 
 
 const EmptyCart =  styled.div`

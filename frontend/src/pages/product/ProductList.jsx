@@ -1,19 +1,17 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, {useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import Categories from '../components/Categories'
-import Footer from '../components/Footer'
-import NewNavbar from '../components/NewNavbar'
-import Loader from '../components/Loader'
+import Footer from '../../components/Footer'
+import NewNavbar from '../../components/NewNavbar'
 import styled from "styled-components"
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem'
 import InputLabel from '@mui/material/InputLabel';
-import { Announcement } from '../components/Announcement'
-import {getAllProducts} from '../redux/callAPI/productCall'
-import { productsSlide } from '../redux/Slice/productSlice'
-import ProductCard from '../components/ProductCard'
+import { Announcement } from '../../components/Announcement'
+import {getAllProducts} from '../../redux/callAPI/productCall'
+import ProductCard from '../../components/ProductCard'
 import { useLocation } from 'react-router-dom'
+import MetaData from '../../components/MetaData'
 
 const Container = styled.div`
 
@@ -47,19 +45,29 @@ const ListImage = styled.div`
 
 `
 
-
 const ProductList = () => {
 
   const { products, isLoading} = useSelector((state)=>state.products)
   const dispatch = useDispatch()
   const location = useLocation();
-
+  
   let category = "" ;
   let title = "Tất cả sản phẩm";
   if (location.pathname.split("/").length > 2) {
     category = location.pathname.split("/")[2];
+    if (category === "phukien"){
+      title = `Phụ kiện`
+    }
+    else{
+      if (category === "nu"){
+        title = `Đồng hồ nữ`
+      }
+      else{
+        title = `Đồng hồ nam`
+      }
+    } 
   }
-
+  console.log(category)
   const [color, setColor] = useState("");
   const [strap, setStrap] = useState("");
   const [sortType, setSortType] = useState("");
@@ -79,6 +87,7 @@ const ProductList = () => {
 
   return (
     <Container>
+      <MetaData title={title}/>
       <NewNavbar/>
       <Announcement/>
       <Title>

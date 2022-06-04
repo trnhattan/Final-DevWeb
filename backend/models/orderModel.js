@@ -16,6 +16,11 @@ const orderSchema = new mongoose.Schema({
             required: true
         }
     },
+    payment:{
+        type:String,
+        required:true,
+        default:"Thanh toán khi nhận hàng"
+    },
     orderItems:[
         {
             name:{

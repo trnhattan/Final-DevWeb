@@ -1,15 +1,15 @@
 import React, { Fragment, useEffect, useState} from 'react'
-import { mobile } from "../responsive";
+import { mobile } from "../../responsive";
 import {useDispatch, useSelector} from 'react-redux'
-import Loader from '../components/Loader'
-import {getProductDetail} from '../redux/callAPI/productCall'
+import Loader from '../../components/Loader'
+import {getProductDetail} from '../../redux/callAPI/productCall'
 import { useLocation } from "react-router-dom";
 import styled from '@emotion/styled';
 import { Add, Remove } from "@mui/icons-material";
-import NewNavbar from '../components/NewNavbar'
-import Footer from '../components/Footer'
-import {addItemToCart} from '../redux/callAPI/cartCall'
-import MetaData from '../components/MetaData'
+import NewNavbar from '../../components/NewNavbar'
+import Footer from '../../components/Footer'
+import {addItemToCart} from '../../redux/callAPI/cartCall'
+import MetaData from '../../components/MetaData'
 
 
 const Wrapper = styled.div`

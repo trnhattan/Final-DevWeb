@@ -15,17 +15,21 @@ import UpdatePassword from './pages/userPages/UpdatePassword';
 import ForgotPassword from './pages/userPages/ForgotPassword';
 import ResetPassword from './pages/userPages/ResetPassword';
 
-import ProductList from './pages/ProductList'
-import ProductDetail from './pages/ProductDetail';
+import ProductList from './pages/product/ProductList'
+import ProductDetail from './pages/product/ProductDetail';
 
-import Cart from './pages/Cart'
-import ShippingInfo from './pages/orderPages/ShippingInfo';
-import Payment from './pages/orderPages/Payment';
-import SuccessOrder from './pages/orderPages/SuccessOrder';
-import ConfirmOrder from './pages/orderPages/ConfirmOrder';
+import Cart from './pages/cart/Cart'
+import ShippingInfo from './pages/cart/ShippingInfo';
+import Payment from './pages/cart/Payment';
+import SuccessOrder from './pages/cart/SuccessOrder';
+import ConfirmOrder from './pages/cart/ConfirmOrder';
+
+import MyOrder from './pages/orderPages/MyOrder'
+import OrderDetail from './pages/orderPages/OrderDetail';
 
 
 import AdminHome from './admin/pages/AdminHome';
+
 
 
 const App = () => {
@@ -60,7 +64,8 @@ const App = () => {
       <Routes> <Route path='/order/payment' element={[ScrollTotTop,<Payment/>]} /></Routes>
       <Routes> <Route path='/order/success' element={[ScrollTotTop,<SuccessOrder/>]} /></Routes>
 
-      {/* <Routes> <Route path='/orders/me' element={[ScrollTotTop]} /></Routes> */}
+      <Routes> <Route path='/orders' element={[ScrollTotTop, <MyOrder/>]} /></Routes>
+      <Routes> <Route path='/orders/:id' element={[ScrollTotTop, <OrderDetail/>]} /></Routes>
 
       {/* ADMIN ROUTE */}
       <Routes> <Route path='/admin/pages/AdminHome' element={[<ScrollTotTop/>,<AdminHome/>]} /> </Routes>

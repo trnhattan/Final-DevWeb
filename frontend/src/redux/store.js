@@ -12,7 +12,8 @@ import {UserSlice,
 import {productsSlide, productSlice} from "./Slice/productSlice";
 
 import {cartSlice} from './Slice/cartSlice'
-import { OrderSlice } from "./Slice/orderSlice";
+import { myOrderSlice, newOrderSlice, getOrderDetailSlice } from "./Slice/orderSlice";
+
 
 const persistConfig = {
     key: 'root',
@@ -30,7 +31,9 @@ const rootReducer = combineReducers({
 
     cart: cartSlice.reducer,
 
-    order: OrderSlice.reducer,
+    newOrder: newOrderSlice.reducer,
+    myOrders: myOrderSlice.reducer,
+    getOrder: getOrderDetailSlice.reducer
     
 })
 

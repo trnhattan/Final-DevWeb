@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import Footer from '../../components/Footer'
 import MetaData from '../../components/MetaData'
 import NewNavbar from '../../components/NewNavbar'
