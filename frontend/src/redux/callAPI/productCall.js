@@ -25,11 +25,31 @@ export const getAllProducts = createAsyncThunk(
                             }
                         }
                         else{
-                            link = `/products?category=${category}`;
+                            if (strap){
+                                link = `/products?category=${category}&strap=${strap}`;
+                            }
+                            else{
+                                link = `/products?category=${category}`;
+                            }
                         }   
                     }
                     else{
-                        link  = "/products";
+                        if (color){
+                            if (strap){
+                                link = `/products?color=${color}&strap=${strap}`;
+                            }
+                            else{
+                                link = `/products?color=${color}`;
+                            }
+                        }
+                        else{
+                            if (strap){
+                                link = `/products?strap=${strap}`;
+                            }
+                            else{
+                                link = `/products`;
+                            }
+                        }           
                     }
                     break;
                 default:
