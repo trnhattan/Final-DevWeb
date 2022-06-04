@@ -37,18 +37,6 @@ export const getAllProducts = createAsyncThunk(
                     break;
             }
             
-
-            // if (category !==""){
-            //     link = `/products?category=${category}`
-            //     if (color !== ""){   
-            //         link = `/products?category=${category}&color=${color}`
-            //         const { data } = await publicRequest.get(link);
-            //         return data
-            //     }
-            //     const { data } = await publicRequest.get(link);
-            //     return data
-            // }
-    
             const {data} = await publicRequest.get(link);
             return data;
            
