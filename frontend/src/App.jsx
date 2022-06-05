@@ -29,6 +29,7 @@ import OrderDetail from './pages/orderPages/OrderDetail';
 
 
 import AdminHome from './admin/pages/AdminHome';
+import UserList from './admin/pages/UserList/UserList';
 
 
 
@@ -69,7 +70,7 @@ const App = () => {
 
       {/* ADMIN ROUTE */}
       <Routes> <Route path='/admin/pages/AdminHome' element={[<ScrollTotTop/>,<AdminHome/>]} /> </Routes>
-
+      <Routes> <Route path='/admin/pages/UserList/UserList' element={[<ScrollTotTop/>,<UserList/>]} /> </Routes>
       
 
     </BrowserRouter>
