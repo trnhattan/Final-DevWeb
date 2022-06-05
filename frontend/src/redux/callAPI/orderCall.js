@@ -58,4 +58,63 @@ export const GetOrderDetail = createAsyncThunk(
             return err.response.data.message
         }
     }
+);
+
+//admin
+export const GetAllOrderAdmin = createAsyncThunk(
+    'order/getAllOrders',
+    async () => {
+        try{
+
+            const token = localStorage.getItem("token");
+            const config = { headers: { Authorization : `Bearer ${token}`  } };
+            const { data } = await publicRequest.get(
+                "/admin/orders",
+                config
+            );
+            return data.orders
+        }catch(err){
+            return err.response.data.message
+        }
+    }
+);
+
+
+export const UpdateOrderAdmin = createAsyncThunk(
+    "order/updateOrder",
+    async (MyData) => {
+        try{
+
+            const token = localStorage.getItem("token");
+            const config = { headers: { Authorization : `Bearer ${token}`  } };
+            const { data } = await publicRequest.put(
+                `/admin/order/${MyData[0]}`,
+                MyData[1],
+                config
+              );
+            return data.success
+        }
+        catch(err){
+            return err.response.data.message
+        }
+    }
+)
+
+export const DeleteOrderAdmin = createAsyncThunk(
+    'order/deleteOrder',
+    async (id) => {
+        try{
+
+            const token = localStorage.getItem("token");
+            const config = { headers: { Authorization : `Bearer ${token}`  } };
+            const { data } = await publicRequest.delete(
+                `admin/order/${id}`,
+                config
+            )
+            return data.success
+
+        }catch(err){
+            return err.response.data.message
+        }
+    }
 )

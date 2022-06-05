@@ -67,39 +67,47 @@ export default function SideBar() {
               <SideBarMenu>
                   <SideBarTitle>Dashboard</SideBarTitle>
                   <SiderBarList>
+
+                    <StyledLink to="/admin/home">
                       <SiderBarListItem>
                         <HomeIcon style={SideBarIcon}/>
-                        <StyledLink to="/admin/home">Home</StyledLink>
-                        
+                        Home
                       </SiderBarListItem>
+                      </StyledLink>
+
                       <SiderBarListItem>
-                        <TimelineIcon style={SideBarIcon}/>
-                        Analytics
+                        <TimelineIcon style={SideBarIcon}/> Analytics
                       </SiderBarListItem>
+
                       <SiderBarListItem>
-                        <AttachMoneyIcon style={SideBarIcon}/>
-                        Sales
+                        <AttachMoneyIcon style={SideBarIcon}/> Sales
                       </SiderBarListItem>
+
                   </SiderBarList>
+
               </SideBarMenu>
               <SideBarMenu>
                   <SideBarTitle>Quick Menu</SideBarTitle>
                   <SiderBarList>
-                      <SiderBarListItem>
-                        <PersonOutlineIcon style={SideBarIcon}/>
-                        <StyledLink to = "/admin/users">Users</StyledLink>
-                        
+
+                    <StyledLink to = "/admin/users">
+                        <SiderBarListItem>
+                        <PersonOutlineIcon style={SideBarIcon}/>Users
                       </SiderBarListItem>
+                    </StyledLink>
+                    
+                    <StyledLink to = "/admin/products">
                       <SiderBarListItem>
-                        <CategoryIcon style={SideBarIcon}/>
-                        <StyledLink to = "/admin/products"> Products </StyledLink>
-                        
+                        <CategoryIcon style={SideBarIcon}/>Products
                       </SiderBarListItem>
+                    </StyledLink>
+
+                    <StyledLink to = "/admin/orders">
                       <SiderBarListItem>
-                        <ShoppingCartIcon style={SideBarIcon}/>
-                        <StyledLink to = "/admin/orders">Orders</StyledLink>
-                        
+                        <ShoppingCartIcon style={SideBarIcon}/>Orders
                       </SiderBarListItem>
+                    </StyledLink>
+
                   </SiderBarList>
               </SideBarMenu>
           </SiderBarWrapper>

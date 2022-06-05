@@ -11,7 +11,7 @@ export const cartSlice = createSlice({
             email:"",
             phoneNumber:"",
         },
-        isLoading: null,
+        isLoading: true,
         error: null,
     },
     reducers:{

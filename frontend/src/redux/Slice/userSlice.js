@@ -8,7 +8,7 @@ export const UserSlice = createSlice({
     name:'user',
     initialState:{
         currentUser:{},
-        isLoading: null,
+        isLoading: true,
         isAuthenticated : null,
         error: null,
     },
@@ -91,7 +91,7 @@ export const ProfileSlice = createSlice({
     initialState:{
         isUpdated: null,
         isDeleted: null,
-        isLoading: null,
+        isLoading: true,
         error: null,
     },
     reducers:{
@@ -138,7 +138,7 @@ export const ProfileSlice = createSlice({
 export const ForgotPasswordSlice = createSlice({
     name:"forgotPassword",
     initialState:{
-        isLoading: null,
+        isLoading: true,
         error: null,
         message: null,
         success:null

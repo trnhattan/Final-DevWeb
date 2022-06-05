@@ -33,6 +33,7 @@ import AdminOrderList from './admin/pages/OrderList/AdminOrderList'
 import AdminProductList from './admin/pages/ProductList/AdminProductList';
 import AdminUserList from './admin/pages/UserList/AdminUserList';
 import { useSelector } from 'react-redux';
+import UpdateOrder from './admin/pages/OrderList/UpdateOrder';
 
 
 const App = () => {
@@ -75,18 +76,19 @@ const App = () => {
 
     
       {/* ADMIN ROUTE */}
-      {currentUser && currentUser.role === "admin" ? (
-        <>
+      {/* {currentUser && currentUser.role === "admin" ? (
+        <> */}
           <Routes> <Route path='/admin/home' element={[<ScrollTotTop/>,<AdminHome/>]} /> </Routes>
           <Routes> <Route path='/admin/orders' element={[<ScrollTotTop/>,<AdminOrderList/>]} /> </Routes>
           <Routes> <Route path='/admin/products' element={[<ScrollTotTop/>,<AdminProductList/>]} /> </Routes>
           <Routes> <Route path='/admin/users' element={[<ScrollTotTop/>,<AdminUserList/>]} /> </Routes>
-        </>
+          <Routes> <Route path='/admin/orders/:id' element={[<ScrollTotTop/>,<UpdateOrder/>]} /> </Routes>
+        {/* </>
         ):
         (<>
           <h1>You are not author</h1>
         </>)
-        }
+        } */}
 
     </BrowserRouter>
   )

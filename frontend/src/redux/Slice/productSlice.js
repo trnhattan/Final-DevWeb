@@ -5,7 +5,7 @@ export const productSlice = createSlice({
     name:"product",
     initialState:{
         product:null,
-        isLoading: null,
+        isLoading: true,
         error: null,
     },
     reducers:{
@@ -35,7 +35,7 @@ export const productsSlide = createSlice({
     name:"products",
     initialState:{
         products:[],
-        isLoading: null,
+        isLoading: true,
         error: null,
         productsCount: 0,
         resultPerPage: 0,
