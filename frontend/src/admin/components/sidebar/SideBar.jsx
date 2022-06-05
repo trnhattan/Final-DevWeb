@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
-
+import { Link } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 import TimelineIcon from '@mui/icons-material/Timeline';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
@@ -37,6 +37,7 @@ const SiderBarList = styled.ul`
 `
 
 const SiderBarListItem = styled.li`
+    color: black;
     padding: 5px;
     cursor: pointer;
     display: flex;
@@ -52,6 +53,13 @@ const SideBarIcon = {
     fontSize: '20px'
 }
 
+const StyledLink =  styled(Link)`
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+        color:black;
+    }
+`
+
 export default function SideBar() {
   return (
       <SideBarContainer>
@@ -61,7 +69,8 @@ export default function SideBar() {
                   <SiderBarList>
                       <SiderBarListItem>
                         <HomeIcon style={SideBarIcon}/>
-                        Home
+                        <StyledLink to="/admin/home">Home</StyledLink>
+                        
                       </SiderBarListItem>
                       <SiderBarListItem>
                         <TimelineIcon style={SideBarIcon}/>
@@ -78,15 +87,18 @@ export default function SideBar() {
                   <SiderBarList>
                       <SiderBarListItem>
                         <PersonOutlineIcon style={SideBarIcon}/>
-                        Users
+                        <StyledLink to = "/admin/users">Users</StyledLink>
+                        
                       </SiderBarListItem>
                       <SiderBarListItem>
                         <CategoryIcon style={SideBarIcon}/>
-                        Products
+                        <StyledLink to = "/admin/products"> Products </StyledLink>
+                        
                       </SiderBarListItem>
                       <SiderBarListItem>
                         <ShoppingCartIcon style={SideBarIcon}/>
-                        Orders
+                        <StyledLink to = "/admin/orders">Orders</StyledLink>
+                        
                       </SiderBarListItem>
                   </SiderBarList>
               </SideBarMenu>

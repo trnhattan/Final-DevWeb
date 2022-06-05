@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import SideBar from "../../components/sidebar/SideBar";
 import TopBar from "../../components/topbar/TopBar";
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import { Fragment } from "react";
 
 const UserListContainer = styled.div`
     flex: 4;
@@ -41,9 +42,14 @@ export default function UserList() {
         { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
       ];
   return (
-    <UserListContainer>
-        <TopBar></TopBar>
-        <DataGrid rows={rows} columns={columns} pageSize={5} checkboxSelection></DataGrid>
-    </UserListContainer>
+    <Fragment>
+      <TopBar/>
+      <div style={{display:"flex"}}>
+        <SideBar/>
+        <UserListContainer>
+          <DataGrid rows={rows} columns={columns} pageSize={5} checkboxSelection></DataGrid>
+        </UserListContainer>
+      </div>
+    </Fragment>
   )
 }

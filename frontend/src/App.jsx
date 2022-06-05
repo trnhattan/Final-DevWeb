@@ -28,9 +28,11 @@ import MyOrder from './pages/orderPages/MyOrder'
 import OrderDetail from './pages/orderPages/OrderDetail';
 
 
-import AdminHome from './admin/pages/AdminHome';
-import UserList from './admin/pages/UserList/UserList';
-
+import AdminHome from './admin/pages/AdminHome/AdminHome';
+import AdminOrderList from './admin/pages/OrderList/AdminOrderList' 
+import AdminProductList from './admin/pages/ProductList/AdminProductList';
+import AdminUserList from './admin/pages/UserList/AdminUserList';
+import { useSelector } from 'react-redux';
 
 
 const App = () => {
@@ -39,6 +41,9 @@ const App = () => {
     window.scrollTo(0, 0);
     return null;
   }
+
+  const {currentUser} = useSelector((state)=>state.user)
+
   return (
     <BrowserRouter>
       <Routes><Route path='/' element={<Home/>} /></Routes>
@@ -68,10 +73,20 @@ const App = () => {
       <Routes> <Route path='/orders' element={[ScrollTotTop, <MyOrder/>]} /></Routes>
       <Routes> <Route path='/orders/:id' element={[ScrollTotTop, <OrderDetail/>]} /></Routes>
 
+    
       {/* ADMIN ROUTE */}
-      <Routes> <Route path='/admin/pages/AdminHome' element={[<ScrollTotTop/>,<AdminHome/>]} /> </Routes>
-      <Routes> <Route path='/admin/pages/UserList/UserList' element={[<ScrollTotTop/>,<UserList/>]} /> </Routes>
-      
+      {currentUser && currentUser.role === "admin" ? (
+        <>
+          <Routes> <Route path='/admin/home' element={[<ScrollTotTop/>,<AdminHome/>]} /> </Routes>
+          <Routes> <Route path='/admin/orders' element={[<ScrollTotTop/>,<AdminOrderList/>]} /> </Routes>
+          <Routes> <Route path='/admin/products' element={[<ScrollTotTop/>,<AdminProductList/>]} /> </Routes>
+          <Routes> <Route path='/admin/users' element={[<ScrollTotTop/>,<AdminUserList/>]} /> </Routes>
+        </>
+        ):
+        (<>
+          <h1>You are not author</h1>
+        </>)
+        }
 
     </BrowserRouter>
   )
