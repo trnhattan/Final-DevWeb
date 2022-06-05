@@ -15,9 +15,12 @@ import MetaData from '../../components/MetaData'
 const Wrapper = styled.div`
     padding: 50px;
     display: flex;
+    align-items: center;
+    width: 100wh;
+    height: 90vh;
     ${mobile({ padding: "10px", flexDirection:"column" })}
+    background-color: #DCDCDC;
 `;
-
 
 
 const ImgContainer = styled.div`
@@ -26,8 +29,8 @@ const ImgContainer = styled.div`
 
 
 const Image = styled.img`
-    width: 100%;
-    height: 90vh;
+    width: 80%;
+    height: 80%;
     object-fit: cover;
     ${mobile({ height: "40vh" })}
 `;
@@ -35,11 +38,22 @@ const Image = styled.img`
 const InfoContainer = styled.div`
     flex: 1;
     padding: 0px 50px;
+    text-align: center;
     ${mobile({ padding: "10px" })}
+    background-color: white;
+`;
+
+const ProductBrand = styled.h6`
+  text-transform: uppercase;
+  text-align: center;
+  color: #A9A9A9;
+  font-size: 15px;
 `;
 
 const ProductName = styled.h1`
-    font-weight: 200;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 30px;
 `;
 
 const Desc = styled.div`
@@ -47,8 +61,14 @@ const Desc = styled.div`
 `;
 
 const Price = styled.span`
-    font-weight: 100;
-    font-size: 40px;
+    font-weight: bold;
+    font-size: 25px;
+`;
+
+const PriceFake = styled.span`
+    font-size: 15px;
+    color: #A9A9A9;
+    text-decoration-line: line-through;
 `;
 
 const FilterContainer = styled.div`
@@ -67,8 +87,7 @@ const Filter = styled.div`
 
 const FilterTitle = styled.span`
     width: max-content;
-    font-weight: 200;
-    font-size: 20px;
+    text-transform: capitalize;
 `;
 
 const FilterColor = styled.div`
@@ -175,25 +194,29 @@ const ProductDetail = () => {
           </ImgContainer>
 
           <InfoContainer>
+            <ProductBrand>{product.brand}</ProductBrand>
             <ProductName>{product.name}</ProductName>
             <Desc>{product.description}</Desc>
-            <Price>{product.price} VNĐ</Price>
+            <PriceFake>{(product.price*1.2).toLocaleString()} đ</PriceFake><br/>
+            <Price>{(product.price).toLocaleString()} đ</Price>
 
             <FilterContainer>
+              <Filter> <b>Thông tin chi tiết sản phẩm</b></Filter>
+              <Filter>
+                <FilterTitle>Hãng: {product.brand} </FilterTitle>
+              </Filter>
+              <Filter>
+                <FilterTitle>Tên: {product.name} </FilterTitle>
+              </Filter>
               <Filter>
                 <FilterTitle>Màu: {product.color} </FilterTitle>
-                {/* {product.color?.map((c) => (
-                            <FilterColor color={c} key={c} onClick={() => setColor(c)} />
-                        ))}   */}
               </Filter>
               
               <Filter>
-                  <FilterTitle>Dây đeo: {product.strap}</FilterTitle>
-                  {/* <FilterSize onChange={(e) => setStrap(e.target.value)}>
-                      {product.strap?.map((s) => (
-                      <FilterSizeOption key={s}>{s}</FilterSizeOption>
-                      ))}
-                  </FilterSize> */}
+                <FilterTitle> Dây: {product.strap}</FilterTitle>
+              </Filter>
+              <Filter>
+                  <FilterTitle>Kho: {product.stock}</FilterTitle>
               </Filter>
             </FilterContainer>
 
