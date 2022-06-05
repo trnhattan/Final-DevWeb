@@ -5,10 +5,9 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 //get all products  
 export const getAllProducts = createAsyncThunk(
     "product/getAllProducts",
-    async ({role,category,color, strap}) => {
-        // try{
+    async ({role,category,color, strap, sortType}) => {
+        try{
 
-            // let link = `/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}`;
             let link = ""
             switch(role){
                 case "latest":
@@ -56,13 +55,30 @@ export const getAllProducts = createAsyncThunk(
                     // link = "/products"
                     break;
             }
-            
             const {data} = await publicRequest.get(link);
-            return data;
+
+
+            if (sortType === "newest"){
+                const newProducts = data.products.sort((a,b)=> b.createAt - a.createAt)
+                data.products = newProducts
+                return data
+            }
+            else if (sortType ===  "price-asc"){
+                const newProducts = data.products.sort((a,b)=> a.price - b.price)
+                data.products = newProducts
+                return data
+            }
+            else if (sortType ===  "price-desc") {
+                const newProducts = data.products.sort((a,b)=> b.price - a.price)
+                data.products = newProducts
+                return data
+            }
+
+        
            
-        // }catch(err){
-        //     return err.response.data.message
-        // }
+        }catch(err){
+            return err.response.data.message
+        }
     }
 )
 

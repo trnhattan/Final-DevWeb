@@ -70,7 +70,7 @@ const ProductList = () => {
   console.log(category)
   const [color, setColor] = useState("");
   const [strap, setStrap] = useState("");
-  const [sortType, setSortType] = useState("");
+  const [sortType, setSortType] = useState("newest");
   const [currentPage, setCurrentPage] = useState(1);
   const [role, setRole] = useState("category");
 
@@ -80,9 +80,9 @@ const ProductList = () => {
     //   alert("Lỗi !")
     //   dispatch(productsSlide.actions.clearError());
     // }
-    dispatch(getAllProducts({role, category, color, strap}))
-  },[dispatch ,role, category,color, strap])
-
+    dispatch(getAllProducts({role, category, color, strap, sortType}))
+  },[dispatch ,role, category, color, strap, sortType])
+  
 
 
   return (
@@ -110,7 +110,7 @@ const ProductList = () => {
               // onChange={handleChangeColor}
             >
               <MenuItem value="">
-                <em>None</em>
+                <em>Tất cả</em>
               </MenuItem>
               <MenuItem value={'black'}>Đen</MenuItem>
               <MenuItem value={'white'}>Trắng</MenuItem>
@@ -127,7 +127,7 @@ const ProductList = () => {
               onChange={(e) => setStrap(e.target.value)}
             >
               <MenuItem value="">
-                <em>None</em>
+                <em>Tất cả</em>
               </MenuItem>
               <MenuItem value={'kim loại'}>Kim loại</MenuItem>
               <MenuItem value={'da'}>Da</MenuItem>
@@ -150,7 +150,7 @@ const ProductList = () => {
               onChange={(e) => setSortType(e.target.value)}
             >
               <MenuItem value="">
-                <em>None</em>
+                <em>Tất cả</em>
               </MenuItem>
               <MenuItem value={'newest'}>Mới nhất</MenuItem>
               <MenuItem value={'price-asc'}>Giá (tăng dần)</MenuItem>
