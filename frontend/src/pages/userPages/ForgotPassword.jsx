@@ -108,7 +108,7 @@ export const ForgotPassword = () => {
                     </Wrapper>
                 </Container>  
             </Fragment>
-          )}
+          )} 
         <Footer/>
       </Fragment>
     

@@ -108,12 +108,17 @@ export const forgotPassword = createAsyncThunk(
 export const resetPassword = createAsyncThunk(
     "user/resetPassword",
     async (TokenAndPassword)=>{
+        // try{
             const {data} = await publicRequest.put(
                 `/password/reset/${TokenAndPassword[0]}`,
                 TokenAndPassword[1]
             )
             return data.success
-    }
+        }
+    //     catch(err){
+    //         return err.response.data.message
+    //     }
+    // }
 )
 
 //admin

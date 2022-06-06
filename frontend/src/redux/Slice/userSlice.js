@@ -166,7 +166,7 @@ export const ProfileSlice = createSlice({
 export const ForgotPasswordSlice = createSlice({
     name:"forgotPassword",
     initialState:{
-        isLoading: true,
+        isLoading: null,
         error: null,
         message: null,
         success:null
@@ -177,6 +177,9 @@ export const ForgotPasswordSlice = createSlice({
         },
         clearMessage:(state) => {
             state.message = null
+        },
+        clearSuccess:(state) => {
+            state.success = null
         }
     },
     extraReducers:{
@@ -188,6 +191,7 @@ export const ForgotPasswordSlice = createSlice({
         [forgotPassword.fulfilled]:(state, action) => {
             state.message = action.payload
             state.isLoading = false
+            state.error = false
         },
         [forgotPassword.rejected]:(state) => {
             state.error = true
