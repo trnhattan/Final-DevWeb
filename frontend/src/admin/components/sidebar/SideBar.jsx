@@ -7,6 +7,7 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import CategoryIcon from '@mui/icons-material/Category';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import AccountTreeIcon from '@mui/icons-material/AccountTree';
 
 const SideBarContainer = styled.div`
     flex: 1;
@@ -99,6 +100,12 @@ export default function SideBar() {
                     <StyledLink to = "/admin/products">
                       <SiderBarListItem>
                         <CategoryIcon style={SideBarIcon}/>Products
+                      </SiderBarListItem>
+                    </StyledLink>
+
+                    <StyledLink to = "/admin/new/product">
+                      <SiderBarListItem>
+                        <AccountTreeIcon style={SideBarIcon}/>Add product
                       </SiderBarListItem>
                     </StyledLink>
 

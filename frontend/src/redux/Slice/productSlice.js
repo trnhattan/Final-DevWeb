@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {getProductDetail, getAllProducts, getProductAdmin, updateProduct, deleteProduct} from '../callAPI/productCall'
+import {getProductDetail, getAllProducts, getProductAdmin,
+        updateProduct, deleteProduct, newProduct} from '../callAPI/productCall'
  
 export const productSlice = createSlice({
     name:"product",
@@ -133,5 +134,39 @@ export const updateDeleteProductSlice = createSlice({
             state.isLoading = false
             state.error = true
         }, 
+    }
+});
+
+export const newProductSlice = createSlice({
+    name:"newProduct",
+    initialState:{
+        product: {},
+        success: null,
+        isLoading:true,
+        error: null,
+    },
+    reducers:{
+        clearErr:(state)=>{
+            state.error = null
+        },
+        newProductReset:(state)=>{
+            state.success = false
+        }
+    },
+    extraReducers:{
+        [newProduct.pending]:(state) => {
+            state.isLoading = true
+            state.error = false
+        },
+        [newProduct.fulfilled]:(state, action) => {
+            state.isLoading = false
+            state.error = false
+            state.success = action.payload.success
+            state.product = action.payload.product
+        },
+        [newProduct.rejected]:(state) => {
+            state.isLoading = false
+            state.error = true
+        },
     }
 })

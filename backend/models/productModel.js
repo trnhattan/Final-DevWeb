@@ -14,18 +14,10 @@ const productSchema = mongoose.Schema({
         required:[true,"Please Enter product Price"],
         maxLenght:[8,"asdsad"]
     },
-    image:[
-        {
-            public_id:{
-                type:String,
-                required:true
-            },
-            url:{
-                type:String,
-                required:true
-            }
-        }
-    ],
+    image:{
+        type:String,
+        required: [true,"Please Enter product image" ]
+    },
     category:{
         type:String,
         required:[true,"Please Enter product Category (Male/Female)"]

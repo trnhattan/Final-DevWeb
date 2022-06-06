@@ -114,6 +114,9 @@ const ProductList = () => {
               </MenuItem>
               <MenuItem value={'black'}>Đen</MenuItem>
               <MenuItem value={'white'}>Trắng</MenuItem>
+              <MenuItem value={'brown'}>Nâu</MenuItem>
+              <MenuItem value={'yellow'}>Vàng</MenuItem>
+              <MenuItem value={'silver'}>Bạc</MenuItem>
             </Select>
           </FormControl> 
 

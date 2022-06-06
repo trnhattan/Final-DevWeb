@@ -151,8 +151,6 @@ const ProductDetail = () => {
 
   const { product, error } = useSelector((state) => state.product);
 
-  const [color, setColor] = useState("");
-  const [strap, setStrap] = useState("");
   const [quantity, setQuantity] = useState(1);
 
   // chỉnh giới hạn <= stock
@@ -190,7 +188,7 @@ const ProductDetail = () => {
         <Wrapper> 
           
           <ImgContainer>
-            <Image src={product.image[0].url}/>
+            <Image src={product.image}/>
           </ImgContainer>
 
           <InfoContainer>

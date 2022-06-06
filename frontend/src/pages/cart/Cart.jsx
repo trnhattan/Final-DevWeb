@@ -170,8 +170,6 @@ const Cart = () => {
   }
 
 
-  console.log(TotalPrice)
-
   return (
     <Fragment>
       {isLoading ? (<Loader/>):

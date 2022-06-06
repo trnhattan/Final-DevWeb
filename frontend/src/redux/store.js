@@ -12,7 +12,8 @@ import {UserSlice,
       } from "./Slice/userSlice";
 
 import {productsSlide, productSlice,
-  updateDeleteProductSlice
+  updateDeleteProductSlice,
+  newProductSlice
 } from "./Slice/productSlice";
 
 import {cartSlice} from './Slice/cartSlice'
@@ -34,6 +35,7 @@ const rootReducer = combineReducers({
 
     products: productsSlide.reducer,
     product: productSlice.reducer,
+    newProduct: newProductSlice.reducer,
     updateDeleteProduct: updateDeleteProductSlice.reducer,
 
     cart: cartSlice.reducer,

@@ -11,6 +11,17 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {deleteUser} from '../../../redux/callAPI/userCall'
 
+
+const ProductListHeading = styled.h1`
+  font: 400 2rem "Roboto";
+  padding: 0.5vmax;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.637);
+  transition: all 0.5s;
+  margin: 2rem;
+  text-align: center;
+`
+
 const UserListContainer = styled.div`
     flex: 4;
     padding: 20px;
@@ -135,6 +146,7 @@ export default function UserList() {
         <div style={{display:"flex"}}>
           <SideBar/>
           <UserListContainer>
+          <ProductListHeading >Tất cả người dùng</ProductListHeading>
             <DataGrid
               rows={rows}
               columns={columns}

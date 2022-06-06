@@ -6,7 +6,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 export const CreateOrder = createAsyncThunk(
     "order/newOrder",
     async (order) => {
-        try{
+
             const token = localStorage.getItem("token");
             const config = { headers: { Authorization : `Bearer ${token}`  } };
 
@@ -17,16 +17,13 @@ export const CreateOrder = createAsyncThunk(
             );
             return data.order
 
-        }catch (err){
-            return err.response.data.message
-        }
     }
 );
 
 export const MyOrders = createAsyncThunk(
     "order/myOrder",
     async () => {
-        try{
+
             const token = localStorage.getItem("token");
             const config = { headers: { Authorization : `Bearer ${token}`  } };
 
@@ -35,16 +32,14 @@ export const MyOrders = createAsyncThunk(
                 config
             )
             return data.orders
-        }catch(err){
-            return err.response.data.message
-        }
+
     }
 )
 
 export const GetOrderDetail = createAsyncThunk(
     "order/orderDetail",
     async (id) => {
-        try{
+
             const token = localStorage.getItem("token");
             const config = { headers: { Authorization : `Bearer ${token}`  } };
 
@@ -54,9 +49,7 @@ export const GetOrderDetail = createAsyncThunk(
             )
 
             return data.order
-        }catch(err){
-            return err.response.data.message
-        }
+
     }
 );
 
@@ -64,8 +57,6 @@ export const GetOrderDetail = createAsyncThunk(
 export const GetAllOrderAdmin = createAsyncThunk(
     'order/getAllOrders',
     async () => {
-        try{
-
             const token = localStorage.getItem("token");
             const config = { headers: { Authorization : `Bearer ${token}`  } };
             const { data } = await publicRequest.get(
@@ -73,9 +64,6 @@ export const GetAllOrderAdmin = createAsyncThunk(
                 config
             );
             return data.orders
-        }catch(err){
-            return err.response.data.message
-        }
     }
 );
 
@@ -83,27 +71,22 @@ export const GetAllOrderAdmin = createAsyncThunk(
 export const UpdateOrderAdmin = createAsyncThunk(
     "order/updateOrder",
     async (MyData) => {
-        try{
 
-            const token = localStorage.getItem("token");
-            const config = { headers: { Authorization : `Bearer ${token}`  } };
-            const { data } = await publicRequest.put(
-                `/admin/order/${MyData[0]}`,
-                MyData[1],
-                config
-              );
-            return data.success
-        }
-        catch(err){
-            return err.response.data.message
-        }
+        const token = localStorage.getItem("token");
+        const config = { headers: { Authorization : `Bearer ${token}`  } };
+        const { data } = await publicRequest.put(
+            `/admin/order/${MyData[0]}`,
+            MyData[1],
+            config
+            );
+        return data.success
     }
+
 )
 
 export const DeleteOrderAdmin = createAsyncThunk(
     'order/deleteOrder',
     async (id) => {
-        try{
 
             const token = localStorage.getItem("token");
             const config = { headers: { Authorization : `Bearer ${token}`  } };
@@ -113,8 +96,5 @@ export const DeleteOrderAdmin = createAsyncThunk(
             )
             return data.success
 
-        }catch(err){
-            return err.response.data.message
-        }
     }
 )

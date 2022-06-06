@@ -8,8 +8,18 @@ import { useDispatch, useSelector } from 'react-redux'
 import { GetAllOrderAdmin, UpdateOrderAdmin, DeleteOrderAdmin } from '../../../redux/callAPI/orderCall'
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import {OrderSlice} from '../../../redux/Slice/orderSlice'
+import {OrderSlice, getAllOrderSlice} from '../../../redux/Slice/orderSlice'
 
+
+const ProductListHeading = styled.h1`
+  font: 400 2rem "Roboto";
+  padding: 0.5vmax;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.637);
+  transition: all 0.5s;
+  margin: 2rem;
+  text-align: center;
+`
 
 
 const OrderListContainer = styled.div`
@@ -37,14 +47,22 @@ const AdminOrderList = () => {
 
   const dispatch = useDispatch();
   const history = useNavigate();
-  const {orders} = useSelector((state)=>state.getAllOrders)
-  const {isUpdated, isDeleted } = useSelector(state => state.DeleteUpdateOrder)
+  const {orders, error} = useSelector((state)=>state.getAllOrders)
+  const {isUpdated, isDeleted, deleteError } = useSelector(state => state.DeleteUpdateOrder)
 
   const deleteOrderHandler = (id) => {
     dispatch(DeleteOrderAdmin(id))
   }
 
   useEffect(()=>{
+    if (error){
+      alert("Lỗi !")
+      dispatch(getAllOrderSlice.actions.clearErr())
+    }
+    if (deleteError){
+      alert("Lỗi !")
+      dispatch(OrderSlice.actions.cleardeleteError())
+    }
 
     if (isDeleted) {
       alert("Đã xóa đơn hàng");
@@ -133,6 +151,7 @@ const AdminOrderList = () => {
       <div style={{display:"flex"}}>
         <SideBar/>
         <OrderListContainer>
+        <ProductListHeading >Tất cả đơn hàng</ProductListHeading>
           <DataGrid
                 rows={rows}
                 columns={columns}

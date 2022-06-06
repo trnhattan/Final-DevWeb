@@ -131,8 +131,11 @@ export const OrderSlice = createSlice({
         deleteError: null,
     },
     reducers:{
-        clearErr:(state)=>{
-            state.error = null
+        clearupdateError:(state)=>{
+            state.updateError = null
+        },
+        cleardeleteError:(state)=>{
+            state.deleteError = null
         },
         UpdateOrderReset: (state)=>{
             state.isUpdated = false

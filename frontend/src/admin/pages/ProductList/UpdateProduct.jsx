@@ -44,6 +44,7 @@ const UpdateProduct = () => {
     const [category, setCategory] = useState("");
     const [brand, setBrand] = useState("");
     const [color, setColor] = useState("");
+    const [strap,setStrap] = useState("");
     const [stock, setStock] = useState(0);
     const [images, setImages] = useState([]);
     const [oldImages, setOldImages] = useState([]);
@@ -62,6 +63,7 @@ const UpdateProduct = () => {
             setCategory(product.category);
             setBrand(product.brand);
             setColor(product.color);
+            setStrap(product.strap);
             setStock(product.stock);
             setOldImages(product.images);
         }
@@ -102,7 +104,7 @@ const UpdateProduct = () => {
         // myForm.append("images", image);
         // });
 
-        dispatch(updateProduct([productId, {name, price, description, category,brand,color, stock}]));
+        dispatch(updateProduct([productId, {name, price, description, category,brand,color,strap, stock}]));
     }
 
 
@@ -199,6 +201,18 @@ const UpdateProduct = () => {
                     </div>
 
                     <div>
+                    <DescriptionIcon />
+
+                    <textarea
+                        placeholder="Strap"
+                        value={strap}
+                        onChange={(e) => setStrap(e.target.value)}
+                        cols="30"
+                        rows="1"
+                    ></textarea>
+                    </div>
+
+                    <div>
                     <StorageIcon />
                     <input
                         type="number"
@@ -237,7 +251,7 @@ const UpdateProduct = () => {
                     type="submit"
                     // disabled={isLoading ? true : false}
                     >
-                    Create
+                    UPDATE
                     </Button>
                 </form>
             </UpdateProductContainer>
