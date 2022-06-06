@@ -66,6 +66,7 @@ const AccountOptions = ({currentUser}) => {
   function logoutUser(){
     dispatch(logout())
     alert("logout success!")
+    history("/")
   }
 
   function dashboard(){

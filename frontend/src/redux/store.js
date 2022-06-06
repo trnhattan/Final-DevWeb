@@ -6,10 +6,14 @@ import storage from 'redux-persist/lib/storage'
 
 import {UserSlice, 
         ProfileSlice,
-        ForgotPasswordSlice
+        ForgotPasswordSlice,
+        GetAllUserSlice,
+        GetUserDetailSlice,
       } from "./Slice/userSlice";
 
-import {productsSlide, productSlice} from "./Slice/productSlice";
+import {productsSlide, productSlice,
+  updateDeleteProductSlice
+} from "./Slice/productSlice";
 
 import {cartSlice} from './Slice/cartSlice'
 import { myOrderSlice, newOrderSlice, getOrderDetailSlice,getAllOrderSlice, OrderSlice } from "./Slice/orderSlice";
@@ -23,11 +27,14 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
     user: UserSlice.reducer,
+    allUser: GetAllUserSlice.reducer,
     userProfile: ProfileSlice.reducer,
+    userDetail: GetUserDetailSlice.reducer,
     forgotPassword: ForgotPasswordSlice.reducer,
 
     products: productsSlide.reducer,
-    product: productSlice.reducer, 
+    product: productSlice.reducer,
+    updateDeleteProduct: updateDeleteProductSlice.reducer,
 
     cart: cartSlice.reducer,
 

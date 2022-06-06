@@ -34,6 +34,8 @@ import AdminProductList from './admin/pages/ProductList/AdminProductList';
 import AdminUserList from './admin/pages/UserList/AdminUserList';
 import { useSelector } from 'react-redux';
 import UpdateOrder from './admin/pages/OrderList/UpdateOrder';
+import UpdateUser from './admin/pages/UserList/UpdateUser';
+import UpdateProduct from './admin/pages/ProductList/UpdateProduct';
 
 
 const App = () => {
@@ -79,10 +81,16 @@ const App = () => {
       {/* {currentUser && currentUser.role === "admin" ? (
         <> */}
           <Routes> <Route path='/admin/home' element={[<ScrollTotTop/>,<AdminHome/>]} /> </Routes>
+
           <Routes> <Route path='/admin/orders' element={[<ScrollTotTop/>,<AdminOrderList/>]} /> </Routes>
+          <Routes> <Route path='/admin/order/:id' element={[<ScrollTotTop/>,<UpdateOrder/>]} /> </Routes>
+
           <Routes> <Route path='/admin/products' element={[<ScrollTotTop/>,<AdminProductList/>]} /> </Routes>
+          <Routes> <Route path='/admin/product/:id' element={[<ScrollTotTop/>,<UpdateProduct/>]} /> </Routes>
+
           <Routes> <Route path='/admin/users' element={[<ScrollTotTop/>,<AdminUserList/>]} /> </Routes>
-          <Routes> <Route path='/admin/orders/:id' element={[<ScrollTotTop/>,<UpdateOrder/>]} /> </Routes>
+          <Routes> <Route path='/admin/user/:id' element={[<ScrollTotTop/>,<UpdateUser/>]} /> </Routes>
+          
         {/* </>
         ):
         (<>

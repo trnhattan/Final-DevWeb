@@ -138,4 +138,73 @@ export const resetPassword = createAsyncThunk(
     }
 )
 
+//admin
+export const getAllUser = createAsyncThunk(
+    "user/getAllUser",
+    async () => {
+        try{
+            const token = localStorage.getItem("token");
+            const config = { headers: { Authorization : `Bearer ${token}`  } }; 
+            const { data } = await publicRequest.get(
+                `/admin/users`,
+                config
+            );
+            return data.users
+                
+        }catch(err){
+            return  err.response.data.message
+        }
+    }
+)
 
+export const getUserDetailAdmin = createAsyncThunk(
+    "user/getUserDetailAdmin",
+    async (id) => {
+        try{
+            const token = localStorage.getItem("token");
+            const config = { headers: { Authorization : `Bearer ${token}`  } }; 
+            const { data } = await publicRequest.get(
+                `/admin/user/${id}`,
+                config
+            );
+            return data.user 
+        }catch(err){
+            return  err.response.data.message
+        }
+    }
+)
+
+export const updateUserRole = createAsyncThunk(
+    "user/updateUserRole",
+    async (userData)=> {
+        try{
+            const token = localStorage.getItem("token");
+            const config = { headers: { Authorization : `Bearer ${token}`  } }; 
+            const { data } = await publicRequest.put(
+                `/admin/user/${userData[0]}`,
+                userData[1],
+                config
+              );
+            return data.success
+        }catch(err){
+            return  err.response.data.message
+        }
+    }
+)
+
+export const deleteUser = createAsyncThunk(
+    "user/deleteUser",
+    async (id) => {
+        try{
+            const token = localStorage.getItem("token");
+            const config = { headers: { Authorization : `Bearer ${token}`  } }; 
+            const { data } = await publicRequest.delete(
+                `/admin/user/${id}`,
+                config
+            );
+            return data.success
+        }catch(err){
+            return  err.response.data.message
+        }
+    }
+)

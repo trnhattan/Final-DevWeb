@@ -10,7 +10,7 @@ export const getAllProducts = createAsyncThunk(
 
             let link = ""
             switch(role){
-                case "latest":
+                case "newProduct":
                     link  = "/products";
                     break;
                 case "category":
@@ -52,7 +52,7 @@ export const getAllProducts = createAsyncThunk(
                     }
                     break;
                 default:
-                    // link = "/products"
+                    link = "/products"
                     break;
             }
             const {data} = await publicRequest.get(link);
@@ -61,18 +61,20 @@ export const getAllProducts = createAsyncThunk(
             if (sortType === "newest"){
                 const newProducts = data.products.sort((a,b)=> b.createAt - a.createAt)
                 data.products = newProducts
-                return data
+                
             }
             else if (sortType ===  "price-asc"){
                 const newProducts = data.products.sort((a,b)=> a.price - b.price)
                 data.products = newProducts
-                return data
+               
             }
             else if (sortType ===  "price-desc") {
                 const newProducts = data.products.sort((a,b)=> b.price - a.price)
                 data.products = newProducts
-                return data
+                
             }
+
+            return data
 
         
            
@@ -95,5 +97,60 @@ export const getProductDetail = createAsyncThunk(
         // }catch(err){
         //     return err.response.data.message
         // }
+    }
+)
+
+//admin
+export const getProductAdmin = createAsyncThunk(
+    "pruduct/getProductAdmin",
+    async () => {
+        try{
+            const token = localStorage.getItem("token");
+            const config = { headers: { Authorization : `Bearer ${token}`  } }; 
+            const { data } = await publicRequest.get(
+                "/admin/products",
+                config,
+            );
+
+            return data
+        }
+        catch(err){
+            return err.response.data.message
+        }
+    }
+)
+
+export const updateProduct = createAsyncThunk(
+    'product/updateProduct',
+    async (productData)=>{
+        try{
+            const token = localStorage.getItem("token");
+            const config = { headers: { Authorization : `Bearer ${token}`  } }; 
+            const { data } = await publicRequest.put(
+                `admin/product/${productData[0]}`,
+                productData[1],
+                config
+              );
+            return data.success
+        }catch(err){
+            return err.response.data.message
+        }
+    }
+)
+
+export const deleteProduct = createAsyncThunk(
+    "'product/deleteProduct",
+    async (id) => {
+        try{
+            const token = localStorage.getItem("token");
+            const config = { headers: { Authorization : `Bearer ${token}`  } }; 
+            const {data} = await publicRequest.delete(
+                `/admin/product/${id}`,
+                config
+            );
+            return data.success
+        }catch(err){
+            return err.response.data.message
+        }
     }
 )

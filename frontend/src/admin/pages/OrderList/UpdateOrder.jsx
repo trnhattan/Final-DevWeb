@@ -133,7 +133,7 @@ const UpdateOrder = () => {
         if (isUpdated){
             alert("Đã cập nhật trạng thái đơn hàng")
             dispatch(OrderSlice.actions.UpdateOrderReset());
-            history(`/admin/orders/${idOrder}`)
+            history(`/admin/order/${idOrder}`)
         }
         dispatch(GetOrderDetail(idOrder));
     }, [dispatch,idOrder, isUpdated])

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {getProductDetail, getAllProducts} from '../callAPI/productCall'
+import {getProductDetail, getAllProducts, getProductAdmin, updateProduct, deleteProduct} from '../callAPI/productCall'
  
 export const productSlice = createSlice({
     name:"product",
@@ -35,7 +35,7 @@ export const productsSlide = createSlice({
     name:"products",
     initialState:{
         products:[],
-        isLoading: true,
+        isLoading: null,
         error: null,
         productsCount: 0,
         resultPerPage: 0,
@@ -60,9 +60,78 @@ export const productsSlide = createSlice({
             state.filteredProductsCount =  action.payload.filteredProductsCount
             state.error = false
         },
-        [getAllProducts.pending]:(state)=>{
+        [getAllProducts.rejected]:(state)=>{
             state.isLoading = false
             state.error = true
         },
+        
+        //Admin
+        [getProductAdmin.pending]:(state)=>{
+            state.isLoading = true
+            state.error = false
+        },
+        [getProductAdmin.fulfilled]:(state, action)=>{
+            state.isLoading = false
+            state.products = action.payload.products
+            state.error = false
+        },
+        [getProductAdmin.rejected]:(state)=>{
+            state.isLoading = false
+            state.error = true
+        },
+    }
+})
+
+
+export const updateDeleteProductSlice = createSlice({
+    name:"updateDeleteProduct",
+    initialState:{
+        isDeleted:null,
+        isUpdated:null,
+        isLoading: true,
+        error: null,
+    },
+    reducers:{
+        clearErr:(state)=>{
+            state.error = null
+        },
+        updateProuctReset:(state)=>{
+            state.isUpdated = false
+        },
+        deleteProuctReset:(state)=>{
+            state.isDeleted = false
+        }
+    },
+    extraReducers:{
+        //Update
+        [updateProduct.pending]:(state)=>{
+            state.isLoading = true
+            state.error = false
+        },
+        [updateProduct.fulfilled]:(state, action)=>{
+            state.isUpdated = action.payload
+            state.isLoading = false
+            state.error = false
+        },
+        [updateProduct.rejected]:(state)=>{
+            state.isLoading = false
+            state.error = true
+        }, 
+
+
+        //Delete
+        [deleteProduct.pending]:(state)=>{
+            state.isLoading = true
+            state.error = false
+        },
+        [deleteProduct.fulfilled]:(state, action)=>{
+            state.isDeleted = action.payload
+            state.isLoading = false
+            state.error = false
+        },
+        [deleteProduct.rejected]:(state)=>{
+            state.isLoading = false
+            state.error = true
+        }, 
     }
 })

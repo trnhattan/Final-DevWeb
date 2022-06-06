@@ -97,7 +97,7 @@ const AdminOrderList = () => {
       renderCell: (params) => {
         return (
           <Fragment>
-            <StyledLink to={`/admin/orders/${params.getValue(params.id, "id")}`}>
+            <StyledLink to={`/admin/order/${params.getValue(params.id, "id")}`}>
               <EditIcon />
             </StyledLink>
 
