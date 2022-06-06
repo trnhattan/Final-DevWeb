@@ -32,7 +32,7 @@ const InfoContainer = styled.div`
     ${mobile({ padding: "10px" })}
 `;
 const ImgContainer = styled.div`
-  height: 80%;
+  height: 90%;
   widht: 80%;
   flex: 1;
 `;
@@ -74,7 +74,7 @@ const SuccessOrder = () => {
           </Desc>
         </InfoContainer> 
         <ImgContainer>
-          <Image src="https://phunugioi.com/wp-content/uploads/2020/10/hinh-anh-cam-on.jpg"></Image>      
+          <Image src="https://vietcontentthue.com/wp-content/uploads/2020/08/viet-content-cam-on.jpg"></Image>      
         </ImgContainer>
         <Button onClick={handleClick}>Trang chủ</Button>
       </Wrapper>
