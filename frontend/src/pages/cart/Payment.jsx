@@ -1,12 +1,31 @@
 import React, { Fragment, useState } from 'react'
+import styled from '@emotion/styled'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import {CreateOrder} from '../../redux/callAPI/orderCall'
 import {cartSlice} from '../../redux/Slice/cartSlice'
+import Footer from '../../components/Footer'
 
+const Title = styled.h1`
+  padding: 20px;
+  text-align: center;
+  font-size: 35px;
+`;
+const Image = styled.img`
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+`;
 
+const InfoContainer = styled.div`
+  flex: 1;
+  text-align: center;
+  width: 100%;
+  heigth: 100%;
+`;
 
 const Payment = () => {
     
@@ -51,8 +70,8 @@ const Payment = () => {
   return (
     <Fragment>
         <div>
-            <h2>Phương thức thanh toán</h2>
-            <div style={{display:"flex",flexDirection:"column"}}>
+            <Title>PHƯƠNG THỨC THANH TOÁN</Title>
+            <InfoContainer>
                 {/*checked1*/}
                 <FormControlLabel 
                     label="Thanh toán khi nhận hàng"
@@ -63,10 +82,10 @@ const Payment = () => {
                         />
                     }
                 />
-
+                <br/> 
                 {/*checked2*/}
                 <FormControlLabel 
-                    label="Khác" 
+                    label="Thẻ ngân hàng / ví điện tử" 
                     control={
                         <Checkbox 
                             checked={checked2}
@@ -74,10 +93,11 @@ const Payment = () => {
                         />
                     } 
                 />
-            </div>
-            <button onClick={handleClick}>Xác nhận</button>
-            
+            <br/><button onClick={handleClick}>Xác nhận</button> 
+            </InfoContainer>
         </div>
+        <Image src="https://callio.vn/wp-content/uploads/2021/10/HC7aV9oK68FhcwcXbt_Lg24p2KwrW67siw.png"></Image> 
+        <Footer/>
     </Fragment>
   )
 }

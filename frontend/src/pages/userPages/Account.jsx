@@ -11,23 +11,27 @@ import Footer from '../../components/Footer'
 
 
 const Container = styled.div`
+  background: #DCDCDC;
 `;
 const Wrapper = styled.div`
   display: flex;
 `;
 const ImgContainer = styled.div`
-  height: 85%;
-  widht: 85%;
+  height: 80%;
+  widht: 100%;
   flex: 1;
 `;
 const Image = styled.img`
-  height: 85%
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 `;
 const InfoContainer = styled.div`
   flex: 1;
+  display: block;
   text-align: center;
-  width: 100%;
-  heigth: 100%;
+  margin: auto;
 `;
 const Desctitle = styled.h4`
   padding: 10px;
@@ -89,13 +93,12 @@ const Account = () => {
                   </ImgContainer>
                 </Slide>
               </Wrapper>
-              <Footer/>
             </Container>
           </Fragment>
           ):(
             <></>
           )}
-        
+        <Footer/>
         </Fragment>
 
         

@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {updatePassword} from '../../redux/callAPI/userCall'
 import { useNavigate } from 'react-router-dom'
 import {ProfileSlice} from '../../redux/Slice/userSlice'
+import Footer from '../../components/Footer'
 
 const Container = styled.div`
   height: 100vh;
@@ -14,7 +15,7 @@ const Container = styled.div`
   align-items: center;
   text-align: center;
   justify-content: center;
-  background: linear-gradient(120deg, #2980b9, #8e44ad)
+  background: #DCDCDC;
 `;
 
 const Wrapper = styled.div`
@@ -118,7 +119,7 @@ const UpdatePassword = () => {
                 </Container>
             </Fragment>
         )}
-
+    <Footer/>
     </Fragment>
   )
 }

@@ -6,6 +6,7 @@ import NewNavbar from "../../components/NewNavbar";
 import {useDispatch} from 'react-redux'
 import { register } from "../../redux/callAPI/userCall";
 import { useLocation, useNavigate } from "react-router-dom";
+import Footer from "../../components/Footer";
 
 const Container = styled.div`
   height: 100vh;
@@ -13,7 +14,7 @@ const Container = styled.div`
   align-items: center;
   text-align: center;
   justify-content: center;
-  background: linear-gradient(120deg, #2980b9, #8e44ad)
+  background: #DCDCDC;
 `;
 const Wrapper = styled.div`
     width: 25%;
@@ -126,6 +127,7 @@ const Register = () => {
                     <Link href="/login">Đăng nhập</Link>
                 </Wrapper>
             </Container>
+        <Footer/>
         </>
     )
 }

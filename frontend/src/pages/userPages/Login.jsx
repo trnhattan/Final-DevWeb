@@ -5,6 +5,7 @@ import { login } from '../../redux/callAPI/userCall';
 import { Link , useNavigate, useLocation} from 'react-router-dom';
 import {mobile} from "../../responsive";
 import NewNavbar from '../../components/NewNavbar';
+import Footer from '../../components/Footer';
 
 const Container = styled.div`
   height: 100vh;
@@ -12,7 +13,7 @@ const Container = styled.div`
   align-items: center;
   text-align: center;
   justify-content: center;
-  background: linear-gradient(120deg, #2980b9, #8e44ad)
+  background: #DCDCDC;
 `;
 
 const Wrapper = styled.div`
@@ -155,6 +156,7 @@ const Login = () => {
           </Wrapper>
         </Container>
       )} 
+    <Footer/>
     </Fragment>
   )
 }
