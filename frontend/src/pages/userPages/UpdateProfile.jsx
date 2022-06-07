@@ -17,7 +17,7 @@ const Container = styled.div`
   align-items: center;
   text-align: center;
   justify-content: center;
-  background: linear-gradient(120deg, #2980b9, #8e44ad)
+  background: #DCDCDC;
 `;
 
 const Wrapper = styled.div`

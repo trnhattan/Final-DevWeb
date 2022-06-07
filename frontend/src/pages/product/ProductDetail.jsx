@@ -27,7 +27,6 @@ const ImgContainer = styled.div`
     flex: 1;
 `;
 
-
 const Image = styled.img`
     width: 80%;
     height: 80%;
@@ -36,8 +35,8 @@ const Image = styled.img`
 `;
 
 const InfoContainer = styled.div`
+    display: block;
     flex: 1;
-    padding: 0px 50px;
     text-align: center;
     ${mobile({ padding: "10px" })}
     background-color: white;
@@ -57,7 +56,8 @@ const ProductName = styled.h1`
 `;
 
 const Desc = styled.div`
-    margin: 20px 0px;
+    padding-left: 15px;
+    padding-right: 15px;
 `;
 
 const Price = styled.span`
@@ -83,6 +83,7 @@ const FilterContainer = styled.div`
 const Filter = styled.div`
     display: flex;
     align-items: center;
+    padding-left: 15px;
 `;
 
 const FilterTitle = styled.span`
@@ -90,28 +91,12 @@ const FilterTitle = styled.span`
     text-transform: capitalize;
 `;
 
-const FilterColor = styled.div`
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: ${props=>props.color};\
-    margin: 0px 5px;
-    cursor: pointer;
-`;
-
-const FilterSize = styled.select`
-    margin-left: 10px;
-    padding: 5px;
-`;
-
-const FilterSizeOption = styled.option`
-`;
-
 const AddContainer =  styled.div`
-    width: 50%;
-    display: flex;
+    width: 100%;
+    display: block;
     align-items: center;
-    justity-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
     ${mobile({ width: "100%" })}
 `;
 
@@ -128,7 +113,6 @@ const Amount = styled.span`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0px 5px;
 `;
 const Button = styled.button`
     padding: 15px;
@@ -201,17 +185,17 @@ const ProductDetail = () => {
             <FilterContainer>
               <Filter> <b>Thông tin chi tiết sản phẩm</b></Filter>
               <Filter>
-                <FilterTitle>Hãng: {product.brand} </FilterTitle>
+                <FilterTitle>Hãng sản xuất - {product.brand} </FilterTitle>
               </Filter>
               <Filter>
-                <FilterTitle>Tên: {product.name} </FilterTitle>
+                <FilterTitle>Tên - {product.name} </FilterTitle>
               </Filter>
               <Filter>
                 <FilterTitle>Màu: {product.color} </FilterTitle>
               </Filter>
               
               <Filter>
-                <FilterTitle> Dây: {product.strap}</FilterTitle>
+                <FilterTitle> Dây đeo: {product.strap}</FilterTitle>
               </Filter>
               <Filter>
                   <FilterTitle>Kho: {product.stock}</FilterTitle>
@@ -220,6 +204,7 @@ const ProductDetail = () => {
 
             <AddContainer>
               <AmountContainer>
+                <Desc>Số lượng:</Desc>
                 <Remove onClick={() => handleQuantity("dec")} />
                 <Amount>{quantity}</Amount>
                 <Add onClick={() => handleQuantity("inc")} />

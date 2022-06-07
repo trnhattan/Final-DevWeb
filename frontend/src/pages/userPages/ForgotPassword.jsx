@@ -10,13 +10,14 @@ import {ForgotPasswordSlice} from '../../redux/Slice/userSlice'
 import { useNavigate } from 'react-router-dom'
 
 const Container = styled.div`
-  height: 85vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   text-align: center;
   justify-content: center;
-  background: linear-gradient(120deg, #2980b9, #8e44ad)
+  background: #DCDCDC;
 `;
+
 const Wrapper = styled.div`
     width: 25%;
     padding: 20px;
@@ -108,6 +109,7 @@ export const ForgotPassword = () => {
                     </Wrapper>
                 </Container>  
             </Fragment>
+
           )} 
         <Footer/>
       </Fragment>

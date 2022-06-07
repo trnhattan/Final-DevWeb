@@ -28,18 +28,30 @@ const Info = styled.div`
     font-size: 2vmax;
     margin: 1vmax 0.5vmax;
     margin-bottom: 0;
+    text-align: center;
     
 `
+const ProductBrand = styled.h6`
+  font-weight: 300;
+  text-transform: uppercase;
+  text-align: center;
+  color: #A9A9A9;
+  font-size: 10px;
+`;
 
-const InfoItem = styled.p`
-    text-transform: capitalize;
-`
+const ProductName = styled.h1`
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 15px;
+`;
+
 
 const Price = styled.span`
     margin: 0.5vmax;
     color: tomato;
     font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-    font-size: 1.5vmax;
+    text-align: center;
+    font-size: 15px;
 `
 
 const ProductCard = ({ product }) => {
@@ -49,12 +61,10 @@ const ProductCard = ({ product }) => {
             <StyledLink to={`/product/${product._id}`}>
                 <Image src = {product.image} alt={product.name}/>
                 <Info>
-                    <InfoItem>{product.name}</InfoItem>
-                    <InfoItem>{product.brand}</InfoItem>
-                    <InfoItem>{product.color}</InfoItem>
-                    <InfoItem>{product.strap}</InfoItem>
+                    <ProductBrand>{product.name}</ProductBrand>
+                    <ProductName>{product.brand}</ProductName>
                 </Info>
-                <Price>Giá: {product.price}</Price>
+                <Price>{(product.price).toLocaleString()} đ</Price>
             </StyledLink>
         </div>
     </Fragment>

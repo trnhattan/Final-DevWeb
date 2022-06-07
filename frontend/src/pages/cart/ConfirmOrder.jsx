@@ -22,6 +22,11 @@ const ShippingInfoArea = styled.div`
   }
 `
 
+const ProductName = styled.h1`
+  text-transform: uppercase;
+  font-size: 15px;
+`;
+
 const ConfirmshippingAreaBox = styled.div`
   margin: 2vmax;
 `
@@ -190,10 +195,10 @@ const ConfirmOrder = () => {
                       <Link to={`/product/${item.product}`}>
                         <CartImage src={item.image} alt="Product" />
                       </Link>{" "}
-                      <p>{item.name}</p>
+                      <ProductName>{item.name}</ProductName>
                       <span>
-                        {item.quantity} X {item.price} ={" "}
-                        <b>{item.price * item.quantity}</b>
+                        {(item.price).toLocaleString()} đ x {item.quantity} ={" "}
+                        <b>{(item.price * item.quantity).toLocaleString()} đ</b>
                       </span>
                     </CartItemsOrder>
                   ))}
@@ -206,15 +211,15 @@ const ConfirmOrder = () => {
               <OrderSummaryInfo>
                     <div>
                       <p>Tổng tiền:</p>
-                      <span>{subtotal}</span>
+                      <span>{(subtotal).toLocaleString()} đ</span>
                     </div>
                     <div>
                       <p>Phí vận chuyển:</p>
-                      <span>{shippingCharges}</span>
+                      <span>{shippingCharges} đ</span>
                     </div>
                       <div>
                         <p>Giảm giá:</p>
-                        <span>{discount}</span>
+                        <span>{discount} đ</span>
                       </div>
               </OrderSummaryInfo>
 
@@ -222,7 +227,7 @@ const ConfirmOrder = () => {
                 <p>
                   <b>Tổng:</b>
                 </p>
-                <span>{totalPrice}</span>
+                <span>{(totalPrice).toLocaleString()} đ</span>
               </OrderSummaryTotal>
 
               <Button onClick={proceedToPayment}>Tiến hành thanh toán</Button>

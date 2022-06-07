@@ -210,7 +210,7 @@ const Cart = () => {
                           </CartInput>
                           <p>Trong kho: {item.stock} </p>
                         </div>
-                        <CartSubTotal>{`${item.price * item.quantity} VND`}</CartSubTotal>
+                        <CartSubTotal>{`${(item.price * item.quantity).toLocaleString()} đ`}</CartSubTotal>
                       
                     </CartContainer> 
                   ))}
