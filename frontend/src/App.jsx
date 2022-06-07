@@ -1,6 +1,6 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {BrowserRouter,Routes ,Route} from "react-router-dom"
+import {BrowserRouter,Routes ,Route, Navigate} from "react-router-dom"
 import Home from './pages/Home'
 
 import AboutUs from './pages/infoPages/AboutUs'
@@ -37,7 +37,6 @@ import UpdateOrder from './admin/pages/OrderList/UpdateOrder';
 import UpdateUser from './admin/pages/UserList/UpdateUser';
 import UpdateProduct from './admin/pages/ProductList/UpdateProduct';
 import NewProduct from './admin/pages/ProductList/NewProduct';
-
 
 const App = () => {
 
@@ -80,17 +79,75 @@ const App = () => {
 
     
   
-      <Routes> <Route path='/admin/home' element={[<ScrollTotTop/>,<AdminHome/>]} /> </Routes>
+      <Routes> 
+        <Route path='/admin/home' 
+          element={ currentUser && currentUser.role === "admin" ?  
+            [<ScrollTotTop/>,<AdminHome/>]:
+            <Navigate to = "/" />
+          } /> 
+      </Routes>
 
-      <Routes> <Route path='/admin/orders' element={[<ScrollTotTop/>,<AdminOrderList/>]} /> </Routes>
-      <Routes> <Route path='/admin/order/:id' element={[<ScrollTotTop/>,<UpdateOrder/>]} /> </Routes>
+      <Routes> 
+        <Route path='/admin/orders' 
+          element={ currentUser && currentUser.role === "admin" ? 
+            [<ScrollTotTop/>,<AdminOrderList/>] :
+            <Navigate to = "/" />
+           } /> 
+      </Routes>
 
-      <Routes> <Route path='/admin/products' element={[<ScrollTotTop/>,<AdminProductList/>]} /> </Routes>
-      <Routes> <Route path='/admin/product/:id' element={[<ScrollTotTop/>,<UpdateProduct/>]} /> </Routes>
-      <Routes> <Route path='/admin/new/product' element={[<ScrollTotTop/>,<NewProduct/>]} /> </Routes>
+      <Routes> 
+        <Route path='/admin/order/:id' 
+          element={
+            currentUser && currentUser.role === "admin" ? 
+            [<ScrollTotTop/>,<UpdateOrder/>]:
+            <Navigate to = "/" />
+          } /> 
+      </Routes>
 
-      <Routes> <Route path='/admin/users' element={[<ScrollTotTop/>,<AdminUserList/>]} /> </Routes>
-      <Routes> <Route path='/admin/user/:id' element={[<ScrollTotTop/>,<UpdateUser/>]} /> </Routes>
+      <Routes> 
+        <Route path='/admin/products' 
+          element={
+            currentUser && currentUser.role === "admin" ? 
+            [<ScrollTotTop/>,<AdminProductList/>]:
+            <Navigate to = "/" />
+          }/> 
+      </Routes>
+
+      <Routes> 
+        <Route path='/admin/product/:id' 
+        element={
+          currentUser && currentUser.role === "admin" ? 
+          [<ScrollTotTop/>,<UpdateProduct/>]:
+          <Navigate to = "/" />
+        }/> 
+      </Routes>
+
+      <Routes> 
+        <Route path='/admin/new/product' 
+          element={
+            currentUser && currentUser.role === "admin" ? 
+            [<ScrollTotTop/>,<NewProduct/>]:
+            <Navigate to = "/" />
+          } /> 
+      </Routes>
+
+      <Routes> 
+        <Route path='/admin/users' 
+          element={
+            currentUser && currentUser.role === "admin" ? 
+            [<ScrollTotTop/>,<AdminUserList/>]:
+            <Navigate to = "/" />
+          } /> 
+        </Routes>
+
+      <Routes> 
+        <Route path='/admin/user/:id' 
+          element={
+            currentUser && currentUser.role === "admin" ? 
+            [<ScrollTotTop/>,<UpdateUser/>]:
+            <Navigate to = "/" />
+          } /> 
+      </Routes>
       
 
 

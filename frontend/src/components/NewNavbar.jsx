@@ -53,8 +53,8 @@ const NewNavbar = () => {
                     navbarScroll
                 >
                     <Nav.Link href='/products'>Sản phẩm</Nav.Link>
-                    <Nav.Link href='/products/nam'>Đồng hồ nam</Nav.Link>
-                    <Nav.Link href='/products/nu'>Đồng hồ nữ</Nav.Link>
+                    <Nav.Link href='/products/nam'>Nam</Nav.Link>
+                    <Nav.Link href='/products/nu'>Nữ</Nav.Link>
                     <Nav.Link href='/products/phukien'>Phụ kiện</Nav.Link>
 {/* 
                     <NavDropdown title="Đồng hồ nam" id="navbarScrollingDropdown">
