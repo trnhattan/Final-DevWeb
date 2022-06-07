@@ -50,7 +50,7 @@ const Home = () => {
           <Announcement/>
           <Slider/>
           <Categories/>
-          <SubTitle>Sản phẩm mới nhất</SubTitle>
+          <SubTitle>Sản phẩm mới</SubTitle>
           {isLoading ? <Loader/>: (
             <ListImage>
               {products && products.map((product)=>(

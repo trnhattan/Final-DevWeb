@@ -9,18 +9,35 @@ import styled from '@emotion/styled';
 import SpellcheckIcon from '@mui/icons-material/Spellcheck';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import DescriptionIcon from '@mui/icons-material/Description';
-import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import StorageIcon from '@mui/icons-material/Storage';
-
-
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import CategoryIcon from '@mui/icons-material/Category';
+import InsertLinkIcon from '@mui/icons-material/InsertLink';
 
 
 const UpdateProductContainer = styled.div`
 flex:4;
 padding: 20px;
 `
-const Button = styled.button`
 
+const Form = styled.form`
+
+`
+
+
+const Input = styled.input`
+    width: 400px;
+`
+
+const Select = styled.select`
+    width: 400px;
+`
+
+const TextArea = styled.textarea`
+    width: 400px;
+    height: 50px;
 `
 
 
@@ -46,9 +63,7 @@ const UpdateProduct = () => {
     const [color, setColor] = useState("");
     const [strap,setStrap] = useState("");
     const [stock, setStock] = useState(0);
-    const [images, setImages] = useState([]);
-    const [oldImages, setOldImages] = useState([]);
-    // const [imagesPreview, setImagesPreview] = useState([]);
+    const [image, setImage] = useState("");
 
 
 
@@ -65,16 +80,16 @@ const UpdateProduct = () => {
             setColor(product.color);
             setStrap(product.strap);
             setStock(product.stock);
-            setOldImages(product.images);
+            setImage(product.image);
         }
-        // if (error) {
-        //     alert.error(error);
-        //     dispatch(productSlice.actions.clearError());
-        // }
-        // if (updateError) {
-        //     alert.error(updateError);
-        //     dispatch(updateDeleteProductSlice.actions.clearErr());
-        // }
+        if (error) {
+            alert.error(error);
+            dispatch(productSlice.actions.clearError());
+        }
+        if (updateError) {
+            alert.error(updateError);
+            dispatch(updateDeleteProductSlice.actions.clearErr());
+        }
         if (isUpdated) {
             alert("Sản phẩm đã được cập nhật !");
             history("/admin/products");
@@ -87,29 +102,28 @@ const UpdateProduct = () => {
     const categories = [
         "nam",
         "nu",
+    ]
+
+    const colors = [
+        "black",
+        "white",
+        "brown",
+        "yellow",
+        "silver",
+        "blue",
+        "navy",
+        "pink",
+    ]
+
+    const straps = [
+        "da",
+        "kim loại",
         "phukien",
     ]
 
     const updateProductSubmitHandler = (e) => {
         e.preventDefault();
-        // const myForm = new FormData();
-
-        // myForm.set("name", name);
-        // myForm.set("price", price);
-        // myForm.set("description", description);
-        // myForm.set("category", category);
-        // myForm.set("stock", stock);
-
-        // images.forEach((image) => {
-        // myForm.append("images", image);
-        // });
-
-        dispatch(updateProduct([productId, {name, price, description, category,brand,color,strap, stock}]));
-    }
-
-
-    const updateProductImagesChange = (e) => {
-
+        dispatch(updateProduct([productId, {name, price, description, category,brand,color,strap, stock, image}]));
     }
 
 
@@ -120,140 +134,161 @@ const UpdateProduct = () => {
         <div style={{display:"flex"}}>
             <SideBar/>
             <UpdateProductContainer>
-                    <form
-                    className="createProductForm"
-                    encType="multipart/form-data"
-                    onSubmit={updateProductSubmitHandler}
+                <h1>Chỉnh sửa sản phẩm</h1>
+                     
+                <Form
+                        encType="multipart/form-data"
+                        onSubmit={updateProductSubmitHandler}
                 >
-                    <h1>Create Product</h1>
+                <Box sx={{ width: '100%' }}>
+                    <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                        <Grid item xs={4}>
+                            <h4>Tên sản phẩm:</h4>
+                        </Grid>
+                        <Grid item xs={6}>
+                            <SpellcheckIcon />
+                            <Input
+                                type="text"
+                                placeholder="Tên sản phẩm"
+                                required
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                            />
+                        </Grid>
 
-                    <div>
-                    <SpellcheckIcon />
-                    <input
-                        type="text"
-                        placeholder="Product Name"
-                        required
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                    </div>
-                    <div>
-                    <AttachMoneyIcon />
-                    <input
-                        type="number"
-                        placeholder="Price"
-                        required
-                        onChange={(e) => setPrice(e.target.value)}
-                        value={price}
-                    />
-                    </div>
-
-                    <div>
-                    <DescriptionIcon />
-
-                    <textarea
-                        placeholder="Product Description"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        cols="30"
-                        rows="1"
-                    ></textarea>
-                    </div>
-
-                    <div>
-                    <AccountTreeIcon />
-                    <select
-                        value={category}
-                        onChange={(e) => setCategory(e.target.value)}
-                    >
-                        <option value="">Phân loại</option>
-                        {categories.map((cate) => (
-                        <option key={cate} value={cate}>
-                            {cate}
-                        </option>
-                        ))}
-                    </select>
-                    </div>
+                        <Grid item xs={4}>  <h4>Thương hiệu:</h4>  </Grid>
+                        <Grid item xs={6}>    
+                            <DescriptionIcon />
+                            <TextArea
+                                placeholder="Brand"
+                                value={brand}
+                                onChange={(e) => setBrand(e.target.value)}
+                                cols="30"
+                                rows="1"
+                            ></TextArea>
+                        </Grid>
 
 
-                    <div>
-                    <DescriptionIcon />
+                        <Grid item xs={4}>
+                            <h4>Mô tả sản phẩm:</h4>
+                        </Grid>
+                        <Grid item xs={6}>    
+                            <DescriptionIcon />
+                            <TextArea
+                                placeholder="Mô tả sản phẩm"
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                                cols="30"
+                                rows="1"
+                                style={{height:"100px"}}
+                            ></TextArea>
+                        </Grid>
 
-                    <textarea
-                        placeholder="Brand"
-                        value={brand}
-                        onChange={(e) => setBrand(e.target.value)}
-                        cols="30"
-                        rows="1"
-                    ></textarea>
-                    </div>
+                        <Grid item xs={4}> <h4>Phân loại:</h4> </Grid>
+                        <Grid item xs={6}>    
+                            <CategoryIcon />
+                            <Select
+                                value={category}
+                                onChange={(e) => setCategory(e.target.value)}
+                            >
+                                <option value="">Phân loại</option>
+                                {categories.map((cate) => (
+                                <option key={cate} value={cate}>
+                                    {cate}
+                                </option>
+                                ))}
+                            </Select>
+                        </Grid>
 
-                    <div>
-                    <DescriptionIcon />
+                        
 
-                    <textarea
-                        placeholder="Color"
-                        value={color}
-                        onChange={(e) => setColor(e.target.value)}
-                        cols="30"
-                        rows="1"
-                    ></textarea>
-                    </div>
+                        <Grid item xs={4}>  <h4>Màu sắc: </h4>  </Grid>
+                        <Grid item xs={6}>    
+                            <CategoryIcon />
+                            <Select
+                                value={color}
+                                onChange={(e) => setColor(e.target.value)}
+                            >
+                                <option value="">Màu sắc</option>
+                                {colors.map((c) => (
+                                <option key={c} value={c}>
+                                    {c}
+                                </option>
+                                ))}
+                            </Select>
+                        </Grid>
 
-                    <div>
-                    <DescriptionIcon />
+                        <Grid item xs={4}>  <h4>Loại dây đeo: </h4>  </Grid>
+                        <Grid item xs={6}>    
+                            <CategoryIcon />
+                            <Select
+                                value={strap}
+                                onChange={(e) => setStrap(e.target.value)}
+                            >
+                                <option value="">Loại dây đeo</option>
+                                {straps.map((st) => (
+                                <option key={st} value={st}>
+                                    {st}
+                                </option>
+                                ))}
+                            </Select>
+                        </Grid>
 
-                    <textarea
-                        placeholder="Strap"
-                        value={strap}
-                        onChange={(e) => setStrap(e.target.value)}
-                        cols="30"
-                        rows="1"
-                    ></textarea>
-                    </div>
+                        <Grid item xs={4}> <h4>Dường dẫn hình ảnh:</h4>  </Grid>
+                        <Grid item xs={6}>
+                            <InsertLinkIcon />
+                            <Input
+                                type="text"
+                                placeholder="Đường dẫn hình ảnh"
+                                required
+                                value={image}
+                                onChange={(e) => setImage(e.target.value)}
+                            />
+                        </Grid>
 
-                    <div>
-                    <StorageIcon />
-                    <input
-                        type="number"
-                        placeholder="Stock"
-                        required
-                        onChange={(e) => setStock(e.target.value)}
-                        value={stock}
-                    />
-                    </div>
 
-                    <div id="createProductFormFile">
-                    <input
-                        type="file"
-                        name="avatar"
-                        accept="image/*"
-                        onChange={updateProductImagesChange}
-                        multiple
-                    />
-                    </div>
+                        <Grid item xs={4}>
+                            <h4>Giá:</h4>
+                        </Grid>
+                        <Grid item xs={6}>
+                            <AttachMoneyIcon />
+                            <Input
+                                type="number"
+                                placeholder="Price"
+                                required
+                                onChange={(e) => setPrice(e.target.value)}
+                                value={price}
+                            />
+                        </Grid>
+                
 
-                    {/* <div id="createProductFormImage">
-                    {oldImages &&
-                        oldImages.map((image, index) => (
-                        <img key={index} src={image.url} alt="Old Product Preview" />
-                        ))}
-                    </div> */}
 
-                    {/* <div id="createProductFormImage">
-                    {imagesPreview.map((image, index) => (
-                        <img key={index} src={image} alt="Product Preview" />
-                    ))}
-                    </div> */}
-
-                    <Button
-                    id="createProductBtn"
-                    type="submit"
-                    // disabled={isLoading ? true : false}
-                    >
-                    UPDATE
-                    </Button>
-                </form>
+                        <Grid item xs={4}>  <h4>Số lượng trong kho: </h4>  </Grid>
+                        <Grid item xs={6}>    
+                            <StorageIcon />
+                            <Input
+                                type="number"
+                                placeholder="Stock"
+                                required
+                                onChange={(e) => setStock(e.target.value)}
+                                value={stock}
+                            />
+                        </Grid>
+                        
+                        <Grid item xs={4}> </Grid>
+                        <Grid item xs={6}>    
+                            <Button
+                                type="submit"
+                                size="large"
+                                variant="contained"
+                                // disabled={isLoading ? true : false}
+                                >
+                                Cập nhật
+                            </Button>
+                        </Grid>
+                    </Grid>
+                    </Box>  
+                </Form>
             </UpdateProductContainer>
         </div>
     </Fragment>

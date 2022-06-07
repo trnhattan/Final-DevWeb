@@ -51,23 +51,10 @@ const ProductList = () => {
   const dispatch = useDispatch()
   const location = useLocation();
   
-  let category = "" ;
+  let cat= "" ;
   let title = "Tất cả sản phẩm";
-  if (location.pathname.split("/").length > 2) {
-    category = location.pathname.split("/")[2];
-    if (category === "phukien"){
-      title = `Phụ kiện`
-    }
-    else{
-      if (category === "nu"){
-        title = `Đồng hồ nữ`
-      }
-      else{
-        title = `Đồng hồ nam`
-      }
-    } 
-  }
-  console.log(category)
+  
+  const [category, setCategory] = useState("");
   const [color, setColor] = useState("");
   const [strap, setStrap] = useState("");
   const [sortType, setSortType] = useState("newest");
@@ -80,8 +67,29 @@ const ProductList = () => {
     //   alert("Lỗi !")
     //   dispatch(productsSlide.actions.clearError());
     // }
+    
+    if (location.pathname.split("/").length > 2) {
+      cat = location.pathname.split("/")[2];
+      if (cat === "phukien"){
+        title = `Phụ kiện`
+        setStrap("phukien")
+      }
+      else{
+        if (cat === "nu"){
+          title = `Đồng hồ nữ`
+          setCategory(cat)
+        }
+        else{
+          title = `Đồng hồ nam`
+          setCategory(cat)
+        }
+      } 
+    }
+
+
+
     dispatch(getAllProducts({role, category, color, strap, sortType}))
-  },[dispatch ,role, category, color, strap, sortType])
+  },[dispatch ,role, category, color, strap, sortType, location, title])
   
 
 
@@ -117,6 +125,9 @@ const ProductList = () => {
               <MenuItem value={'brown'}>Nâu</MenuItem>
               <MenuItem value={'yellow'}>Vàng</MenuItem>
               <MenuItem value={'silver'}>Bạc</MenuItem>
+              <MenuItem value={'blue'}>Xanh dương</MenuItem>
+              <MenuItem value={'navy'}>Navy</MenuItem>
+              <MenuItem value={'pink'}>Hồng</MenuItem>
             </Select>
           </FormControl> 
 
@@ -134,6 +145,7 @@ const ProductList = () => {
               </MenuItem>
               <MenuItem value={'kim loại'}>Kim loại</MenuItem>
               <MenuItem value={'da'}>Da</MenuItem>
+              <MenuItem value={'phukien'}>Phụ kiện</MenuItem>
             </Select>
           </FormControl> 
 

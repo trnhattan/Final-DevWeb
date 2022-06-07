@@ -11,16 +11,35 @@ import PersonIcon from '@mui/icons-material/Person';
 import MailOutlineOutlinedIcon from '@mui/icons-material/MailOutlineOutlined';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import {updateUserRole} from '../../../redux/callAPI/userCall'
+import Button from '@mui/material/Button';
 
 const UpdateUserContainer = styled.div`
     flex:4;
     padding: 20px;
+    
+`
+const UpdateForm = styled.form`
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `
 
-
-const Button = styled.button`
-
+const InputContainer = styled.div`
+    padding: 10px;
 `
+
+const Input = styled.input`
+    width: 300px;
+`
+
+const Select = styled.select`
+    width: 300px;
+`
+
+// const Button = styled.button`
+//     text-align: center;
+// `
 
 const UpdateUser = () => {
     const history = useNavigate();
@@ -74,43 +93,42 @@ const UpdateUser = () => {
             <UpdateUserContainer>
                 {isLoading ? <Loader/>: (
                     <Fragment>
-                        <form
-                            className="createProductForm"
+                        <h2>Cập nhật User</h2>
+                        <UpdateForm
                             onSubmit={updateUserSubmitHandler}
                             >
-                            <h1>Update User</h1>
-
-                            <div>
+                            
+                            <InputContainer>
                                 <PersonIcon />
-                                <input
+                                <Input
                                 type="text"
                                 placeholder="Name"
                                 required
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                                 />
-                            </div>
-                            <div>
+                            </InputContainer>
+
+                            <InputContainer>
                                 <MailOutlineOutlinedIcon />
-                                <input
+                                <Input
                                 type="email"
                                 placeholder="Email"
                                 required
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 />
-                            </div>
+                            </InputContainer>
 
-                            <div>
+                            <InputContainer>
                                 <VerifiedUserIcon />
-                                <select value={role} onChange={(e) => setRole(e.target.value)}>
-                                <option value="">Choose Role</option>
-                                <option value="admin">Admin</option>
-                                <option value="user">User</option>
-                                </select>
-                            </div>
+                                <Select value={role} onChange={(e) => setRole(e.target.value)}>
+                                    <option value="admin">Admin</option>
+                                    <option value="user">User</option>
+                                </Select>
+                            </InputContainer>
 
-                            <Button
+                            {/* <Button
                                 id="createProductBtn"
                                 type="submit"
                                 // disabled={
@@ -118,8 +136,9 @@ const UpdateUser = () => {
                                 // }
                             >
                                 Update
-                            </Button>
-                            </form>
+                            </Button> */}
+                            <Button variant="contained" type='submit'>Cập nhật</Button>
+                        </UpdateForm>
                     </Fragment>
                 )}
             </UpdateUserContainer>

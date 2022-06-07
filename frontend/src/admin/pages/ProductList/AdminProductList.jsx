@@ -76,23 +76,38 @@ const AdminProductList = () => {
     {
       field: "name",
       headerName: "Tên sản phẩm",
-      minWidth: 200,
-      flex: 0.5,
+      minWidth: 100,
+      flex: 0.3,
     },
+
+    {
+      field: "brand",
+      headerName: "Thương hiệu",
+      minWidth: 100,
+      flex: 0.3,
+    },
+
+    {
+      field: "category",
+      headerName: "Phân loại",
+      minWidth: 100,
+      flex: 0.2,
+    },
+
     {
       field: "stock",
       headerName: "Trong Kho",
       type: "number",
-      minWidth: 150,
-      flex: 0.3,
+      minWidth: 100,
+      flex: 0.2,
     },
 
     {
       field: "price",
       headerName: "Giá",
       type: "number",
-      minWidth: 270,
-      flex: 0.5,
+      minWidth: 100,
+      flex: 0.3,
     },
 
     {
@@ -128,6 +143,8 @@ const AdminProductList = () => {
     products.forEach((item) => {
       rows.push({
         id: item._id,
+        brand:item.brand,
+        category: item.category,
         stock: item.stock,
         price: item.price,
         name: item.name,

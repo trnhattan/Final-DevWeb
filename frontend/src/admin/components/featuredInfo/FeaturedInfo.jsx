@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
 const FeaturedInfoContainer = styled.div`
+    padding: 20px;
     width: 100%;
     display: flex;
     justify-content: space-between;

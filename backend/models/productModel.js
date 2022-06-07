@@ -35,7 +35,7 @@ const productSchema = mongoose.Schema({
 
     strap:{
         type:String,
-        required:[true,"Please Enter product Strap"]
+        required:[true,"Please Enter product Strap"],
     },
 
     stock:{

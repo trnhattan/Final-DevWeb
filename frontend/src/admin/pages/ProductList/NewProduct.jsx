@@ -12,15 +12,31 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import SpellcheckIcon from '@mui/icons-material/Spellcheck';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import CategoryIcon from '@mui/icons-material/Category';
 
 
 const NewProductContainer = styled.div`
     flex:4;
     padding: 20px;
 `
-const Button = styled.button`
+const Form = styled.form`
 
+`
+
+const Input = styled.input`
+    width: 400px;
+`
+
+const Select = styled.select`
+    width: 400px;
+`
+
+const TextArea = styled.textarea`
+    width: 400px;
+    height: 50px;
 `
 
 const NewProduct = () => {
@@ -43,7 +59,6 @@ const NewProduct = () => {
     const categories = [
         "nam",
         "nu",
-        "phukien",
     ]
 
     const colors = [
@@ -51,7 +66,16 @@ const NewProduct = () => {
         "white",
         "brown",
         "yellow",
-        "silver"
+        "silver",
+        "blue",
+        "navy",
+        "pink",
+    ]
+
+    const straps = [
+        "da",
+        "kim loại",
+        "phukien",
     ]
 
 
@@ -78,139 +102,162 @@ const NewProduct = () => {
         <div style={{display:"flex"}}>
             <SideBar/>
             <NewProductContainer>
-                <form
-                className="createProductForm"
-                encType="multipart/form-data"
-                onSubmit={createProductSubmitHandler}
+                
+
+            <h1>Thêm sản phẩm mới</h1>
+                     
+                <Form
+                        encType="multipart/form-data"
+                        onSubmit={createProductSubmitHandler}
                 >
-                <h1>Create Product</h1>
+                <Box sx={{ width: '100%' }}>
+                    <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
 
-                <div>
-                <SpellcheckIcon />
-                <input
-                    type="text"
-                    placeholder="Product Name"
-                    required
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                />
-                </div>
+                        <Grid item xs={4}>
+                            <h4>Tên sản phẩm:</h4>
+                        </Grid>
+                        <Grid item xs={6}>
+                            <SpellcheckIcon />
+                            <Input
+                                type="text"
+                                placeholder="Tên sản phẩm"
+                                required
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                            />
+                        </Grid>
 
-                <div>
-                <DescriptionIcon />
-                <textarea
-                    placeholder="Brand"
-                    value={brand}
-                    onChange={(e) => setBrand(e.target.value)}
-                    cols="30"
-                    rows="1"
-                ></textarea>
-                </div>
+                        <Grid item xs={4}>  <h4>Thương hiệu:</h4>  </Grid>
+                        <Grid item xs={6}>    
+                            <DescriptionIcon />
+                            <TextArea
+                                placeholder="Thương hiệu"
+                                value={brand}
+                                onChange={(e) => setBrand(e.target.value)}
+                                cols="30"
+                                rows="1"
+                            ></TextArea>
+                        </Grid>
 
-
-                <div>
-                <DescriptionIcon />
-                <textarea
-                    placeholder="Product Description"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    cols="30"
-                    rows="1"
-                ></textarea>
-                </div>
-
-                <div>
-                <AccountTreeIcon />
-                <select onChange={(e) => setCategory(e.target.value)}>
-                    <option value="">Choose Category</option>
-                    {categories.map((cate) => (
-                    <option key={cate} value={cate}>
-                        {cate}
-                    </option>
-                    ))}
-                </select>
-                </div>
-
-                <div>
-                <DescriptionIcon />
-                <select onChange={(e) => setColor(e.target.value)}>
-                    <option value="">Chọn màu sắc</option>
-                    {colors.map((c) => (
-                    <option key={c} value={c}>
-                        {c}
-                    </option>
-                    ))}
-                </select>
-                </div>
-
-                <div>
-                <DescriptionIcon />
-                <textarea
-                    placeholder="Strap"
-                    value={strap}
-                    onChange={(e) => setStrap(e.target.value)}
-                    cols="30"
-                    rows="1"
-                ></textarea>
-                </div>
-
-                <div>
-                <StorageIcon />
-                <input
-                    type="number"
-                    placeholder="Stock"
-                    required
-                    onChange={(e) => setStock(e.target.value)}
-                />
-                </div>
-
-                <div>
-                <AttachMoneyIcon />
-                <input
-                    type="number"
-                    placeholder="Price"
-                    required
-                    onChange={(e) => setPrice(e.target.value)}
-                />
-                </div>
-
-                <div>
-                <DescriptionIcon />
-                <textarea
-                    placeholder="Link Image"
-                    value={image}
-                    onChange={(e) => setImage(e.target.value)}
-                    cols="30"
-                    rows="1"
-                ></textarea>
-                </div>
+                        
 
 
-{/* 
-                <div id="createProductFormFile">
-                <input
-                    type="file"
-                    name="avatar"
-                    accept="image/*"
-                    onChange={createProductImagesChange}
-                    multiple
-                />
-                </div> */}
+                        <Grid item xs={4}>
+                            <h4>Mô tả sản phẩm:</h4>
+                        </Grid>
+                        <Grid item xs={6}>    
+                            <DescriptionIcon />
+                            <TextArea
+                                placeholder="Mô tả sản phẩm"
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                                cols="30"
+                                rows="1"
+                                style={{height:"100px"}}
+                            ></TextArea>
+                        </Grid>
 
-                {/* <div id="createProductFormImage">
-                {imagesPreview.map((image, index) => (
-                    <img key={index} src={image} alt="Product Preview" />
-                ))}
-                </div> */}
+                        <Grid item xs={4}> <h4>Phân loại:</h4> </Grid>
+                        <Grid item xs={6}>    
+                            <CategoryIcon />
+                            <Select
+                                value={category}
+                                onChange={(e) => setCategory(e.target.value)}
+                            >
+                                <option value="">Phân loại</option>
+                                {categories.map((cate) => (
+                                <option key={cate} value={cate}>
+                                    {cate}
+                                </option>
+                                ))}
+                            </Select>
+                        </Grid>
 
-                <Button
-                id="createProductBtn"
-                type="submit"
-                // disabled={loading ? true : false}
-                >
-                Create
-                </Button>
-            </form>
+                        
+
+                        <Grid item xs={4}>  <h4>Màu sắc: </h4>  </Grid>
+                        <Grid item xs={6}>    
+                            <CategoryIcon />
+                            <Select onChange={(e) => setColor(e.target.value)}>
+                                <option value="">Chọn màu sắc</option>
+                                {colors.map((c) => (
+                                <option key={c} value={c}>
+                                    {c}
+                                </option>
+                                ))}
+                            </Select>
+                        </Grid>
+
+                        <Grid item xs={4}>  <h4>Loại dây đeo: </h4>  </Grid>
+                        <Grid item xs={6}>    
+                            <CategoryIcon />
+                            <Select onChange={(e) => setStrap(e.target.value)}>
+                                <option value="">Chọn loại dây</option>
+                                {straps.map((s) => (
+                                <option key={s} value={s}>
+                                    {s}
+                                </option>
+                                ))}
+                            </Select>
+                        </Grid>
+
+                        <Grid item xs={4}>  <h4>Đường dẫn hình ảnh: </h4>  </Grid>
+                        <Grid item xs={6}>    
+                            <DescriptionIcon />
+                            <TextArea
+                                placeholder="Link Image"
+                                value={image}
+                                onChange={(e) => setImage(e.target.value)}
+                                cols="30"
+                                rows="1"
+                            ></TextArea>
+                        </Grid>
+
+
+
+                        <Grid item xs={4}>
+                            <h4>Giá:</h4>
+                        </Grid>
+                        <Grid item xs={6}>
+                            <AttachMoneyIcon />
+                            <Input
+                                type="number"
+                                placeholder="Giá"
+                                required
+                                onChange={(e) => setPrice(e.target.value)}
+                                value={price}
+                            />
+                        </Grid>
+
+
+                        <Grid item xs={4}>  <h4>Số lượng trong kho: </h4>  </Grid>
+                        <Grid item xs={6}>    
+                            <StorageIcon />
+                            <Input
+                                type="number"
+                                placeholder="Trong kho"
+                                required
+                                onChange={(e) => setStock(e.target.value)}
+                                value={stock}
+                            />
+                        </Grid>
+
+                       
+                        
+                        <Grid item xs={4}> </Grid>
+                        <Grid item xs={6}>    
+                            <Button
+                                type="submit"
+                                size="large"
+                                variant="contained"
+                                // disabled={isLoading ? true : false}
+                                >
+                                Thêm sản phẩm
+                            </Button>
+                        </Grid>
+                    </Grid>
+                    </Box>  
+                </Form>
             </NewProductContainer>
         </div>
     </Fragment>

@@ -7,6 +7,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import {Link} from 'react-router-dom'
 
 const TopBarContainer = styled.div`
+    padding: 30px;
     width: 100%;
     height: 50px;
     background-color: white;
