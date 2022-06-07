@@ -1,12 +1,13 @@
 
 import styled from "@emotion/styled";
 import { mobile } from "../../responsive";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NewNavbar from "../../components/NewNavbar";
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import { register } from "../../redux/callAPI/userCall";
 import { useLocation, useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer";
+import {UserSlice} from '../../redux/Slice/userSlice'
 
 const Container = styled.div`
   height: 100vh;
@@ -66,20 +67,29 @@ const Register = () => {
 
     const dispatch = useDispatch();
     const location = useLocation();
-    const history = useNavigate();
+    const navigate = useNavigate();
     
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
- 
+    
+    const {currentUser, registerSuccess} = useSelector(state => state.user)
 
-    const redirect = location.search ? location.search.split("=")[1] : "/login";
+    // const redirect = location.search ? location.search.split("=")[1] : "/login";
 
     const registerSubmit = (e) => {
         e.preventDefault();
         dispatch(register({name,email,password}));
-        history(redirect);
     }    
+
+    useEffect(()=>{
+        if (registerSuccess){
+            alert("Đăng ký thành công !")
+            navigate("/login")
+            dispatch(UserSlice.actions.clearRegisterSuccess())
+        }
+
+    }, [dispatch, navigate, registerSuccess])
 
     return (
         <>  

@@ -23,11 +23,15 @@ export const login = createAsyncThunk (
 export const register = createAsyncThunk(
     "user/register",
     async (userData) => {
-        const {data} = await publicRequest.post(
-            `/register`, 
-            userData
-        )
-        return data.user
+        // try{
+            const {data} = await publicRequest.post(
+                `/register`, 
+                userData
+            )
+            return data.user
+        // }catch(err){
+        //     return err.response.data.message
+        // }
     }    
 );
 
@@ -36,6 +40,7 @@ export const register = createAsyncThunk(
 export const loadUser = createAsyncThunk(
     "user/loadUser",
     async () => {
+        // try{
             const token = localStorage.getItem("token");
             const config = { headers: { Authorization : `Bearer ${token}`  } }; 
             const {data} = await publicRequest.get(
@@ -43,6 +48,9 @@ export const loadUser = createAsyncThunk(
                 config
             )
             return data.user
+        // }catch(err){
+        //     return err.response.data.message
+        // }
     }
 );
 
@@ -62,7 +70,7 @@ export const logout = createAsyncThunk(
 export const updateProfile = createAsyncThunk(
     "user/updateProfile",
     async(userData)=>{
-       
+        // try{
             const token = localStorage.getItem("token");
             const config = { headers: { Authorization : `Bearer ${token}`  } }; 
 
@@ -73,6 +81,10 @@ export const updateProfile = createAsyncThunk(
                 
             )
             return data.success
+        // }
+        // catch(err){
+        //     return err.response.data.message
+        // }
     }
 )
 
@@ -125,6 +137,7 @@ export const resetPassword = createAsyncThunk(
 export const getAllUser = createAsyncThunk(
     "user/getAllUser",
     async () => {
+        try{
             const token = localStorage.getItem("token");
             const config = { headers: { Authorization : `Bearer ${token}`  } }; 
             const { data } = await publicRequest.get(
@@ -132,6 +145,10 @@ export const getAllUser = createAsyncThunk(
                 config
             );
             return data.users      
+        }
+        catch(err){
+            return err.response.data.message
+        }
     }
 )
 

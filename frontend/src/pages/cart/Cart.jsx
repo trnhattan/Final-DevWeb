@@ -172,9 +172,9 @@ const Cart = () => {
 
   return (
     <Fragment>
-      {isLoading ? (<Loader/>):
+      {/* {isLoading ? (<Loader/>): */}
 
-      (<Fragment>
+      <Fragment>
          <MetaData title = "Giỏ hàng"/>
       <NewNavbar/>
 
@@ -223,7 +223,8 @@ const Cart = () => {
               
         </Fragment> 
       )}
-      </Fragment>)}
+      </Fragment>
+      {/* } */}
     </Fragment>
   )
 }

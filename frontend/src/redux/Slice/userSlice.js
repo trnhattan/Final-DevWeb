@@ -10,14 +10,18 @@ export const UserSlice = createSlice({
     name:'user',
     initialState:{
         currentUser:{},
-        isLoading: true,
+        isLoading: null,
         isAuthenticated : null,
         error: null,
+        registerSuccess:null,
     },
     reducers:{
         clearErr: (state) => {
             state.error = null
-        }
+        },
+        clearRegisterSuccess: (state) => {
+            state.registerSuccess = null
+        },
     },
     extraReducers:{
         
@@ -42,10 +46,9 @@ export const UserSlice = createSlice({
             state.isLoading = true
             state.error = false
         },
-        [register.fulfilled] :(state,action)=>{
+        [register.fulfilled] :(state)=>{
             state.isLoading = false
-            state.currentUser = action.payload
-            state.isAuthenticated = true
+            state.registerSuccess = true
             state.error = false
         },
         [register.rejected] :(state)=>{
@@ -93,7 +96,7 @@ export const ProfileSlice = createSlice({
     initialState:{
         isUpdated: null,
         isDeleted: null,
-        isLoading: true,
+        isLoading: null,
         error: null,
     },
     reducers:{
@@ -219,7 +222,7 @@ export const GetAllUserSlice = createSlice({
     name:"getAllUser",
     initialState:{
         users:[],
-        isLoading: true,
+        isLoading: null,
         error: null,
     },
     reducers:{

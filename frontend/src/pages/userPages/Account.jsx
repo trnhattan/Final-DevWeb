@@ -89,7 +89,7 @@ const Account = () => {
                     <Link to = "/password/update"> Đổi mật khẩu </Link> <br/>
                   </InfoContainer>
                   <ImgContainer>
-                    <Image src={currentUser.avatar.url}/>
+                    <Image src={currentUser.avatar}/>
                   </ImgContainer>
                 </Slide>
               </Wrapper>

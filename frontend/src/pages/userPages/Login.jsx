@@ -94,8 +94,6 @@ const Login = () => {
   }
 
 
-  const redirect = location.search ? location.search.split("=")[1] : "/";
-
   // useEffect(()=>{
     
   //   if (isAuthenticated){
@@ -104,7 +102,7 @@ const Login = () => {
   // },[dispatch,history,isAuthenticated,redirect])
 
   const backHome = () => {
-    history(redirect);
+    history('/');
   }
 
   return (

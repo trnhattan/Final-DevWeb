@@ -71,27 +71,26 @@ const UpdateProfile = () => {
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
+    const [avatar, setAvatar] = useState("");
 
 
     const handleClick = (e) =>{
         e.preventDefault();
-        dispatch(updateProfile({name,email}));
+        dispatch(updateProfile({name,email, avatar}));
       }
 
     useEffect(()=>{
         if(currentUser){
             setName(currentUser.name)
             setEmail(currentUser.email)
+            setEmail(currentUser.avatar)
         }
         
 
         if (isUpdated){
-            alert("Profile Updated Successfully");
-
-            dispatch(loadUser());
-            
+            alert("Profile Updated Successfully");  
+            dispatch(loadUser())          
             history("/account");
-
             dispatch(ProfileSlice.actions.updateProfileReset())
         
         }
@@ -119,13 +118,24 @@ const UpdateProfile = () => {
                                 <Input 
                                     name = "Ho ten"
                                     type = "text"
-                                    placeholder= "Họ tên"                                
+                                    placeholder= "Họ tên"     
+                                    // value={name}                           
                                     onChange={(e)=>setName(e.target.value)} />
                                 <Input
+                                  
                                     name = "email"
                                     type="email"
                                     placeholder='Email'
+                                    // value={email}
                                     onChange={(e)=>setEmail(e.target.value)}
+                                />
+
+                                <Input
+                                    name = "image"
+                                    type="text"
+                                    placeholder='Ảnh đại diện'
+                                    // value={avatar}
+                                    onChange={(e)=>setAvatar(e.target.value)}
                                 />
                                 <Button onClick={handleClick}>Cập nhật</Button>
                         </Form>

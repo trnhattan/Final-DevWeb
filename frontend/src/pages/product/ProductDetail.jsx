@@ -135,7 +135,7 @@ const ProductDetail = () => {
   const dispatch = useDispatch(); 
 
   const { product, error } = useSelector((state) => state.product);
-  const {currenUser} = useSelector((state)=>state.user)
+  const {currentUser} = useSelector((state)=>state.user)
   const [quantity, setQuantity] = useState(1);
 
   // chỉnh giới hạn <= stock
@@ -152,7 +152,7 @@ const ProductDetail = () => {
 
     const handleClickAdd2Cart = (e)=>{
       e.preventDefault();
-      if (currenUser){
+      if (currentUser){
         dispatch(addItemToCart([id,quantity]))
         alert("Thêm thành công")
       }
@@ -171,6 +171,7 @@ const ProductDetail = () => {
 
     dispatch(getProductDetail(id))
   },[dispatch,error,id])
+
 
   return (
     <Fragment>

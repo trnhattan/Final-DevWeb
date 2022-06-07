@@ -84,7 +84,7 @@ const AccountOptions = ({currentUser}) => {
           open={open}
           icon= {
             <ImageProfile
-              src= {currentUser.avatar.url}
+              src= {currentUser.avatar ? currentUser.avatar : require("../images/defaultProfileImg.jpg") }
               alt="Profile"
             />
           }

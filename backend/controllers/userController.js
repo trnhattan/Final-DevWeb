@@ -13,10 +13,8 @@ exports.registerUser = catchAsyncErrors( async (req,res,next) =>{
         name,
         email,
         password,
-        avatar:{
-            public_id:"this is a sample id",
-            url:"https://media.istockphoto.com/vectors/user-icon-flat-isolated-on-white-background-user-symbol-vector-vector-id1300845620?k=20&m=1300845620&s=612x612&w=0&h=f4XTZDAv7NPuZbG0habSpU0sNgECM0X7nbKzTUta3n8=",
-        }
+        avatar:"https://media.istockphoto.com/vectors/user-icon-flat-isolated-on-white-background-user-symbol-vector-vector-id1300845620?k=20&m=1300845620&s=612x612&w=0&h=f4XTZDAv7NPuZbG0habSpU0sNgECM0X7nbKzTUta3n8=",
+        
     });
 
     sendToken(user,201,res);
@@ -161,6 +159,7 @@ exports.updateUserProfile = catchAsyncErrors(async (req,res,next)=>{
     const newUserData = {
         name:req.body.name,
         email:req.body.email,
+        avatar:req.body.avatar
     };
 
     const user = await User.findByIdAndUpdate(req.user.id,newUserData, {
@@ -171,6 +170,7 @@ exports.updateUserProfile = catchAsyncErrors(async (req,res,next)=>{
 
     res.status(200).json({
         success:true,
+        // user
     })
 })
 
