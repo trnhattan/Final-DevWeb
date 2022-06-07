@@ -44,7 +44,7 @@ const NewNavbar = () => {
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky='top'>
             <Container>
-                <Navbar.Brand href="/" style={{fontSize:'30px'}}>Shibamasi</Navbar.Brand>
+                <Navbar.Brand href="/" style={{fontSize:'30px'}}>Shibamasii</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                 <Nav
