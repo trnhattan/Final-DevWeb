@@ -4,7 +4,7 @@ import Footer from '../../components/Footer'
 import NewNavbar from '../../components/NewNavbar'
 
 const Container = styled.div`
-  background-color: #F5FFFA;
+  background-color: #DCDCDC;
 `;
 
 const Wrapper = styled.div`

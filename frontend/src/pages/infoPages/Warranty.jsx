@@ -3,7 +3,9 @@ import styled from '@emotion/styled'
 import Footer from '../../components/Footer'
 import NewNavbar from '../../components/NewNavbar'
 
-const Container = styled.div``;
+const Container = styled.div`
+  background: #DCDCDC;
+`;
 
 const Wrapper = styled.div`
   height: 100%;
@@ -28,11 +30,11 @@ const Image = styled.img`
 const InfoContainer = styled.div`
   flex: 1;
   text-align: left;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
 `;
 
 const Desc = styled.h2`
-  font-size: 20px;
+  font-size: 16px;
 `;
 
 const Title = styled.h1`
@@ -60,12 +62,12 @@ const AboutUs = () => {
             <Desc>
             - <b>Bảo hành 10 năm</b> đối với những lỗi từ nhà sản xuất. <br/>
             - <b>Bảo hành miễn phí (1 lần) trong 1 năm đầu tiên</b> với những lỗi người dùng như: vỡ, nứt kính, hấp hơi nước, va đập mạnh, tai nạn dẫn đến rơi linh kiện bên trong mặt đồng hồ,...<br/>
-            - <b>Thay pin miễn phí trọn đời.</b> <br/> <br/> <br/>
+            - <b>Thay pin miễn phí trọn đời.</b> <br/> <br/> 
               Chính sách bảo hành <b>KHÔNG</b> được áp dụng với: <br/>
             - Vòng tay, nhẫn và dây đồng hồ. <br/>
             - Sản phẩm xuống màu sau một thời gian dài sử dụng. <br/>
-            - Va đạp mạnh gây biến dạng khung đồng hồ. <br/> <br/> <br/>
-            Để được bảo hành sản phẩm, bạn có thể lựa chọn những hình thức sau: <br/>
+            - Va đạp mạnh gây biến dạng khung đồng hồ. <br/> <br/> 
+              Để được bảo hành sản phẩm, bạn có thể lựa chọn những hình thức sau: <br/>
             - Mang trực tiếp đến Cửa hàng gần nhất của Shibamasi để nhân viên Tư vấn có thể thẩm định và tiếp nhận Bảo hành. <br/>
             - Gửi thông tin cho chúng tôi bao gồm: Họ, Tên, Thời gian mua hàng và Tình trạng sản phẩm (kèm theo ảnh mô tả nếu có) về địa chỉ Email: <b>cskh@shibamasi.com</b> hoặc <b>Fanpage chính thức</b> của Shibamasi.
             </Desc>
