@@ -59,7 +59,7 @@ const ProductList = () => {
   
   
   const [title, setTitle] = useState("Tất cả sản phẩm");
-  const [category, setCategory] = useState("");
+  // const [category, setCategory] = useState("");
   const [color, setColor] = useState("");
   const [strap, setStrap] = useState("");
   const [sortType, setSortType] = useState("newest");
@@ -77,7 +77,7 @@ const ProductList = () => {
     const endOffset = itemOffset + resultPerPage;
     setCurrentItems(products.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(products.length / resultPerPage));
-  },[itemOffset, resultPerPage])
+  },[itemOffset, resultPerPage, currentItems])
 
   const handlePageClick = (event) => {
     const newOffset = (event.selected * resultPerPage) % products.length;
@@ -88,41 +88,41 @@ const ProductList = () => {
   };
 
 
-  let cat = ""
   
+  let category = ""
   useEffect(()=>{
     // if(error){
     //   alert("Lỗi !")
     //   dispatch(productsSlide.actions.clearError());
     // }
 
-    if (location.pathname.split("/").length > 2) {
-      cat = location.pathname.split("/")[2]
-      if (cat === "phukien"){
-        setTitle("Phụ kiện");
-        setStrap("phukien");
+  
+      if (location.pathname.split("/").length > 2) {
+        category = location.pathname.split("/")[2]
+        if (category === "phukien"){
+          setTitle("Phụ kiện");
+          // setStrap("phukien");
+        }
+        else if (category === "nu") {
+          setTitle("Đồng hồ nữ")
+          // setCategory("nu");
+        }
+        else if (category === "nam") {
+          setTitle("Đồng hồ nam")
+          // setCategory("nam")
+        }
+        else{
+          setKeyword(category)
+          setRole("search")
+        }
       }
-      else if (cat === "nu") {
-        setTitle("Đồng hồ nữ")
-        setCategory("nu");
-      }
-      else if (cat === "nam") {
-        setTitle("Đồng hồ nam")
-        setCategory("nam")
-      }
-      else{
-        setKeyword(cat)
-        setRole("search")
-      }
+  
 
-    }
-
-    dispatch(getAllProducts({role, category, color, strap, sortType, keyword}))
+    dispatch(getAllProducts({role, color, strap, sortType, keyword, category}))
     
-  },[ cat ,role, category, location, dispatch, strap, color ])
+  },[dispatch ,role,  location,  strap, color, sortType, keyword ])
 
-  console.log("role:", role, 
-              "category:", category, "color:" , color,  "strap:" , strap)
+  console.log(role,  color, strap, sortType)
   
   return (
     <Container>
