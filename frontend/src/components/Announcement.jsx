@@ -1,6 +1,7 @@
-import styled from "styled-components"
+import React from "react"
+import styled from "@emotion/styled"
 
-const Container = styled.div`
+const AnnoucementContainer = styled.div`
     height: 30px;
     background-color: black;
     color: white;   
@@ -13,8 +14,8 @@ const Container = styled.div`
 
 export const Announcement = () => {
   return (
-    <Container>
+    <AnnoucementContainer>
         DEAL SẬP SÀN DỊP 1/6. GIẢM 50% MỌI MẶT HÀNG! 
-    </Container>
+    </AnnoucementContainer>
   )
 }
