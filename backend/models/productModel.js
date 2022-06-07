@@ -44,10 +44,8 @@ const productSchema = mongoose.Schema({
         maxLenght:[4,"asddasdasdsad"],
         default:1
     },
-    createAt:{
-        type:Date,
-        default:Date.now
-    }
-})
+},
+{ timestamps: true }
+)
 
 module.exports = mongoose.model("Product",productSchema);

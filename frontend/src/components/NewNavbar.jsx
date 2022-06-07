@@ -32,12 +32,12 @@ const NewNavbar = () => {
 
     const handleSearch = (e) =>{
  
-        // e.preventDefault();
-        // if (keyword.trim()) {
-        //     history.push(`/products/${keyword}`);
-        // } else {
-        // history.push("/products");
-        // }
+        e.preventDefault();
+        if (keyword.trim()) {
+            history(`/product-search/${keyword}`);
+        } else {
+        history("/products");
+        }
     }
 
 

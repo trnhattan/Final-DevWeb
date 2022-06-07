@@ -37,14 +37,11 @@ const userSchema = new mongoose.Schema({
         type:String,
         default:"user"
     },
-    creatAt:{
-        type:Date,
-        default:Date.now,
-    },
-
     resetPasswordToken:String,
     resetPasswordExpire:Date,
-})
+},
+{ timestamps: true }
+)
 
 userSchema.pre("save", async function(next){
     if(!this.isModified("password")){

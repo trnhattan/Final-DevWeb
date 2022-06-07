@@ -60,39 +60,43 @@ const ProductList = () => {
   const [sortType, setSortType] = useState("newest");
   const [currentPage, setCurrentPage] = useState(1);
   const [role, setRole] = useState("category");
-
+  const [keyword,setKeyword] = useState("");
 
   useEffect(()=>{
     // if(error){
     //   alert("Lỗi !")
     //   dispatch(productsSlide.actions.clearError());
     // }
+
+
     
     if (location.pathname.split("/").length > 2) {
       cat = location.pathname.split("/")[2];
+
       if (cat === "phukien"){
-        title = `Phụ kiện`
-        setStrap("phukien")
+          title = `Phụ kiện`;
+          setStrap("phukien");
       }
-      else{
-        if (cat === "nu"){
-          title = `Đồng hồ nữ`
-          setCategory(cat)
-        }
-        else{
+      else if (cat === "nu") {
+          title = `Đồng hồ nữ`;
+          setCategory(cat);
+      }
+      else if (cat === "nam") {
           title = `Đồng hồ nam`
           setCategory(cat)
-        }
-      } 
+      }
+      else{
+        setKeyword(cat)
+        setRole("search")
+        
+      }
     }
 
-
-
-    dispatch(getAllProducts({role, category, color, strap, sortType}))
-  },[dispatch ,role, category, color, strap, sortType, location, title])
+    dispatch(getAllProducts({role, category, color, strap, sortType, keyword}))
+  },[dispatch ,role, category, color, strap, sortType, location, title, cat])
   
-
-
+  console.log(role,keyword)
+  
   return (
     <Container>
       <MetaData title={title}/>

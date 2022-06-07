@@ -5,11 +5,15 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 //get all products  
 export const getAllProducts = createAsyncThunk(
     "product/getAllProducts",
-    async ({role,category,color, strap, sortType}) => {
+    async ({role,category,color, strap, sortType, keyword}) => {
         let link = ""
         switch(role){
             case "newProduct":
                 link  = "/products";
+                const {data} = await publicRequest.get(link);
+                const newProducts = data.products.sort((a,b)=> b.createAt - a.createAt)
+                data.products = newProducts.slice(0,8);
+                return data
                 break;
             case "category":
                 if (category){
@@ -49,6 +53,23 @@ export const getAllProducts = createAsyncThunk(
                     }           
                 }
                 break;
+            case "search":
+                if (keyword){
+                    if (color){
+                        if (strap){
+                            link = `/products?keyword=${keyword}&color=${color}`;
+                        }
+                        else{
+                            link = `/products?keyword=${keyword}&color=${color}`;
+                        }
+                    }
+                    link = `/products?keyword=${keyword}`;
+                }
+                else{
+                    link = `/products`;
+                }
+                
+                break;
             default:
                 link = "/products"
                 break;
@@ -57,7 +78,7 @@ export const getAllProducts = createAsyncThunk(
 
 
         if (sortType === "newest"){
-            const newProducts = data.products.sort((a,b)=> b.createAt - a.createAt)
+            const newProducts = data.products.sort((a,b)=> a.createdAt - b.createdAt)
             data.products = newProducts
             
         }
@@ -71,6 +92,7 @@ export const getAllProducts = createAsyncThunk(
             data.products = newProducts
             
         }
+
         return data
     }
 )

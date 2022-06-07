@@ -82,11 +82,8 @@ const orderSchema = new mongoose.Schema({
         default:"Đang xử lý",
     },
     deliveredAt:Date,
-    createAt:{
-        type:Date,
-        default: Date.now,
-    }
-
-})
+},
+{ timestamps: true }
+)
 
 module.exports = mongoose.model("Order", orderSchema)

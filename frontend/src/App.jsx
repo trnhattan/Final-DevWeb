@@ -67,6 +67,7 @@ const App = () => {
       <Routes><Route path='/products/:category' element={[<ScrollTotTop/>,<ProductList/>]} /></Routes>
       <Routes> <Route path='/product/:id' element={[<ScrollTotTop/>,<ProductDetail/>]} /></Routes>
       <Routes> <Route path='/products' element={[<ScrollTotTop/>,<ProductList/>]} /></Routes>
+      <Routes> <Route path='/product-search/:keyword' element={[<ScrollTotTop/>,<ProductList/>]} /></Routes>
 
       <Routes> <Route path='/cart' element={[ScrollTotTop,<Cart/>]} /></Routes>
       <Routes> <Route path='/shipping-info' element={[ScrollTotTop,<ShippingInfo/>]} /></Routes>
