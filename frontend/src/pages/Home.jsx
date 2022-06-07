@@ -34,7 +34,7 @@ const ListImage = styled.div`
 const Home = () => {
   const { products, isLoading} = useSelector((state)=>state.products)
   const dispatch = useDispatch()
-  const [role, setRole] = useState("latest")
+  const [role, setRole] = useState("newProduct")
 
 
   useEffect(()=>{
@@ -50,14 +50,14 @@ const Home = () => {
           <Announcement/>
           <Slider/>
           <Categories/>
-          <SubTitle>Sản phẩm mới nhất</SubTitle>
+          <SubTitle>Sản phẩm mới</SubTitle>
           {isLoading ? <Loader/>: (
             <ListImage>
               {products && products.map((product)=>(
                   <ProductCard key={product._id} product={product} />
               ))}
             </ListImage>
-          ) }  
+           ) }  
           <Footer/>
     </Fragment>
   )

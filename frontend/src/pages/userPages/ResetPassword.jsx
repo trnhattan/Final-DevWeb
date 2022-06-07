@@ -65,11 +65,10 @@ const ResetPassword = () => {
     const location = useLocation()
     const token = location.pathname.split("/")[3]
 
-    const  {isLoading, error, message }= useSelector((state)=>state.forgotPassword) 
+    const  {isLoading, error, message, success }= useSelector((state)=>state.forgotPassword) 
 
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-
 
     const handleClick = (e)=>{
         e.preventDefault();
@@ -85,7 +84,12 @@ const ResetPassword = () => {
             alert(message)
             dispatch(ForgotPasswordSlice.actions.clearMessage());
         }
-    },[dispatch,error,message])
+        if (success){
+          alert("Cập nhật mật khẩu mới thành công")
+          dispatch(ForgotPasswordSlice.actions.clearSuccess());
+          history("/login")
+        }
+    },[dispatch,error,message, success, history])
 
     return (
         <Fragment>
@@ -102,10 +106,12 @@ const ResetPassword = () => {
                                 <Input
                                 name='password'
                                 placeholder='Mật khẩu'
+                                type='password'
                                 onChange={(e)=>setPassword(e.target.value)}
                                 />
                                 <Input
                                 name = 'confirmPassword'
+                                type='password'
                                 placeholder='Xác nhận mật khẩu'
                                 onChange={(e)=>setConfirmPassword(e.target.value)}
                                 />

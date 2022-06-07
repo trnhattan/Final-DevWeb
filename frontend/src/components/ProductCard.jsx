@@ -59,7 +59,7 @@ const ProductCard = ({ product }) => {
     <Fragment>
         <div key={product._id}>
             <StyledLink to={`/product/${product._id}`}>
-                <Image src = {product.image[0].url} alt={product.name}/>
+                <Image src = {product.image} alt={product.name}/>
                 <Info>
                     <ProductBrand>{product.name}</ProductBrand>
                     <ProductName>{product.brand}</ProductName>
