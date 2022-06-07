@@ -14,18 +14,10 @@ const productSchema = mongoose.Schema({
         required:[true,"Please Enter product Price"],
         maxLenght:[8,"asdsad"]
     },
-    image:[
-        {
-            public_id:{
-                type:String,
-                required:true
-            },
-            url:{
-                type:String,
-                required:true
-            }
-        }
-    ],
+    image:{
+        type:String,
+        required: [true,"Please Enter product image" ]
+    },
     category:{
         type:String,
         required:[true,"Please Enter product Category (Male/Female)"]
@@ -43,7 +35,7 @@ const productSchema = mongoose.Schema({
 
     strap:{
         type:String,
-        required:[true,"Please Enter product Strap"]
+        required:[true,"Please Enter product Strap"],
     },
 
     stock:{
@@ -52,10 +44,8 @@ const productSchema = mongoose.Schema({
         maxLenght:[4,"asddasdasdsad"],
         default:1
     },
-    createAt:{
-        type:Date,
-        default:Date.now
-    }
-})
+},
+{ timestamps: true }
+)
 
 module.exports = mongoose.model("Product",productSchema);

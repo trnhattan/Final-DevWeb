@@ -51,40 +51,52 @@ const ProductList = () => {
   const dispatch = useDispatch()
   const location = useLocation();
   
-  let category = "" ;
+  let cat= "" ;
   let title = "Tất cả sản phẩm";
-  if (location.pathname.split("/").length > 2) {
-    category = location.pathname.split("/")[2];
-    if (category === "phukien"){
-      title = `Phụ kiện`
-    }
-    else{
-      if (category === "nu"){
-        title = `Đồng hồ nữ`
-      }
-      else{
-        title = `Đồng hồ nam`
-      }
-    } 
-  }
-  console.log(category)
+  
+  const [category, setCategory] = useState("");
   const [color, setColor] = useState("");
   const [strap, setStrap] = useState("");
-  const [sortType, setSortType] = useState("");
+  const [sortType, setSortType] = useState("newest");
   const [currentPage, setCurrentPage] = useState(1);
   const [role, setRole] = useState("category");
-
+  const [keyword,setKeyword] = useState("");
 
   useEffect(()=>{
     // if(error){
     //   alert("Lỗi !")
     //   dispatch(productsSlide.actions.clearError());
     // }
-    dispatch(getAllProducts({role, category, color, strap}))
-  },[dispatch ,role, category,color, strap])
 
 
+    
+    if (location.pathname.split("/").length > 2) {
+      cat = location.pathname.split("/")[2];
 
+      if (cat === "phukien"){
+          title = `Phụ kiện`;
+          setStrap("phukien");
+      }
+      else if (cat === "nu") {
+          title = `Đồng hồ nữ`;
+          setCategory(cat);
+      }
+      else if (cat === "nam") {
+          title = `Đồng hồ nam`
+          setCategory(cat)
+      }
+      else{
+        setKeyword(cat)
+        setRole("search")
+        
+      }
+    }
+
+    dispatch(getAllProducts({role, category, color, strap, sortType, keyword}))
+  },[dispatch ,role, category, color, strap, sortType, location, title, cat])
+  
+  console.log(role,keyword)
+  
   return (
     <Container>
       <MetaData title={title}/>
@@ -110,10 +122,16 @@ const ProductList = () => {
               // onChange={handleChangeColor}
             >
               <MenuItem value="">
-                <em>None</em>
+                <em>Tất cả</em>
               </MenuItem>
               <MenuItem value={'black'}>Đen</MenuItem>
               <MenuItem value={'white'}>Trắng</MenuItem>
+              <MenuItem value={'brown'}>Nâu</MenuItem>
+              <MenuItem value={'yellow'}>Vàng</MenuItem>
+              <MenuItem value={'silver'}>Bạc</MenuItem>
+              <MenuItem value={'blue'}>Xanh dương</MenuItem>
+              <MenuItem value={'navy'}>Navy</MenuItem>
+              <MenuItem value={'pink'}>Hồng</MenuItem>
             </Select>
           </FormControl> 
 
@@ -127,10 +145,11 @@ const ProductList = () => {
               onChange={(e) => setStrap(e.target.value)}
             >
               <MenuItem value="">
-                <em>None</em>
+                <em>Tất cả</em>
               </MenuItem>
               <MenuItem value={'kim loại'}>Kim loại</MenuItem>
               <MenuItem value={'da'}>Da</MenuItem>
+              <MenuItem value={'phukien'}>Phụ kiện</MenuItem>
             </Select>
           </FormControl> 
 
@@ -150,7 +169,7 @@ const ProductList = () => {
               onChange={(e) => setSortType(e.target.value)}
             >
               <MenuItem value="">
-                <em>None</em>
+                <em>Tất cả</em>
               </MenuItem>
               <MenuItem value={'newest'}>Mới nhất</MenuItem>
               <MenuItem value={'price-asc'}>Giá (tăng dần)</MenuItem>

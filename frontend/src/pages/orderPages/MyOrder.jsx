@@ -20,7 +20,7 @@ const MyOrderPage = styled.div`
   background-color: rgb(235, 235, 235);
   top: 0;
   left: 0;
-  height: 100%;
+  height: 90vh;
   display: flex;
   flex-direction: column;
 `

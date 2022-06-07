@@ -6,21 +6,15 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 export const login = createAsyncThunk (
     "user/login",
     async (user)=> {
-        // try{
-            // const headers = new Headers()
-            // headers.append("Content-Type" , "application/json" )
 
-            const config = { headers: { "Content-Type": "application/json" }, }; 
-            const {data} = await publicRequest.post(
-                `/login`,
-                user,
-                config,
-            )
-            localStorage.setItem("token",data.token)
-            return data.user
-        // }catch(err){
-        //     return err.response.data.message
-        // }
+        const config = { headers: { "Content-Type": "application/json" }, }; 
+        const {data} = await publicRequest.post(
+            `/login`,
+            user,
+            config,
+        )
+        localStorage.setItem("token",data.token)
+        return data.user
     }
 );
 
@@ -42,7 +36,6 @@ export const register = createAsyncThunk(
 export const loadUser = createAsyncThunk(
     "user/loadUser",
     async () => {
-        // try{
             const token = localStorage.getItem("token");
             const config = { headers: { Authorization : `Bearer ${token}`  } }; 
             const {data} = await publicRequest.get(
@@ -50,9 +43,6 @@ export const loadUser = createAsyncThunk(
                 config
             )
             return data.user
-        // }catch(err){
-        //     return  err.response.data.message
-        // }
     }
 );
 
@@ -64,6 +54,7 @@ export const logout = createAsyncThunk(
         await publicRequest.get(
             `/logout`
         )
+        localStorage.removeItem("token");
     }
 );
 
@@ -89,7 +80,6 @@ export const updateProfile = createAsyncThunk(
 export const updatePassword = createAsyncThunk(
     "user/updatePassword",
     async (passwords) => {
-        // try{
             const token = localStorage.getItem("token");
             const config = { headers: { Authorization : `Bearer ${token}`  } }; 
     
@@ -99,9 +89,6 @@ export const updatePassword = createAsyncThunk(
                 config,
             )
             return data.success 
-        // }catch(err){
-        //     return  err.response.data.message
-        // }
     }
 );
 
@@ -109,15 +96,11 @@ export const updatePassword = createAsyncThunk(
 export const forgotPassword = createAsyncThunk(
     "user/forgotPassword",
     async (email)=>{
-        // try{
             const {data} = await publicRequest.post(
                 '/password/forgot',
                 email,
             )
             return data.message 
-        // }catch(err){
-        //     return  err.response.data.message
-        // }
     }
 )
 
@@ -131,11 +114,63 @@ export const resetPassword = createAsyncThunk(
                 TokenAndPassword[1]
             )
             return data.success
+        }
+    //     catch(err){
+    //         return err.response.data.message
+    //     }
+    // }
+)
 
-        // }catch(err){
-        //     return  err.response.data.message
-        // }
+//admin
+export const getAllUser = createAsyncThunk(
+    "user/getAllUser",
+    async () => {
+            const token = localStorage.getItem("token");
+            const config = { headers: { Authorization : `Bearer ${token}`  } }; 
+            const { data } = await publicRequest.get(
+                `/admin/users`,
+                config
+            );
+            return data.users      
     }
 )
 
+export const getUserDetailAdmin = createAsyncThunk(
+    "user/getUserDetailAdmin",
+    async (id) => {
+            const token = localStorage.getItem("token");
+            const config = { headers: { Authorization : `Bearer ${token}`  } }; 
+            const { data } = await publicRequest.get(
+                `/admin/user/${id}`,
+                config
+            );
+            return data.user 
+    }
+)
 
+export const updateUserRole = createAsyncThunk(
+    "user/updateUserRole",
+    async (userData)=> {
+            const token = localStorage.getItem("token");
+            const config = { headers: { Authorization : `Bearer ${token}`  } }; 
+            const { data } = await publicRequest.put(
+                `/admin/user/${userData[0]}`,
+                userData[1],
+                config
+              );
+            return data.success
+    }
+)
+
+export const deleteUser = createAsyncThunk(
+    "user/deleteUser",
+    async (id) => {
+            const token = localStorage.getItem("token");
+            const config = { headers: { Authorization : `Bearer ${token}`  } }; 
+            const { data } = await publicRequest.delete(
+                `/admin/user/${id}`,
+                config
+            );
+            return data.success
+    }
+)

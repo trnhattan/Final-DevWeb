@@ -1,14 +1,16 @@
 import {createSlice} from "@reduxjs/toolkit"
 import {login, register, loadUser, logout, 
         updateProfile ,updatePassword,
-        forgotPassword, resetPassword
+        forgotPassword, resetPassword,
+        getAllUser, getUserDetailAdmin, 
+        updateUserRole, deleteUser
     } from  '../callAPI/userCall'
 
 export const UserSlice = createSlice({
     name:'user',
     initialState:{
         currentUser:{},
-        isLoading: null,
+        isLoading: true,
         isAuthenticated : null,
         error: null,
     },
@@ -91,12 +93,15 @@ export const ProfileSlice = createSlice({
     initialState:{
         isUpdated: null,
         isDeleted: null,
-        isLoading: null,
+        isLoading: true,
         error: null,
     },
     reducers:{
         updateProfileReset: (state) => {
             state.isUpdated = false
+        },
+        deleteProfileReset: (state) => {
+            state.isDeleted = false
         },
         clearErr: (state) => {
             state.error = null
@@ -107,7 +112,6 @@ export const ProfileSlice = createSlice({
         //UPDATE PROFILE
         [updateProfile.pending] : (state)=>{
             state.isLoading = true
-
         },
         [updateProfile.fulfilled] : (state,action)=>{
             state.isLoading = false
@@ -131,7 +135,31 @@ export const ProfileSlice = createSlice({
             state.isLoading = false
             state.error = true
         },
-
+        
+        //UPDATE role
+        [updateUserRole.pending] : (state)=>{
+            state.isLoading = true
+        },
+        [updateUserRole.fulfilled] : (state,action)=>{
+            state.isLoading = false
+            state.isUpdated = action.payload
+        },
+        [updateUserRole.rejected] : (state)=>{
+            state.isLoading = false
+            state.error = true
+        },
+        //Delete user
+        [deleteUser.pending] : (state)=>{
+            state.isLoading = true
+        },
+        [deleteUser.fulfilled] : (state,action)=>{
+            state.isLoading = false
+            state.isDeleted = action.payload
+        },
+        [deleteUser.rejected] : (state)=>{
+            state.isLoading = false
+            state.error = true
+        },
     },
 });
 
@@ -149,6 +177,9 @@ export const ForgotPasswordSlice = createSlice({
         },
         clearMessage:(state) => {
             state.message = null
+        },
+        clearSuccess:(state) => {
+            state.success = null
         }
     },
     extraReducers:{
@@ -160,6 +191,7 @@ export const ForgotPasswordSlice = createSlice({
         [forgotPassword.fulfilled]:(state, action) => {
             state.message = action.payload
             state.isLoading = false
+            state.error = false
         },
         [forgotPassword.rejected]:(state) => {
             state.error = true
@@ -183,3 +215,60 @@ export const ForgotPasswordSlice = createSlice({
 })
 
 
+export const GetAllUserSlice = createSlice({
+    name:"getAllUser",
+    initialState:{
+        users:[],
+        isLoading: true,
+        error: null,
+    },
+    reducers:{
+        clearErr:(state)=>{
+            state.error = null
+        }
+    },
+    extraReducers:{
+        [getAllUser.pending]:(state)=>{
+            state.isLoading = true
+            state.error = false
+        },
+        [getAllUser.fulfilled]:(state,action)=>{
+            state.isLoading = false
+            state.error = false
+            state.users = action.payload
+        },
+        [getAllUser.rejected]:(state)=>{
+            state.isLoading = false
+            state.error = true
+        },
+    }
+})
+
+export const GetUserDetailSlice = createSlice({
+    name: "getUserDetail",
+    initialState:{
+        user: {},
+        isLoading: true,
+        error: null,
+    },
+    reducers:{
+        clearErr:(state)=>{
+            state.error = null
+        }
+    },
+    extraReducers:{
+        [getUserDetailAdmin.pending]:(state)=>{
+            state.isLoading = true
+            state.error = false
+        },
+        [getUserDetailAdmin.fulfilled]:(state,action)=>{
+            state.isLoading = false
+            state.error = false
+            state.user = action.payload
+        },
+        [getUserDetailAdmin.rejected]:(state)=>{
+            state.isLoading = false
+            state.error = true
+        },
+    }
+})

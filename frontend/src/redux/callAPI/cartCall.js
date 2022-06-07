@@ -15,7 +15,7 @@ export const addItemToCart = createAsyncThunk(
                 product: data.product._id,
                 name: data.product.name,
                 price: data.product.price,
-                image: data.product.image[0].url,
+                image: data.product.image,
                 stock: data.product.stock,
                 quantity: idAndQuatity[1],           
             }

@@ -28,8 +28,15 @@ import MyOrder from './pages/orderPages/MyOrder'
 import OrderDetail from './pages/orderPages/OrderDetail';
 
 
-import AdminHome from './admin/pages/AdminHome';
-
+import AdminHome from './admin/pages/AdminHome/AdminHome';
+import AdminOrderList from './admin/pages/OrderList/AdminOrderList' 
+import AdminProductList from './admin/pages/ProductList/AdminProductList';
+import AdminUserList from './admin/pages/UserList/AdminUserList';
+import { useSelector } from 'react-redux';
+import UpdateOrder from './admin/pages/OrderList/UpdateOrder';
+import UpdateUser from './admin/pages/UserList/UpdateUser';
+import UpdateProduct from './admin/pages/ProductList/UpdateProduct';
+import NewProduct from './admin/pages/ProductList/NewProduct';
 
 
 const App = () => {
@@ -38,9 +45,12 @@ const App = () => {
     window.scrollTo(0, 0);
     return null;
   }
+
+  const {currentUser} = useSelector((state)=>state.user)
+
   return (
     <BrowserRouter>
-      <Routes><Route path='/' element={<Home/>} /></Routes>
+      <Routes><Route path='/' element={[<ScrollTotTop/>,<Home/>]} /></Routes>
       
       <Routes> <Route path='/about-us' element={[<ScrollTotTop/>,<AboutUs/>]} /> </Routes>
       <Routes> <Route path='/warranty' element={[<ScrollTotTop/>,<Warranty/>]} /> </Routes>
@@ -57,6 +67,7 @@ const App = () => {
       <Routes><Route path='/products/:category' element={[<ScrollTotTop/>,<ProductList/>]} /></Routes>
       <Routes> <Route path='/product/:id' element={[<ScrollTotTop/>,<ProductDetail/>]} /></Routes>
       <Routes> <Route path='/products' element={[<ScrollTotTop/>,<ProductList/>]} /></Routes>
+      <Routes> <Route path='/product-search/:keyword' element={[<ScrollTotTop/>,<ProductList/>]} /></Routes>
 
       <Routes> <Route path='/cart' element={[ScrollTotTop,<Cart/>]} /></Routes>
       <Routes> <Route path='/shipping-info' element={[ScrollTotTop,<ShippingInfo/>]} /></Routes>
@@ -67,10 +78,21 @@ const App = () => {
       <Routes> <Route path='/orders' element={[ScrollTotTop, <MyOrder/>]} /></Routes>
       <Routes> <Route path='/orders/:id' element={[ScrollTotTop, <OrderDetail/>]} /></Routes>
 
-      {/* ADMIN ROUTE */}
-      <Routes> <Route path='/admin/pages/AdminHome' element={[<ScrollTotTop/>,<AdminHome/>]} /> </Routes>
+    
+  
+      <Routes> <Route path='/admin/home' element={[<ScrollTotTop/>,<AdminHome/>]} /> </Routes>
 
+      <Routes> <Route path='/admin/orders' element={[<ScrollTotTop/>,<AdminOrderList/>]} /> </Routes>
+      <Routes> <Route path='/admin/order/:id' element={[<ScrollTotTop/>,<UpdateOrder/>]} /> </Routes>
+
+      <Routes> <Route path='/admin/products' element={[<ScrollTotTop/>,<AdminProductList/>]} /> </Routes>
+      <Routes> <Route path='/admin/product/:id' element={[<ScrollTotTop/>,<UpdateProduct/>]} /> </Routes>
+      <Routes> <Route path='/admin/new/product' element={[<ScrollTotTop/>,<NewProduct/>]} /> </Routes>
+
+      <Routes> <Route path='/admin/users' element={[<ScrollTotTop/>,<AdminUserList/>]} /> </Routes>
+      <Routes> <Route path='/admin/user/:id' element={[<ScrollTotTop/>,<UpdateUser/>]} /> </Routes>
       
+
 
     </BrowserRouter>
   )

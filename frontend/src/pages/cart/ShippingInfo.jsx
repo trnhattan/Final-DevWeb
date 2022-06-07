@@ -55,7 +55,7 @@ const ShippingInfo = () => {
 
   const {shippingInfo} = useSelector(state => state.cart);
 
-  const [fullName, setFullName] = useState(shippingInfo.name);
+  const [fullName, setFullName] = useState(shippingInfo.fullName);
   const [address, setAddress] = useState(shippingInfo.address);
   const [email, setEmail] = useState(shippingInfo.email);
   const [phoneNumber, setPhoneNumber] = useState(shippingInfo.phoneNumber);
@@ -92,6 +92,7 @@ const ShippingInfo = () => {
               label='Họ Tên'
               variant='filled'
               placeholder='Nguyễn Văn A'
+              value={fullName}
               onChange={(e) => setFullName(e.target.value)}
             />
           </div>
@@ -100,6 +101,7 @@ const ShippingInfo = () => {
               required
               label='Địa chỉ'
               variant='filled'
+              value={address}
               placeholder='Số X, Đường A, Phường A, Thành phố B, Tỉnh C'
               onChange={(e) => setAddress(e.target.value)}
             />
@@ -109,6 +111,7 @@ const ShippingInfo = () => {
               required
               label='Email'
               variant='filled'
+              value={email}
               placeholder='abc@gmail.com'
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -118,6 +121,7 @@ const ShippingInfo = () => {
               required
               label='SĐT'
               variant='filled'
+              value={phoneNumber}
               placeholder='09xxxxxxxx'
               onChange={(e) => setPhoneNumber(e.target.value)}
             />

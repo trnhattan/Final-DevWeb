@@ -6,13 +6,18 @@ import storage from 'redux-persist/lib/storage'
 
 import {UserSlice, 
         ProfileSlice,
-        ForgotPasswordSlice
+        ForgotPasswordSlice,
+        GetAllUserSlice,
+        GetUserDetailSlice,
       } from "./Slice/userSlice";
 
-import {productsSlide, productSlice} from "./Slice/productSlice";
+import {productsSlide, productSlice,
+  updateDeleteProductSlice,
+  newProductSlice
+} from "./Slice/productSlice";
 
 import {cartSlice} from './Slice/cartSlice'
-import { myOrderSlice, newOrderSlice, getOrderDetailSlice } from "./Slice/orderSlice";
+import { myOrderSlice, newOrderSlice, getOrderDetailSlice,getAllOrderSlice, OrderSlice } from "./Slice/orderSlice";
 
 
 const persistConfig = {
@@ -23,17 +28,23 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
     user: UserSlice.reducer,
+    allUser: GetAllUserSlice.reducer,
     userProfile: ProfileSlice.reducer,
+    userDetail: GetUserDetailSlice.reducer,
     forgotPassword: ForgotPasswordSlice.reducer,
 
     products: productsSlide.reducer,
-    product: productSlice.reducer, 
+    product: productSlice.reducer,
+    newProduct: newProductSlice.reducer,
+    updateDeleteProduct: updateDeleteProductSlice.reducer,
 
     cart: cartSlice.reducer,
 
     newOrder: newOrderSlice.reducer,
     myOrders: myOrderSlice.reducer,
-    getOrder: getOrderDetailSlice.reducer
+    getOrder: getOrderDetailSlice.reducer,
+    getAllOrders: getAllOrderSlice.reducer,
+    DeleteUpdateOrder: OrderSlice.reducer,
     
 })
 

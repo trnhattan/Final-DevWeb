@@ -32,12 +32,12 @@ const NewNavbar = () => {
 
     const handleSearch = (e) =>{
  
-        // e.preventDefault();
-        // if (keyword.trim()) {
-        //     history.push(`/products/${keyword}`);
-        // } else {
-        // history.push("/products");
-        // }
+        e.preventDefault();
+        if (keyword.trim()) {
+            history(`/product-search/${keyword}`);
+        } else {
+        history("/products");
+        }
     }
 
 
@@ -53,7 +53,10 @@ const NewNavbar = () => {
                     navbarScroll
                 >
                     <Nav.Link href='/products'>Sản phẩm</Nav.Link>
-
+                    <Nav.Link href='/products/nam'>Đồng hồ nam</Nav.Link>
+                    <Nav.Link href='/products/nu'>Đồng hồ nữ</Nav.Link>
+                    <Nav.Link href='/products/phukien'>Phụ kiện</Nav.Link>
+{/* 
                     <NavDropdown title="Đồng hồ nam" id="navbarScrollingDropdown">
                         <NavDropdown.Item href="#action3">Brand 1</NavDropdown.Item>
                         <NavDropdown.Item href="#action4">Brand 2</NavDropdown.Item>
@@ -73,7 +76,7 @@ const NewNavbar = () => {
                         <NavDropdown.Item href="#action4">Brand 2</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="#action5">Other</NavDropdown.Item>
-                    </NavDropdown>
+                    </NavDropdown> */}
 
                     <NavDropdown title="Thông tin" id="navbarScrollingDropdown">
                         <NavDropdown.Item href="/about-us">Về chúng tôi</NavDropdown.Item>

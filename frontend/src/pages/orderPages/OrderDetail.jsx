@@ -81,15 +81,16 @@ const OrderDetail = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const idOrder = location.pathname.split("/")[2];
-  const {order, error, isLoading} = useSelector((state)=>state.getOrder)
-
+ 
   useEffect(()=>{
     // if (error){
 
     // }
 
     dispatch(GetOrderDetail(idOrder));
-  }, [dispatch])
+  }, [dispatch, idOrder])
+
+  const {order, error, isLoading} = useSelector((state)=>state.getOrder)
 
   return (
     <Fragment>
@@ -140,15 +141,7 @@ const OrderDetail = () => {
                   <Typography>Trạng thái đơn hàng</Typography>
                   <OrderDetailsContainerBox>
                     <div>
-                      <p
-                        className={
-                          order.orderStatus && order.orderStatus === "Delivered"
-                            ? "greenColor"
-                            : "redColor"
-                        }
-                      >
-                        {order.orderStatus && order.orderStatus}
-                      </p>
+                      <p>{order.orderStatus} </p>
                     </div>
                   </OrderDetailsContainerBox>
                 </OrderDetailsContainer>

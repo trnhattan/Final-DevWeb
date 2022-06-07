@@ -4,8 +4,10 @@ import styled from '@emotion/styled'
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import PublicIcon from '@mui/icons-material/Public';
 import SettingsIcon from '@mui/icons-material/Settings';
+import {Link} from 'react-router-dom'
 
 const TopBarContainer = styled.div`
+    padding: 30px;
     width: 100%;
     height: 50px;
     background-color: white;
@@ -68,15 +70,37 @@ const TopAvatar = styled.img`
     cursor: pointer;
 `
 
+const TopMid = styled.div`
+    cursor: pointer;
+    > a {
+        &:focus, &:hover, &:visited, &:link, &:active {
+            text-decoration: none;
+            color:black;
+        }
+    }
+
+`
+
+const Logo = styled.h1`
+`
+
+
 export default function TopBar() {
   return (
       <TopBarContainer>
           <TopbarWrapper>
               <TopLeft>
                 <AdminLogo>
-                    Trùm's Space
+                    Admin Dashboard
                 </AdminLogo>
               </TopLeft>
+              
+              <TopMid>  
+                  <Link to = '/'>
+                    <Logo>Shibamasi</Logo>
+                  </Link>       
+              </TopMid>
+
               <TopRight>
                     <TopBarIconContainer>
                         <NotificationsNoneIcon/>
