@@ -49,6 +49,7 @@ const Button = styled.button`
     background-color: white;
     cursor: pointer;
     font-weight: 500;
+    padding-bottom: 8px;
     margin-left: auto;
     margin-right: auto;
     &:hover{    
@@ -65,8 +66,8 @@ const SuccessOrder = () => {
 
   return (
     <Fragment>
-      <Wrapper>
       <Title>ĐẶT HÀNG THÀNH CÔNG</Title>
+      <Wrapper>
         <InfoContainer>
           <Desc>
           Shibamashi chân thành cảm ơn quý khách đã tin tưởng vào sản phẩm của chúng tôi. <br/>
