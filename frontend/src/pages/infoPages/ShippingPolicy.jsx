@@ -5,7 +5,9 @@ import NewNavbar from '../../components/NewNavbar'
 import MetaDate from '../../components/MetaData'
 
 
-const Container = styled.div``;
+const Container = styled.div`
+  background: #DCDCDC;
+`;
 
 const Wrapper = styled.div`
   height: 100%;
@@ -30,11 +32,11 @@ const Image = styled.img`
 const InfoContainer = styled.div`
   flex: 1;
   text-align: left;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
 `;
 
 const Desc = styled.h3`
-  font-size: 20px;
+  font-size: 15px;
 `;
 
 const Title = styled.h1`

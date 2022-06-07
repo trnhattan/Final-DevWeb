@@ -5,7 +5,7 @@ import NewNavbar from '../../components/NewNavbar'
 import MetaDate from '../../components/MetaData'
 
 const Container = styled.div`
-  background-color: #F5FFFA;
+  background-color: #DCDCDC;
 `;
 
 const Wrapper = styled.div`
