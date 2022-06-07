@@ -12,6 +12,8 @@ import {getAllProducts} from '../../redux/callAPI/productCall'
 import ProductCard from '../../components/ProductCard'
 import { useLocation } from 'react-router-dom'
 import MetaData from '../../components/MetaData'
+import ReactPaginate from 'react-paginate';
+import './ProductList.css'
 
 const Container = styled.div`
 
@@ -42,12 +44,16 @@ const ListImage = styled.div`
     padding: 0 5vmax;
     justify-content: center;
     min-height: 30vh;
-
+`
+const PaginationBox = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 6vmax;
 `
 
 const ProductList = () => {
 
-  const { products, isLoading} = useSelector((state)=>state.products)
+  const { products, isLoading, resultPerPage} = useSelector((state)=>state.products)
   const dispatch = useDispatch()
   const location = useLocation();
   
@@ -57,9 +63,29 @@ const ProductList = () => {
   const [color, setColor] = useState("");
   const [strap, setStrap] = useState("");
   const [sortType, setSortType] = useState("newest");
-  const [currentPage, setCurrentPage] = useState(1);
+
   const [role, setRole] = useState("category");
   const [keyword,setKeyword] = useState("");
+
+
+
+  const [currentItems, setCurrentItems] = useState([]);
+  const [pageCount, setPageCount] = useState(0);
+  const [itemOffset, setItemOffset] = useState(0);
+
+  useEffect(()=>{
+    const endOffset = itemOffset + resultPerPage;
+    setCurrentItems(products.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(products.length / resultPerPage));
+  },[itemOffset, resultPerPage])
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * resultPerPage) % products.length;
+    console.log(
+      `User requested page number ${event.selected}, which is offset ${newOffset}`
+    );
+    setItemOffset(newOffset);
+  };
 
   useEffect(()=>{
     // if(error){
@@ -179,10 +205,29 @@ const ProductList = () => {
 
 
         <ListImage>
-          {products && products.map((product)=>(
+          {currentItems && currentItems.map((product)=>(
                         <ProductCard key={product._id} product={product} />
                     ))}
         </ListImage>
+        
+        <PaginationBox>
+          <ReactPaginate
+            breakLabel="..."
+            nextLabel="Tiếp >"
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={5}
+            pageCount={pageCount}
+            previousLabel="< Trước"
+            renderOnZeroPageCount={null}
+            containerClassName = "PaginationContainer"
+            pageClassName = "PaginationPage"
+            previousClassName = "PaginationPreviousNext"
+            nextClassName = "PaginationPreviousNext"
+            activeLinkClassName = "OnPage"
+          />
+        </PaginationBox>
+        
+
       <Footer/>
     </Container>
   )
