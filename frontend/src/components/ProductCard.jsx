@@ -54,16 +54,45 @@ const Price = styled.span`
     text-align: center;
     font-size: 15px;
 `
+const DiscountContainer = styled.div`
+    width:100%;
+    height: 30px;
+    background-color: rgb(50, 50, 50);
+` 
+
+const DiscountRate =  styled.p`
+    color: white;
+    font: 600 1.2vmax "Roboto";
+    text-align: center;
+    align-items: center;
+    margin-top: 3px
+`
 
 const ProductCard = ({ product }) => {
+
   return (
     <Fragment>
         <div key={product._id}>
             <StyledLink to={`/product/${product._id}`}>
+                
+              
+                    { product.discount && product.discount > 0  ?
+                        ( <DiscountContainer>
+                            {/* <DiscountRate>-{discountRate}</DiscountRate> */}
+                            <DiscountRate>-{product.discount}%</DiscountRate>
+                        </DiscountContainer>
+                        ) 
+                        : 
+                        ( <DiscountContainer style={{backgroundColor:"white"}}> 
+                        </DiscountContainer> 
+                        ) 
+                    }
+                
+            
                 <Image src = {product.image} alt={product.name}/>
                 <Info>
-                    <ProductBrand>{product.name}</ProductBrand>
-                    <ProductName>{product.brand}</ProductName>
+                    <ProductName>{product.name}</ProductName>
+                    <ProductBrand>{product.brand}</ProductBrand>
                 </Info>
                 <Price>{(product.price).toLocaleString()} đ</Price>
             </StyledLink>

@@ -8,6 +8,8 @@ import {updatePassword} from '../../redux/callAPI/userCall'
 import { useNavigate } from 'react-router-dom'
 import {ProfileSlice} from '../../redux/Slice/userSlice'
 import Footer from '../../components/Footer'
+import { logout } from '../../redux/callAPI/userCall'
+
 
 const Container = styled.div`
   height: 100vh;
@@ -79,8 +81,10 @@ const UpdatePassword = () => {
         }
         if(isUpdated){
             alert("Cập nhật mật khẩu thành công !")
-            history("/account")
             dispatch(ProfileSlice.actions.updateProfileReset());
+            dispatch(logout())
+            history("/login")
+            
         }
         
     }, [isUpdated,dispatch,history,error])
@@ -104,16 +108,25 @@ const UpdatePassword = () => {
                     <Title>ĐỔI MẬT KHẨU</Title>
                     <Form>
                         <h6>Mật khẩu hiện tại</h6>
-                        <Input onChange={(e)=>setoldPassword(e.target.value)} />
+                        <Input 
+                          type="password"
+                          onChange={(e)=>setoldPassword(e.target.value)} 
+                        />
                 
                         <h6>Mật khẩu mới</h6>
-                        <Input onChange={(e)=>setNewPassword(e.target.value)} />
+                        <Input  
+                          type="password" 
+                          onChange={(e)=>setNewPassword(e.target.value)} 
+                        />
 
                         <h6>Xác nhận mật khẩu mới</h6>
-                        <Input onChange={(e)=>setConfirmNewPassqord(e.target.value)} />
+                        <Input 
+                          type="password" 
+                          onChange={(e)=>setConfirmNewPassqord(e.target.value)} 
+                        />
 
                         <br></br>
-                        <Button onClick={handleClick}>Cập nhật</Button>
+                        <Button  onClick={handleClick}>Cập nhật</Button>
                     </Form>
                     </Wrapper>
                 </Container>

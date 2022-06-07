@@ -15,7 +15,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import CategoryIcon from '@mui/icons-material/Category';
 import InsertLinkIcon from '@mui/icons-material/InsertLink';
-
+import DiscountIcon from '@mui/icons-material/Discount';
 
 const UpdateProductContainer = styled.div`
 flex:4;
@@ -64,7 +64,7 @@ const UpdateProduct = () => {
     const [strap,setStrap] = useState("");
     const [stock, setStock] = useState(0);
     const [image, setImage] = useState("");
-
+    const [discount, setDiscount] = useState(0);
 
 
     useEffect(()=>{
@@ -81,6 +81,7 @@ const UpdateProduct = () => {
             setStrap(product.strap);
             setStock(product.stock);
             setImage(product.image);
+            setDiscount(product.discount);
         }
         if (error) {
             alert.error(error);
@@ -123,7 +124,7 @@ const UpdateProduct = () => {
 
     const updateProductSubmitHandler = (e) => {
         e.preventDefault();
-        dispatch(updateProduct([productId, {name, price, description, category,brand,color,strap, stock, image}]));
+        dispatch(updateProduct([productId, {name, price, description, category,brand,color,strap, stock, image, discount}]));
     }
 
 
@@ -260,8 +261,6 @@ const UpdateProduct = () => {
                                 value={price}
                             />
                         </Grid>
-                
-
 
                         <Grid item xs={4}>  <h4>Số lượng trong kho: </h4>  </Grid>
                         <Grid item xs={6}>    
@@ -272,6 +271,19 @@ const UpdateProduct = () => {
                                 required
                                 onChange={(e) => setStock(e.target.value)}
                                 value={stock}
+                            />
+                        </Grid>
+
+
+                        <Grid item xs={4}>  <h4>Giảm giá: </h4>  </Grid>
+                        <Grid item xs={6}>    
+                            <DiscountIcon />
+                            <Input
+                                type="number"
+                                placeholder="Giảm giá"
+                                required
+                                onChange={(e) => setDiscount(e.target.value)}
+                                value={discount}
                             />
                         </Grid>
                         

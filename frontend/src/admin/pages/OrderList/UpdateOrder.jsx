@@ -11,6 +11,7 @@ import styled from '@emotion/styled';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import { UpdateOrderAdmin } from '../../../redux/callAPI/orderCall';
 import {OrderSlice} from '../../../redux/Slice/orderSlice'
+import { getProductDetail } from '../../../redux/callAPI/productCall';
 
 const UpdateProcessOrderPage = styled.div`
     flex: 4;
@@ -120,8 +121,20 @@ const UpdateOrder = () => {
     const idOrder = location.pathname.split("/")[3];
     const {isLoading, error, order} = useSelector(state => state.getOrder)
     const {isUpdated,updateError} = useSelector(state => state.DeleteUpdateOrder)
+    const {product } = useSelector((state) => state.product);
 
     const [status, setStatus] = useState("");
+
+    const [name, setName] = useState("");
+    const [price, setPrice] = useState(0);
+    const [description, setDescription] = useState("");
+    const [category, setCategory] = useState("");
+    const [brand, setBrand] = useState("");
+    const [color, setColor] = useState("");
+    const [strap,setStrap] = useState("");
+    const [stock, setStock] = useState(0);
+    const [image, setImage] = useState("");
+    const [discount, setDiscount] = useState(0);
 
     const updateOrderSubmitHandler = (e) => {
         e.preventDefault();
@@ -135,8 +148,10 @@ const UpdateOrder = () => {
             dispatch(OrderSlice.actions.UpdateOrderReset());
             history(`/admin/order/${idOrder}`)
         }
+        
         dispatch(GetOrderDetail(idOrder));
     }, [dispatch,idOrder, isUpdated])
+
 
   return (
     <Fragment>

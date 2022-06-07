@@ -112,6 +112,14 @@ const AdminProductList = () => {
     },
 
     {
+      field: "discount",
+      headerName: "Giảm giá (%)",
+      type: "number",
+      minWidth: 50,
+      flex: 0.2,
+    },
+
+    {
       field: "actions",
       flex: 0.3,
       headerName: "Actions",
@@ -149,6 +157,7 @@ const AdminProductList = () => {
         stock: item.stock,
         price: item.price,
         name: item.name,
+        discount: item.discount,
       });
     });
 

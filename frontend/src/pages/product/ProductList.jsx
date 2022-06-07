@@ -87,39 +87,42 @@ const ProductList = () => {
     setItemOffset(newOffset);
   };
 
+
+  let cat = ""
+  
   useEffect(()=>{
     // if(error){
     //   alert("Lỗi !")
     //   dispatch(productsSlide.actions.clearError());
     // }
 
-
-    
     if (location.pathname.split("/").length > 2) {
-       let cat = location.pathname.split("/")[2]
-
+      cat = location.pathname.split("/")[2]
       if (cat === "phukien"){
         setTitle("Phụ kiện");
-        setStrap(cat);
+        setStrap("phukien");
       }
       else if (cat === "nu") {
         setTitle("Đồng hồ nữ")
-        setCategory(cat);
+        setCategory("nu");
       }
       else if (cat === "nam") {
         setTitle("Đồng hồ nam")
-        setCategory(cat)
+        setCategory("nam")
       }
       else{
         setKeyword(cat)
         setRole("search")
-        
       }
+
     }
 
     dispatch(getAllProducts({role, category, color, strap, sortType, keyword}))
-  },[dispatch ,role, category, color, strap, sortType, location, title  ])
+    
+  },[ cat ,role, category, location, dispatch, strap, color ])
 
+  console.log("role:", role, 
+              "category:", category, "color:" , color,  "strap:" , strap)
   
   return (
     <Container>

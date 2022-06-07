@@ -16,7 +16,7 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import CategoryIcon from '@mui/icons-material/Category';
-
+import DiscountIcon from '@mui/icons-material/Discount';
 
 const NewProductContainer = styled.div`
     flex:4;
@@ -55,6 +55,7 @@ const NewProduct = () => {
     const [strap, setStrap] = useState("");
     const [stock, setStock] = useState(0);
     const [image, setImage] = useState("");
+    const [discount, setDiscount] = useState(0);
 
     const categories = [
         "nam",
@@ -91,10 +92,10 @@ const NewProduct = () => {
 
     const createProductSubmitHandler = (e) => {
         e.preventDefault();
-        dispatch(newProduct({name,price,description, category,brand,color,strap,stock, image}))
+        dispatch(newProduct({name,price,description, category,brand,color,strap,stock, image, discount}))
     }
 
-    console.log({name,price,description, category,brand,color,strap,stock, image})
+    console.log({name,price,description, category,brand,color,strap,stock, image, discount})
   return (
     <Fragment>
         <MetaData title = "Thêm sản phẩm mới (admin)"/>
@@ -239,6 +240,19 @@ const NewProduct = () => {
                                 required
                                 onChange={(e) => setStock(e.target.value)}
                                 value={stock}
+                            />
+                        </Grid>
+
+
+                        <Grid item xs={4}>  <h4>Giảm giá: </h4>  </Grid>
+                        <Grid item xs={6}>    
+                            <DiscountIcon />
+                            <Input
+                                type="number"
+                                placeholder="Giảm giá"
+                                required
+                                onChange={(e) => setDiscount(e.target.value)}
+                                value={discount}
                             />
                         </Grid>
 
