@@ -10,6 +10,7 @@ import {GetAllUserSlice, ProfileSlice} from '../../../redux/Slice/userSlice'
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {deleteUser} from '../../../redux/callAPI/userCall'
+import MetaData from "../../../components/MetaData";
 
 
 const ProductListHeading = styled.h1`
@@ -142,6 +143,7 @@ export default function UserList() {
 
     return (
       <Fragment>
+        <MetaData title= "Tất cả tài khoản (admin)"/>
         <TopBar/>
         <div style={{display:"flex"}}>
           <SideBar/>

@@ -77,8 +77,6 @@ const App = () => {
       <Routes> <Route path='/orders' element={[ScrollTotTop, <MyOrder/>]} /></Routes>
       <Routes> <Route path='/orders/:id' element={[ScrollTotTop, <OrderDetail/>]} /></Routes>
 
-    
-  
       <Routes> 
         <Route path='/admin/home' 
           element={ currentUser && currentUser.role === "admin" ?  

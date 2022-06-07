@@ -3,14 +3,14 @@ import { mobile } from "../../responsive";
 import {useDispatch, useSelector} from 'react-redux'
 import Loader from '../../components/Loader'
 import {getProductDetail} from '../../redux/callAPI/productCall'
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from '@emotion/styled';
 import { Add, Remove } from "@mui/icons-material";
 import NewNavbar from '../../components/NewNavbar'
 import Footer from '../../components/Footer'
 import {addItemToCart} from '../../redux/callAPI/cartCall'
 import MetaData from '../../components/MetaData'
-
+import {productSlice} from '../../redux/Slice/productSlice'
 
 const Wrapper = styled.div`
     padding: 50px;
@@ -130,11 +130,12 @@ const Button = styled.button`
 const ProductDetail = () => {
 
   const location = useLocation();
+  const navigate = useNavigate()
   const id = location.pathname.split("/")[2];
   const dispatch = useDispatch(); 
 
   const { product, error } = useSelector((state) => state.product);
-
+  const {currenUser} = useSelector((state)=>state.user)
   const [quantity, setQuantity] = useState(1);
 
   // chỉnh giới hạn <= stock
@@ -151,14 +152,22 @@ const ProductDetail = () => {
 
     const handleClickAdd2Cart = (e)=>{
       e.preventDefault();
-      dispatch(addItemToCart([id,quantity]))
-      alert("Thêm thành công")
+      if (currenUser){
+        dispatch(addItemToCart([id,quantity]))
+        alert("Thêm thành công")
+      }
+      else{
+        alert("Vui lòng đăng nhập !")
+        navigate("/login")
+      }
+     
     }
 
   useEffect(()=>{
-    // if(error){
-    //   setShowAlert(true);
-    // }
+    if(error){
+      alert("Lỗi !")
+      dispatch(productSlice.actions.clearError())
+    }
 
     dispatch(getProductDetail(id))
   },[dispatch,error,id])

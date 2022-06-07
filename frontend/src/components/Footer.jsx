@@ -144,13 +144,19 @@ const Footer = () => {
         {/* <Title>Useful Links</Title> */}
         <List>
           <ListItem> <StyledLink to = {`/`} >Trang chủ </StyledLink></ListItem>
+          <ListItem><StyledLink to = {`/about-us`}>Về chúng tôi</StyledLink></ListItem>
+          
+          <ListItem><StyledLink to = {`/products/nam`} >Đồng hồ nam</StyledLink></ListItem>
+          <ListItem><StyledLink to = {`/shipping-policy`}>Vận chuyển</StyledLink></ListItem>
+
+          <ListItem><StyledLink to = {`/products/nu`}>Đồng hồ nữ</StyledLink></ListItem>
+          <ListItem><StyledLink to = {`/warranty`}>Bảo hành</StyledLink></ListItem>
+          
+          <ListItem><StyledLink to = {`/products/phukien`}>Phụ kiện</StyledLink></ListItem>
+          <ListItem><StyledLink to = {`/`}>Yêu thích</StyledLink></ListItem>
 
           <ListItem><StyledLink to = {`/cart`}>Giỏ hàng</StyledLink></ListItem>
-          <ListItem><StyledLink to = {`/products/dong-ho-nam`} >Đồng hồ nam</StyledLink></ListItem>
-          <ListItem><StyledLink to = {`/`}>Yêu thích</StyledLink></ListItem>
-          <ListItem><StyledLink to = {`/products/dong-ho-nu`}>Đồng hồ nữ</StyledLink></ListItem>
-          <ListItem><StyledLink to = {`/about-us`}>Về chúng tôi</StyledLink></ListItem>
-          <ListItem><StyledLink to = {`/products/phu-kien`}>Phụ kiện</StyledLink></ListItem>
+
         </List>
       </Center>
       <Right>

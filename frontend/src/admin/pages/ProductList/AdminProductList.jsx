@@ -9,6 +9,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {updateDeleteProductSlice,productsSlide} from '../../../redux/Slice/productSlice'
+import MetaData from '../../../components/MetaData'
 
 const ProductListHeading = styled.h1`
   font: 400 2rem "Roboto";
@@ -154,6 +155,7 @@ const AdminProductList = () => {
 
   return (
     <Fragment>
+      <MetaData title="Tất cả sản phẩm (admin)"/>
       <TopBar/>
       <div style={{display:"flex"}}>
         <SideBar/>

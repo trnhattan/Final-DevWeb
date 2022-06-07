@@ -2,6 +2,8 @@ import React from 'react'
 import styled from '@emotion/styled'
 import Footer from '../../components/Footer'
 import NewNavbar from '../../components/NewNavbar'
+import MetaDate from '../../components/MetaData'
+
 
 const Container = styled.div``;
 
@@ -49,6 +51,7 @@ const Slide = styled.div`
 const AboutUs = () => {
   return (
     <Container>
+      <MetaDate title = "Chính sách bảo hành" />
       <NewNavbar/>
       <Title>CHÍNH SÁCH BẢO HÀNH</Title>
       <Wrapper>

@@ -9,7 +9,7 @@ import { GetAllOrderAdmin, UpdateOrderAdmin, DeleteOrderAdmin } from '../../../r
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import {OrderSlice, getAllOrderSlice} from '../../../redux/Slice/orderSlice'
-
+import MetaData from '../../../components/MetaData'
 
 const ProductListHeading = styled.h1`
   font: 400 2rem "Roboto";
@@ -147,6 +147,7 @@ const AdminOrderList = () => {
 
   return (
     <Fragment>
+      <MetaData title = "Tất cả đơn hàng (admin)" />
       <TopBar/>
       <div style={{display:"flex"}}>
         <SideBar/>

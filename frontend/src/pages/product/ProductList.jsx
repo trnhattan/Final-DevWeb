@@ -51,9 +51,8 @@ const ProductList = () => {
   const dispatch = useDispatch()
   const location = useLocation();
   
-  let cat= "" ;
-  let title = "Tất cả sản phẩm";
   
+  const [title, setTitle] = useState("Tất cả sản phẩm");
   const [category, setCategory] = useState("");
   const [color, setColor] = useState("");
   const [strap, setStrap] = useState("");
@@ -71,19 +70,19 @@ const ProductList = () => {
 
     
     if (location.pathname.split("/").length > 2) {
-      cat = location.pathname.split("/")[2];
+       let cat = location.pathname.split("/")[2]
 
       if (cat === "phukien"){
-          title = `Phụ kiện`;
-          setStrap("phukien");
+        setTitle("Phụ kiện");
+        setStrap(cat);
       }
       else if (cat === "nu") {
-          title = `Đồng hồ nữ`;
-          setCategory(cat);
+        setTitle("Đồng hồ nữ")
+        setCategory(cat);
       }
       else if (cat === "nam") {
-          title = `Đồng hồ nam`
-          setCategory(cat)
+        setTitle("Đồng hồ nam")
+        setCategory(cat)
       }
       else{
         setKeyword(cat)
@@ -93,9 +92,8 @@ const ProductList = () => {
     }
 
     dispatch(getAllProducts({role, category, color, strap, sortType, keyword}))
-  },[dispatch ,role, category, color, strap, sortType, location, title, cat])
-  
-  console.log(role,keyword)
+  },[dispatch ,role, category, color, strap, sortType, location, title  ])
+
   
   return (
     <Container>

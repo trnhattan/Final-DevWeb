@@ -7,6 +7,7 @@ import Checkbox from '@mui/material/Checkbox';
 import {CreateOrder} from '../../redux/callAPI/orderCall'
 import {cartSlice} from '../../redux/Slice/cartSlice'
 import Footer from '../../components/Footer'
+import Button from '@mui/material/Button';
 
 const Title = styled.h1`
   padding: 20px;
@@ -93,7 +94,9 @@ const Payment = () => {
                         />
                     } 
                 />
-            <br/><button onClick={handleClick}>Xác nhận</button> 
+            <br/>
+            <Button variant="outlined" size="medium" onClick={handleClick}>Xác nhận</Button>
+           
             </InfoContainer>
         </div>
         <Image src="https://callio.vn/wp-content/uploads/2021/10/HC7aV9oK68FhcwcXbt_Lg24p2KwrW67siw.png"></Image> 

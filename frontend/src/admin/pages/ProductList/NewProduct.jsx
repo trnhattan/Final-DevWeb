@@ -97,7 +97,7 @@ const NewProduct = () => {
     console.log({name,price,description, category,brand,color,strap,stock, image})
   return (
     <Fragment>
-        <MetaData title = "Thêm sản phẩm mới"/>
+        <MetaData title = "Thêm sản phẩm mới (admin)"/>
         <TopBar/>
         <div style={{display:"flex"}}>
             <SideBar/>
