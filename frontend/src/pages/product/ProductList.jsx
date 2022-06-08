@@ -122,7 +122,6 @@ const ProductList = () => {
     
   },[dispatch ,role,  location,  strap, color, sortType, keyword ])
 
-  console.log(role,  color, strap, sortType)
   
   return (
     <Container>

@@ -17,6 +17,15 @@ export const getAllProducts = createAsyncThunk(
                 break;
             case "category":
                 if (category){
+                    if (category === "phukien"){
+                        if(color){
+                            link = `/products?strap=phukien&color=${color}`;
+                        }
+                        else{
+                         link = `/products?strap=phukien`;
+                        }
+                    }
+                    else{
                     if (color){
                         if (strap){
                             link = `/products?category=${category}&color=${color}&strap=${strap}`;
@@ -32,7 +41,7 @@ export const getAllProducts = createAsyncThunk(
                         else{
                             link = `/products?category=${category}`;
                         }
-                    }   
+                    }   }
                 }
                 else{
                     if (color){

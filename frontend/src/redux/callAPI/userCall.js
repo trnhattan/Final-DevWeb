@@ -58,11 +58,13 @@ export const loadUser = createAsyncThunk(
 export const logout = createAsyncThunk(
     'user/logout',
     async()=>{
-        
-        await publicRequest.get(
-            `/logout`
-        )
-        localStorage.removeItem("token");
+      
+            await publicRequest.get(
+                `/logout`
+            )
+            localStorage.removeItem("token");
+
+       
     }
 );
 
@@ -108,11 +110,15 @@ export const updatePassword = createAsyncThunk(
 export const forgotPassword = createAsyncThunk(
     "user/forgotPassword",
     async (email)=>{
+        // try{
             const {data} = await publicRequest.post(
                 '/password/forgot',
                 email,
             )
             return data.message 
+        // }catch(err){
+        //     return err.response.data.message
+        // }
     }
 )
 
